@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', "App\Http\Controllers\ControllerLogin@entrar");
+
+//RUTAS DEL LOGIN
+
+Route::post('/',"App\Http\Controllers\ControllerLogin@iniciarSesion")->name("iniciarSesion");
+
+//RUTAS PAGINA PRINCIPAL
+
+Route::get('/principal',"App\Http\Controllers\ControllerPrincipal@entrar")->name("principal");

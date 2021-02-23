@@ -1,0 +1,53 @@
+#navSuperior{
+    border-bottom: solid #833bff 1px;
+}
+
+#navSuperior, #layoutSidenav_nav nav{
+    background-color: #a16aff;
+    color: white;
+}
+
+#layoutSidenav_nav nav .nav-link, .sb-nav-link-icon svg{
+    color: white;
+}
+
+#layoutSidenav_nav nav .nav-link:hover{
+    background-color: #9557ff;
+}
+
+#layoutSidenav_nav nav .nav-link.active{
+   font-weight: bold;
+    text-decoration: underline;
+}
+
+#layoutSidenav_nav nav .sb-sidenav-menu-heading{
+    color: white;
+    font-weight: bold;
+    padding-top: 12px;
+    background-color: #833bff;
+}
+
+#layoutSidenav_nav nav .sb-sidenav-footer{
+    background-color: #833bff;
+    color: white;
+}
+
+#logo{
+    display: none;
+}
+
+#logo + button {
+    margin-left: 10px;
+}
+
+@media (min-width: 450px){
+    #logo{
+        display: block;
+        width: 205px;
+        padding-right: 0;
+    }
+
+    #logo + button {
+        margin-left: 0;
+    }
+}

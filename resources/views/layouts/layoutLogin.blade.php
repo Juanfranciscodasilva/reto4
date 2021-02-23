@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grayscale - Start Bootstrap Theme</title>
+    <title>PlanTool- Login</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo.png" width="180px"></a>
+            <a class="navbar-brand js-scroll-trigger" href="/"><img src="img/logo.png" width="180px"></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -27,9 +27,23 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Iniciar sesión</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Registrarse</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Restablecer contraseña</a></li>
+                    @if($seleccionado == 0)
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/" style="text-decoration: underline">Iniciar sesión</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Iniciar sesión</a></li>
+                    @endif
+
+                    @if($seleccionado == 1)
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects" style="text-decoration: underline">Registrarse</a></li>
+                    @else
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Registrarse</a></li>
+                    @endif
+
+                    @if($seleccionado == 2)
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup" style="text-decoration: underline">Restablecer contraseña</a></li>
+                    @else
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Restablecer contraseña</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

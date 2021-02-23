@@ -20,6 +20,7 @@ class CreateUsuariosTable extends Migration
             $table->string("email")->unique();
             $table->string("nombre");
             $table->string("apellidos");
+            $table->timestamps();
         });
     }
 
