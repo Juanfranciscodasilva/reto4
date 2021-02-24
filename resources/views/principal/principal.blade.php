@@ -1,4 +1,4 @@
-@extends("layouts.layoutPrincipal")
+@extends("layouts.principal.layoutPrincipal")
 @section('css')
     <link href="css/principal.css" rel="stylesheet" />
 @endsection
@@ -79,4 +79,3 @@
         @endif
     </div>
 @endsection
-

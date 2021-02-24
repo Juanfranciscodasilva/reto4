@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f
+class ComposerStaticInit52162caeb915403f190ace1510e59656
 {
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -510,9 +510,7 @@ class ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ControllerLogin' => __DIR__ . '/../..' . '/app/Http/Controllers/ControllerLogin.php',
-        'App\\Http\\Controllers\\ControllerPrincipal' => __DIR__ . '/../..' . '/app/Http/Controllers/ControllerPrincipal.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -522,6 +520,7 @@ class ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\ValidarRegistro' => __DIR__ . '/../..' . '/app/Http/Requests/ValidarRegistro.php',
         'App\\Models\\Archivo' => __DIR__ . '/../..' . '/app/Models/Archivo.php',
         'App\\Models\\Comentario' => __DIR__ . '/../..' . '/app/Models/Comentario.php',
         'App\\Models\\Integrante' => __DIR__ . '/../..' . '/app/Models/Integrante.php',
@@ -1557,7 +1556,6 @@ class ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
-        'Illuminate\\Auth\\Access\\Events\\GateEvaluated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Events/GateEvaluated.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',
         'Illuminate\\Auth\\Access\\Response' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Response.php',
@@ -2525,8 +2523,6 @@ class ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
-        'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',
-        'Laravel\\Sail\\Console\\PublishCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/PublishCommand.php',
         'Laravel\\Sail\\SailServiceProvider' => __DIR__ . '/..' . '/laravel/sail/src/SailServiceProvider.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
@@ -3443,7 +3439,6 @@ class ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f
         'PharIo\\Version\\GreaterThanOrEqualToVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/GreaterThanOrEqualToVersionConstraint.php',
         'PharIo\\Version\\InvalidPreReleaseSuffixException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/InvalidPreReleaseSuffixException.php',
         'PharIo\\Version\\InvalidVersionException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/InvalidVersionException.php',
-        'PharIo\\Version\\NoPreReleaseSuffixException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/NoPreReleaseSuffixException.php',
         'PharIo\\Version\\OrVersionConstraintGroup' => __DIR__ . '/..' . '/phar-io/version/src/constraints/OrVersionConstraintGroup.php',
         'PharIo\\Version\\PreReleaseSuffix' => __DIR__ . '/..' . '/phar-io/version/src/PreReleaseSuffix.php',
         'PharIo\\Version\\SpecificMajorAndMinorVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/SpecificMajorAndMinorVersionConstraint.php',
@@ -5160,10 +5155,10 @@ class ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInita31187473110e3d0af7f7de6aeeddc5f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit52162caeb915403f190ace1510e59656::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit52162caeb915403f190ace1510e59656::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit52162caeb915403f190ace1510e59656::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit52162caeb915403f190ace1510e59656::$classMap;
 
         }, null, ClassLoader::class);
     }
