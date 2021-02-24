@@ -22,3 +22,9 @@ Route::post('/',"App\Http\Controllers\ControllerLogin@iniciarSesion")->name("ini
 //RUTAS PAGINA PRINCIPAL
 
 Route::get('/principal',"App\Http\Controllers\ControllerPrincipal@entrar")->name("principal");
+Route::get("/proyectos", "App\Http\Controllers\ControllerPrincipal@proyectos")->name("proyectos");
+Route::get("/crear", "App\Http\Controllers\ControllerPrincipal@abrirCrearProyecto")->name("crear");
+
+//RUTAS PERFIL
+
+Route::get("/perfil", "App\Http\Controllers\ControllerPrincipal@perfil")->name("perfil");

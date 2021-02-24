@@ -11,6 +11,7 @@
         <link href="css/principalLayout.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        @yield('css')
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark d-flex justify-content-between" id="navSuperior">
@@ -24,10 +25,14 @@
                 <ul class="navbar-nav ml-auto ml-md-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a class="dropdown-item">"USUARIO"</a>
+                        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="userDropdown" id="menuUsuario">
+                            <a href="{{route("perfil")}}" class="dropdown-item">
+                                <div id="imgPerfil"><img src="img/logo.png"></div>
+                                <span>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</span>
+                            </a>
+
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Perfil</a>
+                            <a class="dropdown-item" href="{{route("perfil")}}">Perfil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/">Cerrar Sesión</a>
                         </div>
@@ -45,32 +50,61 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Inicio
                             </a>
-                            <div class="sb-sidenav-menu-heading">General</div>
                             @if($pagina == "principal")
-                                <a class="nav-link" href="/principall">
+                                <div class="sb-sidenav-menu-heading">General</div>
+                                <a class="nav-link" href="{{route("proyectos")}}">
                                     <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                     Proyectos
                                 </a>
-                                <a class="nav-link" href="/principall">
+                                <a class="nav-link" href="{{route("crear")}}">
                                     <div class="sb-nav-link-icon"><i class="fas fa-folder-plus"></i></div>
                                     Crear proyecto
                                 </a>
+                                <div class="sb-sidenav-menu-heading">Perfil</div>
+                                <a class="nav-link" href="{{route("perfil")}}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                    Perfil
+                                </a>
+                                <a class="nav-link" href="/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                                    Cerrar sesión
+                                </a>
                             @else
+                                @if($pagina == "perfil")
+                                    <div class="sb-sidenav-menu-heading">Perfil</div>
+                                    <a class="nav-link" href="{{route("perfil")}}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                        Mi perfil
+                                    </a>
+                                    <a class="nav-link" href="{{route("proyectos")}}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-key"></i></div>
+                                        Cambiar contraseña
+                                    </a>
+                                    <a class="nav-link" href="{{route("proyectos")}}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-images"></i></div>
+                                        Cambiar imágen
+                                    </a>
+                                    <a class="nav-link" href="{{route("proyectos")}}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-id-card"></i></div>
+                                        Cambiar datos
+                                    </a>
+                                    <a class="nav-link" href="{{route("proyectos")}}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-trash"></i></div>
+                                        Eliminar usuario
+                                    </a>
+                                    <a class="nav-link" href="/">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                                        Cerrar sesión
+                                    </a>
+                                @else
+                                @endif
                             @endif
-                            <div class="sb-sidenav-menu-heading">Perfil</div>
-                            <a class="nav-link" href="/principall">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                                Perfil
-                            </a>
-                            <a class="nav-link" href="/">
-                                <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-                                Cerrar sesión
-                            </a>
+
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Iniciado sesión como:</div>
-                        "USUARIO"
+                    <div class="sb-sidenav-footer py-3">
+                        <div class="small">Iniciado sesión como: {{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</div>
+
                     </div>
                 </nav>
             </div>
@@ -78,12 +112,12 @@
                 <main>
                     @yield("contenido")
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                <footer class=" bg-light mt-auto p-2">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; PlanTool 2021</div>
                             <div>
-                                <img src="img/logo.png" width="120px">
+                                <img src="img/logo.png" width="130px">
                             </div>
                         </div>
                     </div>
