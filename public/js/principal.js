@@ -2,7 +2,6 @@ $(document).ready(function () {
     guardardato();
     botonmodoscyclaro();
     var x = window.matchMedia("(max-width:992px");
-    propiedadesCssMenu(x);
     x.addListener(propiedadesCssMenu);
 });
 //Funcion para ocultar el menu cada vez que coincide con la distribucion de la pantalla

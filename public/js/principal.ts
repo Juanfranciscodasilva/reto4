@@ -2,7 +2,6 @@ $(document).ready(function () {
     guardardato();
     botonmodoscyclaro();
     var x = window.matchMedia("(max-width:992px");
-    propiedadesCssMenu(x);
     x.addListener(propiedadesCssMenu);
 });
 

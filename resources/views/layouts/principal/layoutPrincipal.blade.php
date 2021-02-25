@@ -28,7 +28,7 @@
                 <span><i class="fas fa-moon"></i></span>
             </button>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle h-100"></i></a>
                 <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="userDropdown" id="menuUsuario">
                     <a href="{{route("perfil")}}" class="dropdown-item">
                         <div id="imgPerfil"><img src="img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen }}"></div>

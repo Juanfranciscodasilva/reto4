@@ -65,7 +65,7 @@
 }
 
 .switch {
-  background: #833bff;
+  background: #7A01C9;
   border-radius: 100px;
   position: relative;
   display: flex;
@@ -112,7 +112,7 @@
 }
 
 body.dark {
-  background-color: black;
+  background-color: #282828;
 }
 
 @media (min-width: 450px) {
