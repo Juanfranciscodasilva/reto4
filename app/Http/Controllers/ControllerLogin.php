@@ -15,10 +15,12 @@ class ControllerLogin extends Controller
     //Metodo para mostrar la vista del login
         public function index(){
             Session::remove("usuario");
+            Session::remove("proyecto");
             return view('login.index')->with([
                 'registrado' => false,
                 'usuario' => "",
                 'password' => "",
+                'seleccionado' => 0
             ]);
         }
 
@@ -36,7 +38,8 @@ class ControllerLogin extends Controller
                             'registrado' => false,
                             'usuario' => "",
                             'password' => "",
-                            'error' => "Usuario o contraseña incorrecta"
+                            'error' => "Usuario o contraseña incorrecta",
+                            'seleccionado' => 0
                         ]);
                     }
             }
@@ -47,7 +50,8 @@ class ControllerLogin extends Controller
                     'registrado' => false,
                     'usuario' => "",
                     'password' => "",
-                    'error' => "Usuario o contraseña incorrecta"
+                    'error' => "Usuario o contraseña incorrecta",
+                    'seleccionado' => 0
                 ]);
             }
 
@@ -74,6 +78,7 @@ class ControllerLogin extends Controller
                 'registrado' => true,
                 'usuario' => $request->usuario,
                 'password' => $request->pass,
+                'seleccionado' => 0
             ]);
         }
 

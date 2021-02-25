@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
     //Registro
         //Vista
             Route::get('/registro',function (){
-               return view('login.registro');
+               return view('login.registro')->with('seleccionado',1);
             })->name('registro.index');
         //Añadir usuario
             Route::post('/registro','ControllerLogin@registrar')->name('registrar.registro');

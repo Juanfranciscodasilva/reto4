@@ -135,7 +135,6 @@
                 <input type="file" id="archivo" name="archivo" hidden>
                 <button type="submit"><i class="fas fa-share"></i></button>
             </form>
-
         </div>
     </div>
 @endsection
