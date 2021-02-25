@@ -23,6 +23,10 @@
   border-radius: 5px;
 }
 
+#proyectos a:hover {
+  text-decoration: none;
+}
+
 .proyecto h2 {
   background-color: #a16aff;
   color: white;
@@ -42,7 +46,7 @@
   color: black;
   background-color: white;
   border: solid black 1px;
-  padding: 10px 0;
+  padding: 10px 8px;
   margin: 0;
   word-break: break-word;
   border-radius: 5px;

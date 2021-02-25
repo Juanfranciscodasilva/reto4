@@ -28,4 +28,13 @@ use Illuminate\Support\Facades\Route;
     //Restablecer contraseña
     //Principal
         Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
+        Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
+        Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
 
+        Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
+
+        //RUTAS DE PROYECTO
+
+        Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
+        Route::get("/proyecto" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");

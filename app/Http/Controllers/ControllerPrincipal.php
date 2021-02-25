@@ -14,4 +14,17 @@ class ControllerPrincipal extends Controller
         }
         return redirect("/");
     }
+
+    public function proyectos(){
+        return view("principal.proyectos")->with("pagina","principal");
+    }
+
+    public function abrirCrearProyecto(){
+        return view("principal.crearProyecto")->with("pagina","principal");
+    }
+
+    public function perfil(){
+        return view("perfil.perfil")->with("pagina","perfil");
+    }
+
 }

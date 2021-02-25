@@ -1,4 +1,8 @@
 @extends("layouts.principal.layoutPrincipal")
+
+@section("titulo")
+    <title>PlanTool - Principal</title>
+@endsection
 @section('css')
     <link href="css/principal.css" rel="stylesheet" />
 @endsection
@@ -12,7 +16,7 @@
         @else
             <div id="proyectos">
                 <div>
-                    <a href="{{route("principal")}}">
+                    <a href="/proyecto/1">
                         <div class="proyecto">
                             <h2>Titulo de ejemplo</h2>
                             <div>
@@ -28,7 +32,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="{{route("principal")}}">
+                    <a href="/proyecto/2">
                         <div class="proyecto">
                             <h2>Titulo de ejemplo</h2>
                             <div>
@@ -44,7 +48,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="{{route("principal")}}">
+                    <a href="/proyecto/3">
                         <div class="proyecto">
                             <h2>Titulo de ejemplo</h2>
                             <div>
@@ -60,7 +64,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="{{route("principal")}}">
+                    <a href="/proyecto/4">
                         <div class="proyecto">
                             <h2>Titulo de ejemplo</h2>
                             <div>
@@ -79,3 +83,4 @@
         @endif
     </div>
 @endsection
+
