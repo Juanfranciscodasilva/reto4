@@ -5,7 +5,6 @@ namespace Illuminate\Auth\Access;
 use Exception;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -375,11 +374,9 @@ class Gate implements GateContract
         // After calling the authorization callback, we will call the "after" callbacks
         // that are registered with the Gate, which allows a developer to do logging
         // if that is required for this application. Then we'll return the result.
-        return tap($this->callAfterCallbacks(
+        return $this->callAfterCallbacks(
             $user, $ability, $arguments, $result
-        ), function ($result) use ($user, $ability, $arguments) {
-            $this->dispatchGateEvaluatedEvent($user, $ability, $arguments, $result);
-        });
+        );
     }
 
     /**
@@ -520,24 +517,6 @@ class Gate implements GateContract
         }
 
         return $result;
-    }
-
-    /**
-     * Dispatch a gate evaluation event.
-     *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
-     * @param  string  $ability
-     * @param  array  $arguments
-     * @param  bool|null  $result
-     * @return void
-     */
-    protected function dispatchGateEvaluatedEvent($user, $ability, array $arguments, $result)
-    {
-        if ($this->container->bound(Dispatcher::class)) {
-            $this->container->make(Dispatcher::class)->dispatch(
-                new Events\GateEvaluated($user, $ability, $result, $arguments)
-            );
-        }
     }
 
     /**

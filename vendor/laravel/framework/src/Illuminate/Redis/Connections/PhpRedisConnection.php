@@ -501,8 +501,14 @@ class PhpRedisConnection extends Connection implements ConnectionContract
             return $this->command('flushdb');
         }
 
-        foreach ($this->client->_masters() as $master) {
-            $this->client->flushDb($master);
+        foreach ($this->client->_masters() as [$host, $port]) {
+            $redis = tap(new Redis)->connect($host, $port);
+
+            if (isset($this->config['password']) && ! empty($this->config['password'])) {
+                $redis->auth($this->config['password']);
+            }
+
+            $redis->flushDb();
         }
     }
 

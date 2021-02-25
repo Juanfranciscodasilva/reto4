@@ -415,9 +415,9 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     public function whereNotInStrict($key, $values);
 
     /**
-     * Filter the items, removing any items that don't match the given type(s).
+     * Filter the items, removing any items that don't match the given type.
      *
-     * @param  string|string[]  $type
+     * @param  string  $type
      * @return static
      */
     public function whereInstanceOf($type);

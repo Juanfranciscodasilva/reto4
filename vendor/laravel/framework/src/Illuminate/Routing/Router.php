@@ -712,13 +712,7 @@ class Router implements BindingRegistrar, RegistrarContract
         })->flatten()->reject(function ($name) use ($excluded) {
             if (empty($excluded)) {
                 return false;
-            }
-
-            if ($name instanceof Closure) {
-                return false;
-            }
-
-            if (in_array($name, $excluded, true)) {
+            } elseif (in_array($name, $excluded, true)) {
                 return true;
             }
 

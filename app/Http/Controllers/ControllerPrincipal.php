@@ -13,7 +13,6 @@ class ControllerPrincipal extends Controller
             return view("principal.principal")->with("pagina","principal")->with("proyectos",$proyectos);
         }
         return redirect("/");
-
     }
 
     public function proyectos(){
@@ -27,4 +26,5 @@ class ControllerPrincipal extends Controller
     public function perfil(){
         return view("perfil.perfil")->with("pagina","perfil");
     }
+
 }

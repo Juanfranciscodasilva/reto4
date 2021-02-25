@@ -1,0 +1,12 @@
+@mixin ocultarborde{
+    outline-width: 0 !important;
+    box-shadow: none !important;
+}
+
+@mixin botonusua($fondo,$posicion,$disp,$sombra){
+    background: $fondo;
+    border-radius: 100px;
+    position: $posicion;
+    display: $disp;
+    box-shadow: $sombra !important;
+}

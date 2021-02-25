@@ -3,9 +3,8 @@
 namespace Laravel\Sail;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Sail\Console\InstallCommand;
-use Laravel\Sail\Console\PublishCommand;
 
 class SailServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -16,8 +15,10 @@ class SailServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     public function boot()
     {
-        $this->registerCommands();
-        $this->configurePublishing();
+        if ($this->app->runningInConsole()) {
+            $this->registerCommands();
+            $this->configurePublishing();
+        }
     }
 
     /**
@@ -27,12 +28,27 @@ class SailServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     protected function registerCommands()
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                InstallCommand::class,
-                PublishCommand::class,
-            ]);
-        }
+        Artisan::command('sail:install', function () {
+            copy(__DIR__.'/../stubs/docker-compose.yml', base_path('docker-compose.yml'));
+
+            $environment = file_get_contents(base_path('.env'));
+
+            $environment = str_replace('DB_HOST=127.0.0.1', 'DB_HOST=mysql', $environment);
+            $environment = str_replace('MEMCACHED_HOST=127.0.0.1', 'MEMCACHED_HOST=memcached', $environment);
+            $environment = str_replace('REDIS_HOST=127.0.0.1', 'REDIS_HOST=redis', $environment);
+
+            file_put_contents(base_path('.env'), $environment);
+        })->purpose('Install Laravel Sail\'s default Docker Compose file');
+
+        Artisan::command('sail:publish', function () {
+            $this->call('vendor:publish', ['--tag' => 'sail']);
+
+            file_put_contents(base_path('docker-compose.yml'), str_replace(
+                './vendor/laravel/sail/runtimes/8.0',
+                './docker/8.0',
+                file_get_contents(base_path('docker-compose.yml'))
+            ));
+        })->purpose('Publish the Laravel Sail Docker files');
     }
 
     /**
@@ -42,11 +58,9 @@ class SailServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     protected function configurePublishing()
     {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../runtimes' => $this->app->basePath('docker'),
-            ], 'sail');
-        }
+        $this->publishes([
+            __DIR__.'/../runtimes' => base_path('docker'),
+        ], 'sail');
     }
 
     /**
@@ -57,8 +71,8 @@ class SailServiceProvider extends ServiceProvider implements DeferrableProvider
     public function provides()
     {
         return [
-            InstallCommand::class,
-            PublishCommand::class,
+            'sail.install-command',
+            'sail.publish-command',
         ];
     }
 }

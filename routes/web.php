@@ -13,18 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', "App\Http\Controllers\ControllerLogin@entrar");
+//Login
+    //Raiz
+        Route::get('/','ControllerLogin@index')->name('login.home');
+    //Iniciar sesión
+        Route::post('/',"ControllerLogin@iniciarSesion")->name("iniciarSesion");
+    //Registro
+        //Vista
+            Route::get('/registro',function (){
+               return view('login.registro');
+            })->name('registro.index');
+        //Añadir usuario
+            Route::post('/registro','ControllerLogin@registrar')->name('registrar.registro');
+    //Restablecer contraseña
+    //Principal
+        Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
+        Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
+        Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
 
-//RUTAS DEL LOGIN
+        Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
 
-Route::post('/',"App\Http\Controllers\ControllerLogin@iniciarSesion")->name("iniciarSesion");
+        //RUTAS DE PROYECTO
 
-//RUTAS PAGINA PRINCIPAL
-
-Route::get('/principal',"App\Http\Controllers\ControllerPrincipal@entrar")->name("principal");
-Route::get("/proyectos", "App\Http\Controllers\ControllerPrincipal@proyectos")->name("proyectos");
-Route::get("/crear", "App\Http\Controllers\ControllerPrincipal@abrirCrearProyecto")->name("crear");
-
-//RUTAS PERFIL
-
-Route::get("/perfil", "App\Http\Controllers\ControllerPrincipal@perfil")->name("perfil");
+        Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
+        Route::get("/proyecto" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");

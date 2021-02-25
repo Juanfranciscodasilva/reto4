@@ -109,7 +109,7 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
             return collect($item)->map(function ($url, $page) {
                 return [
                     'url' => $url,
-                    'label' => (string) $page,
+                    'label' => $page,
                     'active' => $this->currentPage() === $page,
                 ];
             });
