@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta name="description" content="" />
     <meta name="author" content="" />
     @yield("titulo")
@@ -23,11 +23,15 @@
     <!-- Navbar-->
     <div>
         <ul class="navbar-nav ml-auto ml-md-0">
+            <button class="switch" id="switch">
+                <span><i class="fas fa-sun"></i></span>
+                <span><i class="fas fa-moon"></i></span>
+            </button>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="userDropdown" id="menuUsuario">
                     <a href="{{route("perfil")}}" class="dropdown-item">
-                        <div id="imgPerfil"><img src="img/logo.png"></div>
+                        <div id="imgPerfil"><img src="img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen }}"></div>
                         <span>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</span>
                     </a>
 
@@ -152,6 +156,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
+<script src="js/principal.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
