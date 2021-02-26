@@ -16,7 +16,7 @@ class ControllerLogin extends Controller
         public function index(){
             Session::remove("usuario");
             return view('login.index')->with([
-                'registrado' => false,
+                'registrado' => "",
                 'usuario' => "",
                 'password' => "",
                 'seleccionado' => 0
@@ -34,7 +34,7 @@ class ControllerLogin extends Controller
                 //BUSCAR POR CORREO SI NO SE HA ENCONTRADO BUSCANDO POR USUARIO
                     if (count($busqueda)==0){
                         return view('login.index')->with([
-                            'registrado' => false,
+                            'registrado' => "",
                             'usuario' => "",
                             'password' => "",
                             'error' => "Usuario o contraseña incorrecta",
@@ -46,7 +46,7 @@ class ControllerLogin extends Controller
             if (!Hash::check($pass,$busqueda[0]->password))
             {
                 return view('login.index')->with([
-                    'registrado' => false,
+                    'registrado' => "",
                     'usuario' => "",
                     'password' => "",
                     'error' => "Usuario o contraseña incorrecta",
@@ -74,7 +74,7 @@ class ControllerLogin extends Controller
 
             $this->correo($request);
             return view('login.index')->with([
-                'registrado' => true,
+                'registrado' => "Cuenta creada correctamente",
                 'usuario' => $request->usuario,
                 'password' => $request->pass,
                 'seleccionado' => 0
@@ -120,7 +120,7 @@ class ControllerLogin extends Controller
                 }
 
                 $numeroale = ['numero' => $numero];
-                Session::put('codigo',$numero);
+                Session::put('codigo',$numeroale);
                 $subject = "PlanTool Restablecer contraseña";
                 $for = $email;
 
@@ -130,4 +130,64 @@ class ControllerLogin extends Controller
                     $msj->to($for);
                 });
             }
+
+            //Metodo para comprobar el codigo de verificación
+                public function codigo(){
+                    $codigo = \request('codigo');
+
+                    if ($codigo != Session::get('codigo')['numero'])
+                    {
+                        return view('login.restablecer.codigo')->with([
+                            'seleccionado' => 2,
+                            'error' => 'Código de verificación incorrecto'
+                        ]);
+                    }
+
+                    Session::remove('codigo');
+                    return view('login.restablecer.contra')->with('seleccionado',2);
+                }
+
+            //Metodo para reenviar el codigo de verificación
+                public function reenviar(){
+                    $subject = "PlanTool Restablecer contraseña";
+                    $for = Session::get('email');
+
+                    Mail::send('emails.codigo',Session::get('codigo'),function ($msj) use ($subject,$for){
+                        $msj->from('developersweapp@gmail.com','PlanTool');
+                        $msj->subject($subject);
+                        $msj->to($for);
+                    });
+
+                    return view('login.restablecer.codigo')->with('seleccionado',2);
+                }
+
+            //Metodo para modificar la contraseña al usuario
+                public function modificarcontra(){
+                    $contra = \request('pass');
+
+                    $datosusu = Usuario::get()->where('email',Session::get('email'));
+                    $usuario = Usuario::find($datosusu[0]->id);
+                    $usuario->password = Hash::make($contra);
+                    $usuario->save();
+
+                    $this->correomodif($datosusu);
+                    return view('login.index')->with([
+                        'registrado' => "Contraseña modificada correctamente",
+                        'usuario' => Session::get('email'),
+                        'password' => $contra,
+                        'seleccionado' => 0
+                    ]);
+                }
+
+            //Metodo para mandar el correo cuando se modifica la contraseña
+                public function correomodif($datos){
+                    $subject = "PlanTool Contraseña Modificada";
+                    $for = Session::get('email');
+
+                    Mail::send('emails.confir',$datos->all(),function ($msj) use ($subject,$for){
+                        $msj->from('developersweapp@gmail.com','PlanTool');
+                        $msj->subject($subject);
+                        $msj->to($for);
+                    });
+                }
 }

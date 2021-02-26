@@ -16,6 +16,6 @@
         }
         catch (err){
             $(".error").empty();
-            $(".error").append('<div class="alert alert-danger text-center">Las contraseñas no coinciden</div>');
+            $(".error").append('<div class="alert alert-danger text-center mb-2">Las contraseñas no coinciden</div>');
         }
     }

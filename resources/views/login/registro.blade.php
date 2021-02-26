@@ -33,7 +33,7 @@
             <div class="error">
 
             </div>
-                <button type="submit" class="btn boton w-100">Registrarse</button>
+                <button type="submit" class="btn boton w-100 mt-2">Registrarse</button>
             </div>
         </div>
     </form>
