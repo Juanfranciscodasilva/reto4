@@ -16,7 +16,7 @@
         @else
             <div id="proyectos">
                 <div>
-                    <a href="/proyecto/1">
+                    <a href="{{ route('proyecto','1') }}">
                         <div class="proyecto">
                             <h2>Titulo de ejemplo</h2>
                             <div>
@@ -32,7 +32,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="/proyecto/2">
+                    <a href="{{ route('proyecto','2') }}">
                         <div class="proyecto">
                             <h2>Titulo de ejemplo</h2>
                             <div>
@@ -48,7 +48,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="/proyecto/3">
+                    <a href="{{ route('proyecto','3') }}">
                         <div class="proyecto">
                             <h2>Titulo de ejemplo</h2>
                             <div>

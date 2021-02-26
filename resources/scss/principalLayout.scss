@@ -68,7 +68,7 @@
 }
 
 .switch{
-    @include botonusua(#833bff,relative,flex,none);
+    @include botonusua(#7A01C9,relative,flex,none);
     border: none;
     margin-top: 6px;
     margin-right: 10px;
@@ -106,7 +106,8 @@
 }
 
 body.dark{
-    background-color: black;
+    background-color: #282828;
+
 }
 
 @media (min-width: 450px){

@@ -5,7 +5,7 @@
 @endsection
 
 @section("css")
-    <link href="css/chat.css" rel="stylesheet" />
+    <link href="/css/chat.css" rel="stylesheet" />
 @endsection
 
 @section("contenido")
@@ -135,7 +135,6 @@
                 <input type="file" id="archivo" name="archivo" hidden>
                 <button type="submit"><i class="fas fa-share"></i></button>
             </form>
-
         </div>
     </div>
 @endsection

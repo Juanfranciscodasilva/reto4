@@ -1,10 +1,10 @@
 @extends('layouts.login.login')
 
 @section('contenido')
-    <form id="formregist" method="post" action="{{ route('registrar.registro') }}">
+    <form id="formregist" method="post" action="{{ route('registrar.registro') }}" class="formu">
         @csrf
-        <h1 class="titulo pb-1 w-50 text-center">Registro</h1>
-        <div class="row w-75">
+        <h1 class="titulo pb-1 w-75 text-center">Registro</h1>
+        <div class="row w-75 mt-3">
             <div class="col-12 col-lg-6 text-lg-center">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control text-lg-center" id="nombre" name="nombre" pattern="^([A-Za-zÀ-ÿ]+[ ]?)+$" required value="{{ old('nombre') }}">

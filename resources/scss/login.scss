@@ -1,5 +1,22 @@
 @import "funciones";
 
+a{
+    color: #7A01C9;
+}
+
+a:hover{
+    color: #7A01C9;
+}
+
+form.formu{
+    padding-top: 45px !important;
+    padding-bottom: 45px !important;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 body {
     height: 100vh;
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(161,106,255,1) 90%);
@@ -87,7 +104,7 @@ input {
     padding: 20px 0;
 }
 
-@media (min-width: 300px) {
+@media (min-width: 301px) {
     #mainNav .navbar-toggler {
         width: auto;
     }
@@ -122,3 +139,16 @@ input {
     }
 }
 
+@media (max-width: 768px) {
+    form.formu{
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+}
+
+@media (max-width: 301px) {
+    .navbar-brand{
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+}

@@ -19,6 +19,7 @@ class ControllerLogin extends Controller
                 'registrado' => false,
                 'usuario' => "",
                 'password' => "",
+                'seleccionado' => 0
             ]);
         }
 
@@ -36,7 +37,8 @@ class ControllerLogin extends Controller
                             'registrado' => false,
                             'usuario' => "",
                             'password' => "",
-                            'error' => "Usuario o contraseña incorrecta"
+                            'error' => "Usuario o contraseña incorrecta",
+                            'seleccionado' => 0
                         ]);
                     }
             }
@@ -47,7 +49,8 @@ class ControllerLogin extends Controller
                     'registrado' => false,
                     'usuario' => "",
                     'password' => "",
-                    'error' => "Usuario o contraseña incorrecta"
+                    'error' => "Usuario o contraseña incorrecta",
+                    'seleccionado' => 0
                 ]);
             }
 
@@ -74,6 +77,7 @@ class ControllerLogin extends Controller
                 'registrado' => true,
                 'usuario' => $request->usuario,
                 'password' => $request->pass,
+                'seleccionado' => 0
             ]);
         }
 
@@ -88,4 +92,42 @@ class ControllerLogin extends Controller
                   $msj->to($for);
                 });
         }
+
+     //Metodo para comprobar si el email existe o no
+        public function email(){
+            $email = \request('email');
+            $busqueda = Usuario::get()->where('email',$email);
+
+            if (count($busqueda) == 0)
+            {
+                return view('login.restablecer.email')->with([
+                    'seleccionado' => 2,
+                    'error' => 'El correo electronico es incorrecto'
+                ]);
+            }
+
+            Session::put('email',$email);
+            $this->correocodigo($email);
+            return view('login.restablecer.codigo')->with('seleccionado',2);
+        }
+
+        //Metodo para enviar el correo con el codigo de verificación
+            public function correocodigo($email){
+                $numero = "";
+
+                for ($n = 0;$n < 5; $n++){
+                    $numero .= rand(0,9);
+                }
+
+                $numeroale = ['numero' => $numero];
+                Session::put('codigo',$numero);
+                $subject = "PlanTool Restablecer contraseña";
+                $for = $email;
+
+                Mail::send('emails.codigo',$numeroale,function ($msj) use ($subject,$for){
+                    $msj->from('developersweapp@gmail.com','PlanTool');
+                    $msj->subject($subject);
+                    $msj->to($for);
+                });
+            }
 }

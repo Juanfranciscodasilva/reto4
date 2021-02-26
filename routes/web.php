@@ -14,18 +14,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Login
-    //Raiz
-        Route::get('/','ControllerLogin@index')->name('login.home');
     //Iniciar sesión
-        Route::post('/',"ControllerLogin@iniciarSesion")->name("iniciarSesion");
+        //Vista
+            Route::get('/','ControllerLogin@index')->name('login.home');
+        //Inicio de sesion
+            Route::post('/',"ControllerLogin@iniciarSesion")->name("iniciarSesion");
     //Registro
         //Vista
             Route::get('/registro',function (){
-               return view('login.registro');
+               return view('login.registro')->with('seleccionado',1);
             })->name('registro.index');
         //Añadir usuario
             Route::post('/registro','ControllerLogin@registrar')->name('registrar.registro');
     //Restablecer contraseña
+        //Vista
+            Route::get('/restablecer',function (){
+                return view('login.restablecer.email')->with('seleccionado',2);
+            })->name('restablecer.index');
+        //Comprobar usuario
+            Route::post('/restablecer','ControllerLogin@email')->name('restablecercontra.email');
+        //Comprobar codigo
+            Route::post('/codigo','ControllerLogin@email')->name('restablecercontra.codigo');
     //Principal
         Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
         Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
@@ -35,6 +44,5 @@ use Illuminate\Support\Facades\Route;
 
         //RUTAS DE PROYECTO
 
-        Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
-        Route::get("/proyecto" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("/proyecto/{id}","ControllerProyecto@entrar")->name('proyecto');
         Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");
