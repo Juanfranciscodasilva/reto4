@@ -36,5 +36,9 @@ use Illuminate\Support\Facades\Route;
         //RUTAS DE PROYECTO
 
         Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
-        Route::get("/proyecto" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
+        Route::get("/tareas" , "ControllerProyecto@tareas")->name("tareas");
+        Route::get("/integrantes" , "ControllerProyecto@integrantes")->name("integrantes");
+        Route::get("/crearTarea" , "ControllerProyecto@crearTarea")->name("crearTarea");
         Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");
+        Route::post("crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");

@@ -2,21 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Integrante;
+use App\Models\Proyecto;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class ControllerPrincipal extends Controller
 {
     public function entrar(){
-        $proyectos = [0];
         if (Session::exists("usuario")){
-            return view("principal.principal")->with("pagina","principal")->with("proyectos",$proyectos);
+            $proyectos = $this->obtenerProyectos(6);
+            return view("principal.principal")->with([
+                "pagina" => "principal",
+                "proyectos" => $proyectos
+            ]);
         }
         return redirect("/");
     }
 
     public function proyectos(){
-        return view("principal.proyectos")->with("pagina","principal");
+
+        $proyectos = $this->obtenerProyectos(0);
+        return view("principal.proyectos")->with([
+            "pagina" => "principal",
+            "proyectos" => $proyectos
+        ]);
     }
 
     public function abrirCrearProyecto(){
@@ -25,6 +36,32 @@ class ControllerPrincipal extends Controller
 
     public function perfil(){
         return view("perfil.perfil")->with("pagina","perfil");
+    }
+
+    public function obtenerProyectos($paginacion){
+        $proyectos = [];
+        $usuario = Session::get("usuario")->id;
+        $ids = [];
+
+        if ($paginacion == 0){
+            $ids = Integrante::get()->where("usuario",$usuario);
+        }else{
+            $ids = Integrante::where("usuario",$usuario)->paginate($paginacion);
+        }
+
+        foreach ($ids as $id){
+            $proyecto = Proyecto::find($id->proyecto);
+            $idCoordinador = Integrante::get()->where("proyecto",$id->proyecto)->where("permiso",true)->first();
+            $coordinador = Usuario::find($idCoordinador->usuario);
+            $proyecto->coordinador = $coordinador;
+            array_push($proyectos,$proyecto);
+        }
+        $datosProyectos = [
+            "proyectos" => $proyectos,
+            "ids" => $ids
+        ];
+
+        return $datosProyectos;
     }
 
 }
