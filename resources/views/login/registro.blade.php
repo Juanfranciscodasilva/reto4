@@ -15,7 +15,7 @@
             </div>
             <div class="col-12 col-lg-6 mt-2 text-lg-center">
                 <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" class="form-control text-lg-center" id="usuario" name="usuario" pattern="^[A-z0-9]+$" required value="{{ old('usuario') }}">
+                <input type="text" class="form-control text-lg-center" id="usuario" name="usuario" pattern="^[A-z.0-9]+$" required value="{{ old('usuario') }}">
             </div>
             <div class="col-12 col-lg-6 mt-2 text-lg-center">
                 <label for="email" class="form-label">Email</label>

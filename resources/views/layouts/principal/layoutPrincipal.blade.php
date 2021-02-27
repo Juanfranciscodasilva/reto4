@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     @yield('css')
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" id="bod">
 <nav class="sb-topnav navbar navbar-expand navbar-dark d-flex justify-content-between" id="navSuperior">
 
     <div class="d-flex align-items-center">
@@ -131,8 +131,8 @@
 
                 </div>
             </div>
-            <div class="sb-sidenav-footer py-3">
-                <div class="small">Iniciado sesión como: {{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</div>
+            <div class="sb-sidenav-footer py-3 text-center">
+                <div class="small">Iniciado sesión como: <b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></div>
 
             </div>
         </nav>
@@ -157,6 +157,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/principal.js"></script>
+@yield('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>

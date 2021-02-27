@@ -1,0 +1,206 @@
+#contenedorFormulario{
+    border: solid black 1px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #a16aff;
+}
+
+.boton{
+    border: 1px solid black;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #a16aff;
+    color: white;
+}
+
+button:hover{
+    text-decoration: underline;
+}
+
+tbody tr:hover{
+    background-color: #a16aff;
+    cursor: pointer;
+    td{
+        border-color: white;
+    }
+}
+
+.nopro:hover{
+    background-color: transparent;
+}
+
+.nopro{
+    border-top: 1px solid #a16aff;
+    border-bottom: 1px solid #a16aff;
+    th:hover{
+        cursor:default;
+    }
+
+    th{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+table.noproy{
+    margin-top: 60px !important;
+}
+
+tbody tr:nth-of-type(1):hover{
+    td{
+        border-bottom-color: white !important;
+        border-top-color: #a16aff;
+    }
+}
+
+tr:nth-of-type(1){
+    td{
+        border-top: 1px solid #a16aff;
+    }
+}
+
+.datos {
+    button.perfil{
+        width: 75%;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: #a16aff;
+        color: white;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+}
+
+.dataTables_paginate{
+    text-align: center !important;
+    margin-top: 10px !important;
+    a{
+        border: 1px solid #a16aff;
+        margin-right: 5px;
+        border-radius: 5px;
+        padding: 10px;
+        padding-left: 15px;
+        color: white !important;
+        padding-right: 15px;
+    }
+
+    a:hover{
+        cursor: pointer;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 20px 0;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid #a16aff;
+    border-top: 1px solid #a16aff;
+    text-shadow: 3px 2px 4px #a16aff;
+    word-break: break-word;
+}
+
+.imagen{
+    border: 1px solid #a16aff;
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+}
+
+td{
+    border-bottom: 1px solid #a16aff;
+}
+
+tr{
+    td:nth-of-type(1){
+        padding-left: 20px;
+    }
+}
+
+#DataTables_Table_0_filter{
+    label{
+        text-indent:-3.5em;
+        overflow:hidden;
+    }
+
+    input[type=search]{
+        border: 1px solid #a16aff;
+        border-radius: 20px;
+        width: 450px;
+        text-align: center;
+    }
+
+
+    input::placeholder{
+        content: "Busqueda";
+    }
+}
+
+.imagen img{
+    border-radius: 100px;
+}
+
+table{
+    margin-top: 100px !important;
+}
+
+#DataTables_Table_0_filter{
+    text-align: left !important;
+    margin-bottom: 30px;
+}
+
+table{
+    background: transparent;
+}
+
+#DataTables_Table_0_length,#DataTables_Table_0_info,#DataTables_Table_0_filter:nth-of-type(1),.pagination{
+    display: none;
+}
+
+body.dark{
+    #contenedorFormulario{
+        background-color: #7A01C9;
+    }
+
+    h1{
+        color: white;
+        text-shadow: 3px 2px 4px black;
+    }
+
+    .text-dark{
+        color: white !important;
+    }
+}
+
+@media (max-width: 1046px) {
+    input[type=search]{
+        width:auto !important;
+        word-break: break-word;
+    }
+
+    .boton{
+        margin-bottom: 5%;
+    }
+}
+
+@media (max-width: 330px) {
+    .tablapro{
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    .imagen{
+        width: 100%;
+        height: auto;
+    }
+
+    .datos{
+        word-break: break-word;
+    }
+}

@@ -22,9 +22,4 @@ class ControllerPrincipal extends Controller
     public function abrirCrearProyecto(){
         return view("principal.crearProyecto")->with("pagina","principal");
     }
-
-    public function perfil(){
-        return view("perfil.perfil")->with("pagina","perfil");
-    }
-
 }

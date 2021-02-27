@@ -46,7 +46,9 @@ use Illuminate\Support\Facades\Route;
         Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
         Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
 
-        Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
+    //Perfil
+        //Vista Principal
+            Route::get("/perfil", "ControllerPerfil@perfil")->name("perfil");
 
         //RUTAS DE PROYECTO
 
