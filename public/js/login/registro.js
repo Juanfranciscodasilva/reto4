@@ -14,6 +14,7 @@ function comprobarpass(event) {
     }
     catch (err) {
         $(".error").empty();
+        $(".error2").empty();
         $(".error").append('<div class="alert alert-danger text-center mb-2">Las contraseñas no coinciden</div>');
     }
 }

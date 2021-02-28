@@ -170,7 +170,7 @@ class ControllerLogin extends Controller
                     $usuario->password = Hash::make($contra);
                     $usuario->save();
 
-                    $this->correomodif($datosusu);
+                    $this->correomodif();
                     return view('login.index')->with([
                         'registrado' => "Contraseña modificada correctamente",
                         'usuario' => Session::get('email'),
@@ -180,11 +180,15 @@ class ControllerLogin extends Controller
                 }
 
             //Metodo para mandar el correo cuando se modifica la contraseña
-                public function correomodif($datos){
+                public function correomodif(){
                     $subject = "PlanTool Contraseña Modificada";
                     $for = Session::get('email');
 
-                    Mail::send('emails.confir',$datos->all(),function ($msj) use ($subject,$for){
+                    $links = [
+                        'link' => 'https://plantool.herokuapp.com/contacto'
+                    ];
+
+                    Mail::send('emails.confir',$links,function ($msj) use ($subject,$for){
                         $msj->from('developersweapp@gmail.com','PlanTool');
                         $msj->subject($subject);
                         $msj->to($for);

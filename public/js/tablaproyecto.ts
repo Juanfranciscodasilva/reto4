@@ -150,6 +150,6 @@ $('#table_of_proyectos').DataTable({
     }
 });
 
-function mostrarproyecto(){
-    alert("hola");
+function mostrarproyecto(valor){
+    location.href = 'https://plantool.test/proyecto/'+ valor.id;
 }

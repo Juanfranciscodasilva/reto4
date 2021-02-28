@@ -7,15 +7,26 @@ use Illuminate\Support\Facades\Session;
 
 class ControllerProyecto extends Controller
 {
-    public function entrar($id){
+    public function establecerID($id){
+        Session::put("proyecto",$id);
+        return redirect("/chat");
+    }
+
+    public function chat(){
+        if (!Session::exists("proyecto")){
+            return redirect("/principal");
+        }
+
         return view("proyecto.proyecto")->with([
             "pagina" => "proyecto",
-            "proyecto" => $id]
-        );
+        ]);
     }
 
     public function eliminar($id){
         //TODO ELIMINAR PROYECTO
         return back();
     }
+
+
+
 }

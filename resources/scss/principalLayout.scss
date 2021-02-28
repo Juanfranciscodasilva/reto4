@@ -8,6 +8,10 @@ button:focus,button:active,input[type=search]:focus,input[type=search]:active,.d
     @include ocultarborde;
 }
 
+.btn-link{
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
 #layoutSidenav_nav nav{
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
@@ -30,7 +34,6 @@ button:focus,button:active,input[type=search]:focus,input[type=search]:active,.d
 
 #layoutSidenav_nav nav .nav-link.active{
     font-weight: bold;
-    color: #a16aff;
     text-decoration: underline;
 }
 
@@ -39,6 +42,12 @@ button:focus,button:active,input[type=search]:focus,input[type=search]:active,.d
     font-weight: bold;
     padding-top: 12px;
     background-color: #a16aff;
+}
+
+.dropdown-menu{
+    a:focus{
+        background-color: #a16aff !important;
+    }
 }
 
 #layoutSidenav_nav nav .sb-sidenav-footer{
@@ -105,6 +114,10 @@ button:focus,button:active,input[type=search]:focus,input[type=search]:active,.d
     }
 }
 
+footer,.sb-sidenav-footer, #layoutSidenav_nav nav .sb-sidenav-footer{
+    box-shadow: 0px -1px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
 body.dark{
     background-color: #282828;
 
@@ -128,12 +141,29 @@ body.dark{
         background-color: #7A01C9;
     }
 
+    .dropdown-menu{
+        a:focus{
+            background-color: #7A01C9 !important;
+            color: white;
+        }
+    }
+
     #layoutSidenav_nav nav .sb-sidenav-footer{
-        background-color: #7A01C9;
+        background-color: #282828;
+        color: white;
+        box-shadow: 0px -1px 10px 0px #a16aff;
     }
 
     .sb-nav-link-icon svg {
-        color: #9d01e2;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    footer,.sb-sidenav-footer{
+        background-color: #282828 !important;
+        box-shadow: 0px -1px 10px 0px #a16aff;
+        .text-muted{
+            color: white !important;
+        }
     }
 }
 

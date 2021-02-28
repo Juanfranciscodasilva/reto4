@@ -44,13 +44,31 @@ use Illuminate\Support\Facades\Route;
     //Principal
         Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
         Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
-        Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
+
+    //Proyectos
+        //Vista
+            Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
+        //Crear proyecto
+            Route::post("crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
 
     //Perfil
         //Vista Principal
             Route::get("/perfil", "ControllerPerfil@perfil")->name("perfil");
+            //Modificar imagen
+                Route::patch('/perfil','ControllerPerfil@modificarimagen')->name('modificarimagen');
+        //Modificar contra
+            //Vista
+                Route::get('/modificarcontra','ControllerPerfil@modcontra')->name('modificarcontra.index');
+            //Modificar
+                Route::patch('/modificarcontra','ControllerPerfil@comprobaractucontra')->name('modificarcontra');
+        //Modificar Perfil
+            //Vista
+                Route::get('/modificarperfil','ControllerPerfil@modperfil')->name('modificarperfil.index');
+            //Modificar
+
 
         //RUTAS DE PROYECTO
 
-        Route::get("/proyecto/{id}","ControllerProyecto@entrar")->name('proyecto');
+        Route::get("/proyecto/{id}","ControllerProyecto@establecerID")->name('proyecto');
+        Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
         Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");

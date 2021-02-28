@@ -29,15 +29,14 @@
             </button>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle h-100"></i></a>
-                <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="userDropdown" id="menuUsuario">
-                    <a href="{{route("perfil")}}" class="dropdown-item">
+                <div class="dropdown-menu dropdown-menu-right text-center pt-0 pb-0" aria-labelledby="userDropdown" id="menuUsuario">
+                    <a href="{{route("perfil")}}" class="dropdown-item pb-0 pt-1">
                         <div id="imgPerfil"><img src="/img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen }}"></div>
-                        <span>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</span>
+                        <span><b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></span>
                     </a>
-
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider mt-0 mb-0"></div>
                     <a class="dropdown-item" href="{{route("perfil")}}">Perfil</a>
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider mt-0 mb-0"></div>
                     <a class="dropdown-item" href="/">Cerrar Sesión</a>
                 </div>
             </li>
@@ -50,90 +49,21 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <a class="nav-link" href="/principal">
-                        <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                        Inicio
-                    </a>
-                    @if($pagina == "principal")
-                        <div class="sb-sidenav-menu-heading">General</div>
-                        <a class="nav-link" href="{{route("proyectos")}}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
-                            Proyectos
-                        </a>
-                        <a class="nav-link" href="{{route("crear")}}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-folder-plus"></i></div>
-                            Crear proyecto
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Perfil</div>
-                        <a class="nav-link" href="{{route("perfil")}}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                            Perfil
-                        </a>
-                        <a class="nav-link" href="/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-                            Cerrar sesión
-                        </a>
-                    @else
-                        @if($pagina == "perfil")
-                            <div class="sb-sidenav-menu-heading">Perfil</div>
-                            <a class="nav-link" href="{{route("perfil")}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                                Mi perfil
-                            </a>
-                            <a class="nav-link" href="{{route("proyectos")}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-key"></i></div>
-                                Cambiar contraseña
-                            </a>
-                            <a class="nav-link" href="{{route("proyectos")}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-images"></i></div>
-                                Cambiar imágen
-                            </a>
-                            <a class="nav-link" href="{{route("proyectos")}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-id-card"></i></div>
-                                Cambiar datos
-                            </a>
-                            <a class="nav-link" href="{{route("proyectos")}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-trash"></i></div>
-                                Eliminar usuario
-                            </a>
-                            <a class="nav-link" href="/">
-                                <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-                                Cerrar sesión
-                            </a>
-                        @else
-                            <div class="sb-sidenav-menu-heading">Proyecto</div>
 
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-comment-dots"></i></div>
-                                Chat
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                                Mis tareas
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
-                                Integrantes
-                            </a>
-
-                            <div class="sb-sidenav-menu-heading">Perfil</div>
-
-                            <a class="nav-link" href="{{route("perfil")}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                                Perfil
-                            </a>
-                            <a class="nav-link" href="/">
-                                <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-                                Cerrar sesión
-                            </a>
-                        @endif
-                    @endif
-
+                    @switch($pagina)
+                        @case('principal')
+                            @include('layouts.principal.menus.principal')
+                           @break
+                        @case('perfil')
+                            @include('layouts.principal.menus.perfil')
+                           @break
+                        @default
+                            @include('layouts.principal.menus.proyecto')
+                    @endswitch
                 </div>
             </div>
-            <div class="sb-sidenav-footer py-3 text-center">
-                <div class="small">Iniciado sesión como: <b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></div>
-
+            <div class="bg-light sb-sidenav-footer py-3 text-center">
+                <div class="small text-muted">Iniciado sesión como: <b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></div>
             </div>
         </nav>
     </div>
@@ -141,12 +71,12 @@
         <main>
             @yield("contenido")
         </main>
-        <footer class=" bg-light mt-auto p-2">
+        <footer class="bg-light mt-auto p-2">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
                     <div class="text-muted">Copyright &copy; PlanTool 2021</div>
                     <div>
-                        <img src="/img/logo.png" width="130px">
+                        <img src="/img/logo.png" class="logo" width="130px">
                     </div>
                 </div>
             </div>
