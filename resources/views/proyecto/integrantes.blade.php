@@ -10,8 +10,9 @@
 @endsection
 
 @section("contenido")
-    <div class="container">
+    <div class="container-fluid">
         <div id="integrantes">
+            <h2>Integrantes</h2>
             <table>
                 <thead>
                 <tr>
@@ -29,5 +30,15 @@
                 </tbody>
             </table>
         </div>
+        @if($permiso)
+            <hr>
+            <div>
+                <form action="{{route("addColaborador")}}" method="post">
+                    @csrf
+                    <h2>Añadir colaborador</h2>
+                    <button type="Submit">ADD</button>
+                </form>
+            </div>
+        @endif
     </div>
 @endsection

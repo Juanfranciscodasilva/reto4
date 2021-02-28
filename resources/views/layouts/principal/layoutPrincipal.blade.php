@@ -99,17 +99,29 @@
                         @else
                             <div class="sb-sidenav-menu-heading">Proyecto</div>
 
+                            <a class="nav-link" href="{{route("proyecto")}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-info"></i></div>
+                                Información general
+                            </a>
+                            <a class="nav-link" href="{{route("archivos")}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
+                                Archivos
+                            </a>
                             <a class="nav-link" href="{{route("chat")}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-comment-dots"></i></div>
                                 Chat
                             </a>
-                            <a class="nav-link" href="{{route("tareas")}}">
+                            <a class="nav-link" href="{{route("tareasActivas")}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                                Mis tareas
+                                Tareas activas
                             </a>
-                        @if($coordinador)
+                            <a class="nav-link" href="{{route("tareasFinalizadas")}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-clipboard-check"></i></div>
+                                Tareas finalizadas
+                            </a>
+                        @if($permiso)
                                 <a class="nav-link" href="{{route("crearTarea")}}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circlevagrant "></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                                     Crear tarea
                                 </a>
                         @endif
@@ -158,6 +170,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
+@yield("scripts")
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>

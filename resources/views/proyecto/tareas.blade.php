@@ -6,36 +6,46 @@
 
 @section("css")
     <link href="/css/tareas.css" rel="stylesheet" />
+    <link href="/css/paginacion.css" rel="stylesheet" />
 @endsection
 
 @section("contenido")
     <div class="container">
-        <h1>Tareas asignadas</h1>
-        <div id="tareas">
-            <div class="tarea">
-                <h2>Titulo</h2>
-                <p>Descripcion</p>
-                <div>
-                    <span>Fecha límite: 22/22/2021</span>
-                    <span>Estado: Asignada</span>
-                </div>
-                <form action="#" method="post">
-                    <input type="hidden" value="idtarea">
-                    <button type="submit">Finalizar</button>
-                </form>
+        @if(count($tareas)==0)
+            <div id="noTareas">
+                <h1>No tienes tareas {{$estado}}</h1>
+                @if($estado == "activas")
+                 <p>Espera a que te asignen una tarea</p>
+                @else
+                    <p>Finaliza alguna de tus tareas</p>
+                @endif
             </div>
-            <div class="tarea">
-                <h2>Titulo</h2>
-                <p>Descripcion</p>
-                <div>
-                    <span>Fecha límite: 22/22/2021</span>
-                    <span>Estado: Asignada</span>
-                </div>
-                <form action="#" method="post">
-                    <input type="hidden" value="idtarea">
-                    <button type="submit">Finalizar</button>
-                </form>
+        @else
+            <h1>Tareas {{$estado}}</h1>
+            <div id="tareas">
+                @foreach($tareas as $tarea)
+                    <div class="tarea">
+                        <h2>{{$tarea->titulo}}</h2>
+                        <p>{{$tarea->descripcion}}</p>
+                        <div>
+                            <span>Fecha límite: {{$tarea->vencimiento}}</span>
+                            @if($estado == "activas")
+                                <span>Estado: asginada</span>
+                            @else
+                                <span>Estado: finalizada</span>
+                            @endif
+                        </div>
+                        @if($estado == "activas")
+                            <form action="{{route("finalizarTarea")}}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{$tarea->id}}" name="tarea">
+                                <button type="submit">Finalizar</button>
+                            </form>
+                        @endif
+                    </div>
+                @endforeach
             </div>
-        </div>
+            {{ $paginacion->links('pagination::bootstrap-4') }}
+        @endif
     </div>
 @endsection

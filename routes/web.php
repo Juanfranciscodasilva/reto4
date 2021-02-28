@@ -36,9 +36,17 @@ use Illuminate\Support\Facades\Route;
         //RUTAS DE PROYECTO
 
         Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
+        Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("/archivos" , "ControllerProyecto@archivos")->name("archivos");
         Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
-        Route::get("/tareas" , "ControllerProyecto@tareas")->name("tareas");
+        Route::get("/tareasActivas" , "ControllerProyecto@tareasActivas")->name("tareasActivas");
+        Route::get("/tareasFinalizadas" , "ControllerProyecto@tareasFinalizadas")->name("tareasFinalizadas");
         Route::get("/integrantes" , "ControllerProyecto@integrantes")->name("integrantes");
         Route::get("/crearTarea" , "ControllerProyecto@crearTarea")->name("crearTarea");
+        Route::post("/crearTarea" , "ControllerProyecto@insertarTarea")->name("crearTarea");
+        Route::post("/finalizarTarea" , "ControllerProyecto@finalizarTarea")->name("finalizarTarea");
         Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");
         Route::post("crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
+        Route::post("crearComentario","ControllerProyecto@crearComentario")->name("crearComentario");
+
+        Route::post("/addColaborador","ControllerProyecto@addColaborador")->name("addColaborador");
