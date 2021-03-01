@@ -18,8 +18,8 @@ class CreateArchivosTable extends Migration
             $table->string("archivo");
             $table->unsignedBigInteger("autor");
             $table->foreign("autor")->references("id")->on("usuarios")->onDelete("cascade");
-            $table->unsignedBigInteger("proyecto");
-            $table->foreign("proyecto")->references("id")->on("proyectos")->onDelete("cascade");
+            $table->unsignedBigInteger("comentario");
+            $table->foreign("comentario")->references("id")->on("comentarios")->onDelete("cascade");
             $table->timestamps();
         });
     }

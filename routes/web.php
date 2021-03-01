@@ -26,15 +26,58 @@ use Illuminate\Support\Facades\Route;
         //Añadir usuario
             Route::post('/registro','ControllerLogin@registrar')->name('registrar.registro');
     //Restablecer contraseña
+            //Vista
+            Route::get('/restablecer',function (){
+                return view('login.restablecer.email')->with('seleccionado',2);
+            })->name('restablecer.index');
+            //Comprobar usuario
+            Route::post('/restablecer','ControllerLogin@email')->name('restablecercontra.email');
+            //Comprobar codigo
+            Route::post('/codigo','ControllerLogin@codigo')->name('restablecercontra.codigo');
+            Route::get('/reenviar','ControllerLogin@reenviar')->name('restablecercontra.reenviar');
+            //Modificar contra
+            Route::patch('/contra','ControllerLogin@modificarcontra')->name('restablecercontra.contra');
+
     //Principal
-        Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
-        Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
-        Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
+        //Vista
+            Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
+            Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
+        //Crear proyecto
+            Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
+            Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
 
-        Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
+    //Perfil
+        //Vista Principal
+            Route::get("/perfil", "ControllerPerfil@perfil")->name("perfil");
+        //Modificar imagen
+            Route::patch('/perfil','ControllerPerfil@modificarimagen')->name('modificarimagen');
+        //Modificar contra
+        //Vista
+            Route::get('/modificarcontra','ControllerPerfil@modcontra')->name('modificarcontra.index');
+        //Modificar
+            Route::patch('/modificarcontra','ControllerPerfil@comprobaractucontra')->name('modificarcontra');
+        //Modificar Perfil
+        //Vista
+            Route::get('/modificarperfil','ControllerPerfil@modperfil')->name('modificarperfil.index');
+        //Modificar
 
-        //RUTAS DE PROYECTO
+    //Proyecto
+
+        //Vistas
+
 
         Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
-        Route::get("/proyecto" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("/archivos" , "ControllerProyecto@archivos")->name("archivos");
+        Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
+        Route::get("/tareasActivas" , "ControllerProyecto@tareasActivas")->name("tareasActivas");
+        Route::get("/tareasFinalizadas" , "ControllerProyecto@tareasFinalizadas")->name("tareasFinalizadas");
+        Route::get("/integrantes" , "ControllerProyecto@integrantes")->name("integrantes");
+        Route::get("/crearTarea" , "ControllerProyecto@crearTarea")->name("crearTarea");
+        Route::post("/crearTarea" , "ControllerProyecto@insertarTarea")->name("crearTarea");
+        Route::post("/finalizarTarea" , "ControllerProyecto@finalizarTarea")->name("finalizarTarea");
         Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");
+        Route::post("crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
+        Route::post("crearComentario","ControllerProyecto@crearComentario")->name("crearComentario");
+
+        Route::post("/addColaborador","ControllerProyecto@addColaborador")->name("addColaborador");

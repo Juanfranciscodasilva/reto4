@@ -54,6 +54,10 @@ form div{
 
 form button {
      margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.6);
     border-color: #a16aff;
+}
+
+form button:hover {
+    background-color: #a16aff;
+    border: solid black 1px;
 }

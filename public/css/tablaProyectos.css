@@ -9,10 +9,12 @@ tr {
 
 th {
   padding-bottom: 10px;
+    word-break: break-word;
 }
 
 td {
   padding: 15px 0;
+    word-break: break-word;
 }
 
 tr a {

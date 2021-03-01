@@ -20,13 +20,13 @@ function guardardato():void{
     if (localstorage != null && localstorage === "oscuro"){
         $("body").addClass('dark');
         $("#switch").addClass("active");
-        modooscyclaro("oscuro");
+        modooscyclaro('/img/logo_blanco.png',"oscuro");
     }
     else
     {
         $("body").removeClass('dark');
         $("#switch").removeClass("active");
-        modooscyclaro("claro");
+        modooscyclaro('/img/logo.png',"claro");
     }
 }
 
@@ -39,13 +39,14 @@ function botonmodoscyclaro():void{
 
         let body = document.getElementById('bod');
         if (body.classList.contains('dark'))
-            modooscyclaro("oscuro");
+            modooscyclaro('/img/logo_blanco.png',"oscuro");
         else
-            modooscyclaro("claro");
+            modooscyclaro('/img/logo.png',"claro");
     });
 }
 
 //Modificar el logo dependiendo del color de la pagina
-function modooscyclaro(modo):void{
+function modooscyclaro(url,modo):void{
+    $(".logo").attr('src',url);
     localStorage.setItem("modo",modo);
 }
