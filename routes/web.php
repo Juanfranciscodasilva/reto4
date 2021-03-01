@@ -26,14 +26,45 @@ use Illuminate\Support\Facades\Route;
         //Añadir usuario
             Route::post('/registro','ControllerLogin@registrar')->name('registrar.registro');
     //Restablecer contraseña
+            //Vista
+            Route::get('/restablecer',function (){
+                return view('login.restablecer.email')->with('seleccionado',2);
+            })->name('restablecer.index');
+            //Comprobar usuario
+            Route::post('/restablecer','ControllerLogin@email')->name('restablecercontra.email');
+            //Comprobar codigo
+            Route::post('/codigo','ControllerLogin@codigo')->name('restablecercontra.codigo');
+            Route::get('/reenviar','ControllerLogin@reenviar')->name('restablecercontra.reenviar');
+            //Modificar contra
+            Route::patch('/contra','ControllerLogin@modificarcontra')->name('restablecercontra.contra');
+
     //Principal
-        Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
-        Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
-        Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
+        //Vista
+            Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
+            Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
+        //Crear proyecto
+            Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
+            Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
 
-        Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
+    //Perfil
+        //Vista Principal
+            Route::get("/perfil", "ControllerPerfil@perfil")->name("perfil");
+        //Modificar imagen
+            Route::patch('/perfil','ControllerPerfil@modificarimagen')->name('modificarimagen');
+        //Modificar contra
+        //Vista
+            Route::get('/modificarcontra','ControllerPerfil@modcontra')->name('modificarcontra.index');
+        //Modificar
+            Route::patch('/modificarcontra','ControllerPerfil@comprobaractucontra')->name('modificarcontra');
+        //Modificar Perfil
+        //Vista
+            Route::get('/modificarperfil','ControllerPerfil@modperfil')->name('modificarperfil.index');
+        //Modificar
 
-        //RUTAS DE PROYECTO
+    //Proyecto
+
+        //Vistas
+
 
         Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
         Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");

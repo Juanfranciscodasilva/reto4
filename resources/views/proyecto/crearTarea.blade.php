@@ -46,6 +46,6 @@
     </div>
 @endsection
 
-@section("scripts")
+@section("script")
     <script src="js/proyecto.js"></script>
 @endsection

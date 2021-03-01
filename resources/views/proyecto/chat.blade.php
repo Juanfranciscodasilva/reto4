@@ -60,6 +60,6 @@
     </div>
 @endsection
 
-@section("scripts")
+@section("script")
     <script src="/js/proyecto.js">
 @endsection
