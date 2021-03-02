@@ -1,0 +1,120 @@
+h1{
+    text-shadow: 3px 2px 4px #a16aff;
+    margin: 20px 0;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#noProyectos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#proyectos{
+    display: flex;
+    flex-direction: column;
+}
+
+#proyectos > div{
+    width: 100%;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.proyectodatos{
+    margin-top: 30px;
+    background-color: transparent;
+}
+
+.proyecto{
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #a16aff;
+    background-color: rgb(245,245,245);
+}
+
+#proyectos a:hover {
+    text-decoration: none;
+}
+
+.proyecto h2{
+    color: white;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #a16aff;
+    text-align: center;
+    padding: 10px;
+    word-break: break-word;
+    border-bottom: 1px solid black;
+}
+
+.proyecto div{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.proyecto p {
+    text-align: center;
+    color: black;
+    background-color: rgba(161, 106, 255,0.4);
+    border: solid black 1px;
+    padding: 10px 8px;
+    margin: 0;
+    word-break: break-word;
+    border-radius: 5px;
+}
+
+.proyecto span{
+    color: black;
+    word-break: break-word;
+}
+
+.botonperfil{
+    color: #a16aff !important;
+    background-color: transparent;
+    border: none;
+}
+
+body.dark{
+    .proyecto{
+        background-color: transparent;
+        span,p{
+            color: white;
+        }
+
+        p{
+            border-color: #a16aff;
+            background-color: #7A01C9;
+        }
+
+        h2{
+            background-color: #7A01C9;
+            border-bottom-color: #a16aff;
+        }
+    }
+
+    .text-dark{
+        color: white !important;
+    }
+
+    .fa-lock,.fa-book-open,.botonperfil{
+        color: white !important;
+    }
+}
+
+@media (min-width: 772px){
+    #proyectos{
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    #proyectos > div{
+        width: 45%;
+    }
+}
