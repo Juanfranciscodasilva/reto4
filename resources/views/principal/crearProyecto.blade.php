@@ -22,6 +22,14 @@
                 <textarea id="desc" name="descripcion" class="text-md-center" required>{{old("descripcion")}}</textarea>
             </div>
             <div class="col-11 col-md-9 mx-auto">
+                <div class="d-flex flex-row mt-2">
+                    <input type="radio" name="estado" checked="checked" value="publico" style="margin-top: 3px;margin-right: 3px"><i class="fas fa-book-open" style="width: 30px;padding-bottom: 2px;margin-top: 3px;margin-right: 3px"></i><span class="small"><b>Público</b><br />Cualquiera en internet puede ver la información privada de tu proyecto</span>
+                </div>
+                <div class="d-flex flex-row mb-0">
+                    <input type="radio" name="estado" value="privado" style="margin-top: 3px;margin-right: 3px"><i class="fas fa-lock" style="width: 30px;padding-bottom: 2px;margin-top: 3px;margin-right: 3px"></i><span class="small"><b>Privado</b><br />Tu eliges quien puede ver la información privada de tu proyecto</span>
+                </div>
+            </div>
+            <div class="col-11 col-md-9 mx-auto">
                 <button type="submit" class="boton">Crear</button>
             </div>
 

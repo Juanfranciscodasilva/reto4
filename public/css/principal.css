@@ -76,22 +76,21 @@
 body.dark .proyecto {
   background-color: transparent;
 }
-
 body.dark .proyecto span, body.dark .proyecto p {
   color: white;
 }
-
 body.dark .proyecto p {
   border-color: #a16aff;
   background-color: #7A01C9;
 }
-
 body.dark .proyecto h2 {
   background-color: #7A01C9;
   border-bottom-color: #a16aff;
 }
-
 body.dark .text-dark {
+  color: white !important;
+}
+body.dark .fa-lock, body.dark .fa-book-open, body.dark .botonperfil {
   color: white !important;
 }
 
@@ -106,6 +105,5 @@ body.dark .text-dark {
     width: 45%;
   }
 }
-/*# sourceMappingURL=principal.css.map */
 
 /*# sourceMappingURL=principal.css.map */

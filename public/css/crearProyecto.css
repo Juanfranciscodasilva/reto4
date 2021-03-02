@@ -1,18 +1,10 @@
 #contenedorPadre {
-  height: 85vh;
-  display: flex;
-  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s !important;
-}
-
-#contenedorFormulario {
-  border: solid black 1px;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #a16aff;
 }
 
 .boton {
@@ -31,16 +23,6 @@ form {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-}
-
-h1 {
-  margin: 20px 0;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
-  border-bottom: 1px solid #a16aff;
-  border-top: 1px solid #a16aff;
-  text-shadow: 3px 2px 4px #a16aff;
-  word-break: break-word;
 }
 
 form button:focus, form button:active, form input, textarea {
@@ -71,6 +53,27 @@ body.dark input[type=search], body.dark .boton {
   border-color: #a16aff !important;
 }
 
+#contenedorFormulario {
+  border: solid black 1px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #a16aff;
+}
+
+h1 {
+  margin: 20px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #a16aff;
+  border-top: 1px solid #a16aff;
+  text-shadow: 3px 2px 4px #a16aff;
+  word-break: break-word;
+}
+
+body.dark h1 {
+  color: white;
+}
+
 form textarea {
   resize: none;
   height: 180px;
@@ -80,6 +83,10 @@ form div {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+}
+
+body.dark svg, body.dark span {
+  color: white;
 }
 
 /*# sourceMappingURL=crearProyecto.css.map */

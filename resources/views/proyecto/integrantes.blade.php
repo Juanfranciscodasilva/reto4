@@ -30,15 +30,17 @@
                 </tbody>
             </table>
         </div>
-        @if($permiso)
-            <hr>
-            <div>
-                <form action="{{route("addColaborador")}}" method="post">
-                    @csrf
-                    <h2>Añadir colaborador</h2>
-                    <button type="Submit">ADD</button>
-                </form>
-            </div>
+        @if($permiso != 'nointegrante')
+            @if($permiso)
+                <hr>
+                <div>
+                    <form action="{{route("addColaborador")}}" method="post">
+                        @csrf
+                        <h2>Añadir colaborador</h2>
+                        <button type="Submit">ADD</button>
+                    </form>
+                </div>
+            @endif
         @endif
     </div>
 @endsection

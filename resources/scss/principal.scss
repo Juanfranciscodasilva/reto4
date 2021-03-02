@@ -94,6 +94,10 @@ body.dark{
     .text-dark{
         color: white !important;
     }
+
+    .fa-lock,.fa-book-open,.botonperfil{
+        color: white !important;
+    }
 }
 
 @media (min-width: 772px){

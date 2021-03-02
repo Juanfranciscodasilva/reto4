@@ -1,6 +1,7 @@
 @import "funciones";
 
 @include repetir(100px);
+@include estructura();
 
 span{
     word-break: break-word;

@@ -28,8 +28,13 @@
                                     <div>
                                         <p>{{substr($proyecto->descripcion,0,50)}}</p>
                                     </div>
-                                    <div>
+                                    <div class="d-flex justify-content-around pb-3">
                                         <span>Fecha: {{$proyecto->created_at->format("d/m/Y")}}</span>
+                                        @if($proyecto->estado)
+                                            <i class="fas fa-lock" style="margin-top: 3px;color: #a16aff"></i>
+                                        @else
+                                            <i class="fas fa-book-open" style="margin-top: 3px;color: #a16aff"></i>
+                                        @endif
                                     </div>
                             </div>
                         </a>

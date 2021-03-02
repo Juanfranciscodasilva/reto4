@@ -23,10 +23,10 @@ class ControllerProyecto extends Controller
 
     public function entrar(){
         //ver si el usuario es coordinador
-        $permiso = $this->obtenerPermiso();
+            $permiso = $this->obtenerPermiso();
 
         //obtener los datos del proyecto
-        $proyecto = Proyecto::find(Session::get("proyecto"));
+            $proyecto = Proyecto::find(Session::get("proyecto"));
 
         //obtener la fecha de entrada del usuario al proyecto
             if ($permiso == 'nointegrante')
@@ -63,7 +63,7 @@ class ControllerProyecto extends Controller
     }
 
     public function archivos(){
-        if (!$this->comprobarExistenciaDeProyectoEnSesion() || count($this->comprobarPertenenciaDeProyecto()) == 0){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
             return redirect("/principal");
         }
         $permiso = $this->obtenerPermiso();
@@ -74,7 +74,7 @@ class ControllerProyecto extends Controller
     }
 
     public function chat(){
-        if (!$this->comprobarExistenciaDeProyectoEnSesion() || count($this->comprobarPertenenciaDeProyecto()) == 0){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
             return redirect("/principal");
         }
         $permiso = $this->obtenerPermiso();
@@ -113,7 +113,7 @@ class ControllerProyecto extends Controller
     }
 
     public function tareasActivas(){
-        if (!$this->comprobarExistenciaDeProyectoEnSesion() || count($this->comprobarPertenenciaDeProyecto()) == 0){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
             return redirect("/principal");
         }
         $permiso = $this->obtenerPermiso();
@@ -129,7 +129,7 @@ class ControllerProyecto extends Controller
     }
 
     public function tareasFinalizadas(){
-        if (!$this->comprobarExistenciaDeProyectoEnSesion() || count($this->comprobarPertenenciaDeProyecto()) == 0){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
             return redirect("/principal");
         }
         $permiso = $this->obtenerPermiso();
@@ -155,10 +155,12 @@ class ControllerProyecto extends Controller
     }
 
     public function integrantes(){
-        if (!$this->comprobarExistenciaDeProyectoEnSesion() || count($this->comprobarPertenenciaDeProyecto()) == 0){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
             return redirect("/principal");
         }
+
         $permiso = $this->obtenerPermiso();
+
         return view("proyecto.integrantes")->with([
             "pagina" => "proyecto",
             "permiso" => $permiso
@@ -179,9 +181,15 @@ class ControllerProyecto extends Controller
             "titulo.unique" => 'El titulo "'.\request("titulo").'" no está disponible'
         ]);
 
+        if (\request('estado') == 'publico')
+            $estado = false;
+        else
+            $estado = true;
+
         Proyecto::create([
            "titulo" =>  \request("titulo"),
-            "descripcion" => \request("descripcion")
+            "descripcion" => \request("descripcion"),
+            "estado" => $estado
         ]);
 
         $proyecto = Proyecto::get()->where("titulo",\request("titulo"))->first();
@@ -197,7 +205,7 @@ class ControllerProyecto extends Controller
     }
 
     public function crearTarea(){
-        if (!$this->comprobarExistenciaDeProyectoEnSesion() || count($this->comprobarPertenenciaDeProyecto()) == 0){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
             return redirect("/principal");
         }
         $permiso = $this->obtenerPermiso();
@@ -214,13 +222,6 @@ class ControllerProyecto extends Controller
             return false;
         }
         return true;
-    }
-
-    public function comprobarPertenenciaDeProyecto(){
-        $proyecto = Session::get("proyecto");
-        $usuario = Session::get("usuario");
-        $existencia = Integrante::get()->where("proyecto",$proyecto)->where("usuario",$usuario->id);
-        return $existencia;
     }
 
     public function insertarTarea(){

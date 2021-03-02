@@ -17,6 +17,7 @@ class CreateProyectosTable extends Migration
             $table->bigIncrements("id");
             $table->string("titulo")->unique();
             $table->string("descripcion");
+            $table->boolean('estado');
             $table->timestamps();
         });
     }

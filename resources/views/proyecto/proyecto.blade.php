@@ -19,7 +19,7 @@
                         <p>{{$proyecto->descripcion}}</p>
                         <hr>
                         <p><b>Fecha de entrada:</b> {{$fecha_entrada->format("d/m/Y")}}</p>
-                        <p><b>Coordinador:</b> {{$coordinador->usuario}}</p>
+                        <p><b>Coordinador:<button class="botonperfil" style="text-decoration: underline;margin-left: 2px" onclick="mostrarperfil(event,this)" id="{{ $coordinador->id }}"><b>{{$coordinador->usuario}}</b></button></b></p>
                         <p><b>Integrantes:</b> {{$integrantes}}</p>
                         @if($coordinador)
                             <p id="botonAdd"><a href="{{route("integrantes")}}"><button id="addIntegrante">Añadir integrante</button></a></p>
