@@ -58,7 +58,7 @@
                             @include('layouts.principal.menus.perfil')
                            @break
                         @default
-                            @include('layouts.principal.menus.proyecto')
+                            @include('layouts.principal.menus.proyecto',['permiso' => $permiso])
                     @endswitch
                 </div>
             </div>

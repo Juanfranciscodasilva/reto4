@@ -19,6 +19,7 @@ class CreateIntegrantesTable extends Migration
             $table->unsignedBigInteger("proyecto");
             $table->foreign("proyecto")->references("id")->on("proyectos")->onDelete("cascade");
             $table->boolean("permiso");
+            $table->timestamps();
         });
     }
 

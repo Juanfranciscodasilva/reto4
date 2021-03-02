@@ -1,0 +1,20 @@
+@import "funciones";
+
+#contenedorPadre{
+    height: 85vh;
+    display: flex;
+    align-items: center;
+}
+
+@include repetir(100%);
+
+form textarea {
+    resize: none;
+    height: 180px;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}

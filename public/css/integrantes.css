@@ -1,0 +1,12 @@
+#integrantes table{
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin: 20px 0;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+    text-shadow: 3px 2px 4px #a16aff;
+    padding: 5px 0 15px 0;
+    word-break: break-word;
+}

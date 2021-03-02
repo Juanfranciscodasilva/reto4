@@ -4,7 +4,7 @@
     <title>PlanTool - Perfil</title>
 @endsection
 @section("css")
-    <link href="css/perfil.css" rel="stylesheet" />
+    <link href="/css/perfil.css" rel="stylesheet" />
 @endsection
 @section("contenido")
     <div class="container-fluid mt-5 mb-5" id="contenedorPadre">
@@ -29,7 +29,9 @@
                                 </form>
                         </div>
                     @else
-                        <img src="/img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen}}">
+                        <div class="c-img mb-2 mt-0 mx-auto">
+                            <img src="/img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuarioperfil')->imagen}}">
+                        </div>
                     @endif
                     <div class="datos m-0 mt-4 text-center text-dark w-100">
                         @if($usuarioreal == "")
@@ -74,6 +76,11 @@
 @endsection
 
 @section('script')
+    @if($passCambiada)
+        <script>
+            alert('Contraseña modificada correctamente');
+        </script>
+    @endif
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     <script src="/js/tablaproyecto.js"></script>
     <script src="/js/perfil.js"></script>

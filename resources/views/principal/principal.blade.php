@@ -5,82 +5,38 @@
 @endsection
 @section('css')
     <link href="css/principal.css" rel="stylesheet" />
+    <link href="css/paginacion.css" rel="stylesheet" />
 @endsection
 @section("contenido")
-    <div class="container">
-        @if(count($proyectos) == 0)
+    <div class="container" style="margin-bottom: 30px">
+        @if(count($proyectos["proyectos"]) == 0)
             <div id="noProyectos">
-                <h1>No tienes proyectos!</h1>
-                <p>Únete mediante invitación o crea uno propio!</p>
+                <h1 class="text-dark">No tienes proyectos!</h1>
+                <p class="text-dark">Únete mediante invitación o crea uno propio!</p>
             </div>
         @else
-            <div id="proyectos">
-                <div>
-                    <a href="{{ route('proyecto','1') }}">
-                        <div class="proyecto">
-                            <h2>Titulo de ejemplo</h2>
-                            <div>
-                                <span>Creado por: ejemplo</span>
+            <div id="proyectos" class="mb-2">
+            @foreach($proyectos["proyectos"] as $proyecto)
+                    <div class="proyectodatos">
+                        <a href="/proyecto/{{$proyecto->id}}">
+                            <div class="proyecto">
+                                <h2>{{$proyecto->titulo}}</h2>
+                                    <div>
+                                        <span>Creado por:&nbsp;</span>
+                                        <button class="botonperfil" style="text-decoration: underline" onclick="mostrarperfil(event,this)" id="{{ $proyecto->coordinador->id }}"><b>{{$proyecto->coordinador->usuario}}</b></button>
+                                    </div>
+                                    <div>
+                                        <p>{{substr($proyecto->descripcion,0,50)}}</p>
+                                    </div>
+                                    <div>
+                                        <span>Fecha: {{$proyecto->created_at->format("d/m/Y")}}</span>
+                                    </div>
                             </div>
-                            <div>
-                                <p>Descripcion de ejemplo fjheaiuovnaeuicvneaucnie</p>
-                            </div>
-                            <div>
-                                <span>Fecha: 24/02/2021</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="{{ route('proyecto','2') }}">
-                        <div class="proyecto">
-                            <h2>Titulo de ejemplo</h2>
-                            <div>
-                                <span>Creado por: ejemplo</span>
-                            </div>
-                            <div>
-                                <p>Descripcion de ejemplo fjheaiuovnaeuicvneaucnie</p>
-                            </div>
-                            <div>
-                                <span>Fecha: 24/02/2021</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="{{ route('proyecto','3') }}">
-                        <div class="proyecto">
-                            <h2>Titulo de ejemplo</h2>
-                            <div>
-                                <span>Creado por: ejemplo</span>
-                            </div>
-                            <div>
-                                <p>Descripcion de ejemplo fjheaiuovnaeuicvneaucnie</p>
-                            </div>
-                            <div>
-                                <span>Fecha: 24/02/2021</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="/proyecto/4">
-                        <div class="proyecto">
-                            <h2>Titulo de ejemplo</h2>
-                            <div>
-                                <span>Creado por: ejemplo</span>
-                            </div>
-                            <div>
-                                <p>Descripcion de ejemplo fjheaiuovnaeuicvneaucnie</p>
-                            </div>
-                            <div>
-                                <span>Fecha: 24/02/2021</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+            @endforeach
             </div>
+                {{ $proyectos["ids"]->onEachSide(0)->links('pagination::bootstrap-4') }}
         @endif
     </div>
 @endsection
-

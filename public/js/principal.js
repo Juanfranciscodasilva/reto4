@@ -39,8 +39,13 @@ function botonmodoscyclaro() {
             modooscyclaro('/img/logo.png', "claro");
     });
 }
-//Modificar el logo dependiendo del color de la pagina
+//Funcion para modificar el logo dependiendo del color de la pagina
 function modooscyclaro(url, modo) {
     $(".logo").attr('src', url);
     localStorage.setItem("modo", modo);
+}
+//Funcion para mostrar el perfil del usuario
+function mostrarperfil(event, idusu) {
+    event.preventDefault();
+    location.href = '/perfilusu/' + idusu.id;
 }

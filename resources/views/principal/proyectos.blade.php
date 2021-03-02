@@ -14,16 +14,20 @@
             <thead>
                 <tr>
                     <th>Titulo</th>
+                    <th>Coordinador</th>
                     <th>Fecha de entrada</th>
                     <th class="text-right">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
+            @foreach($proyectos["proyectos"] as $proyecto)
                 <tr>
-                    <td>Proyecto de ejemplo</td>
-                    <td>24/02/2021</td>
-                    <td class="text-right"><a href="/eliminarProyecto/1"><i class="fas fa-trash-alt"></i></a></td>
+                    <td>{{$proyecto->titulo}}</td>
+                    <td>{{$proyecto->coordinador->usuario}}</td>
+                    <td>{{$proyecto->created_at->format("d/m/Y")}}</td>
+                    <td class="text-right"><a href="/eliminarProyecto/{{$proyecto->id}}"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

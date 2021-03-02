@@ -9,6 +9,7 @@ button:focus, button:active, input[type=search]:focus, input[type=search]:active
 
 .btn-link {
   border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
 }
 
 #layoutSidenav_nav nav {
@@ -87,7 +88,6 @@ button:focus, button:active, input[type=search]:focus, input[type=search]:active
   width: 70px;
   outline-width: 0 !important;
 }
-
 .switch::after {
   background: #F1F1F1;
   border-radius: 100px;
@@ -102,16 +102,13 @@ button:focus, button:active, input[type=search]:focus, input[type=search]:active
   border-radius: 100px;
   transition: 0.3s ease all;
 }
-
 .switch.active {
   background: #a16aff;
 }
-
 .switch.active::after {
   right: 0.1em;
   left: unset;
 }
-
 .switch span {
   width: 50px;
   line-height: 28px;
@@ -127,47 +124,37 @@ footer, .sb-sidenav-footer, #layoutSidenav_nav nav .sb-sidenav-footer {
 body.dark {
   background-color: #282828;
 }
-
 body.dark #navSuperior {
   background-color: #7A01C9;
 }
-
 body.dark #layoutSidenav_nav nav {
   background-color: #282828 !important;
 }
-
 body.dark #layoutSidenav_nav nav .nav-link {
   color: white;
 }
-
 body.dark #layoutSidenav_nav nav .nav-link:hover {
   color: #9d01e2;
 }
-
 body.dark #layoutSidenav_nav nav .sb-sidenav-menu-heading {
   background-color: #7A01C9;
 }
-
 body.dark .dropdown-menu a:focus {
   background-color: #7A01C9 !important;
   color: white;
 }
-
 body.dark #layoutSidenav_nav nav .sb-sidenav-footer {
   background-color: #282828;
   color: white;
   box-shadow: 0px -1px 10px 0px #a16aff;
 }
-
 body.dark .sb-nav-link-icon svg {
   color: rgba(255, 255, 255, 0.5);
 }
-
 body.dark footer, body.dark .sb-sidenav-footer {
   background-color: #282828 !important;
   box-shadow: 0px -1px 10px 0px #a16aff;
 }
-
 body.dark footer .text-muted, body.dark .sb-sidenav-footer .text-muted {
   color: white !important;
 }
@@ -183,6 +170,5 @@ body.dark footer .text-muted, body.dark .sb-sidenav-footer .text-muted {
     margin-left: 0;
   }
 }
-/*# sourceMappingURL=principalLayout.css.map */
 
 /*# sourceMappingURL=principalLayout.css.map */

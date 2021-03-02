@@ -1,140 +1,32 @@
-@extends("layouts.principal.layoutPrincipal")
+@extends("layouts.principal.layoutPrincipal",['permiso' => $permiso])
 
 @section("titulo")
     <title>PlanTool - Proyecto</title>
 @endsection
 
 @section("css")
-    <link href="/css/chat.css" rel="stylesheet" />
+    <link href="/css/proyecto.css" rel="stylesheet" />
 @endsection
 
 @section("contenido")
-    <div class="container-fluid">
-        <div id="mensajes">
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
+    <div class="container" id="contenedorPadre">
+        <div class="col-11 mx-auto" id="contenedorFormulario">
+            <h1 class="m-0 pt-2 pb-3">{{$proyecto->titulo}}</h1>
+            <br/>
+            <div class="datos row">
+                <div class="col-12">
+                    <div class="datos m-0 mt-2 text-center w-100">
+                        <p>{{$proyecto->descripcion}}</p>
+                        <hr>
+                        <p><b>Fecha de entrada:</b> {{$fecha_entrada->format("d/m/Y")}}</p>
+                        <p><b>Coordinador:</b> {{$coordinador->usuario}}</p>
+                        <p><b>Integrantes:</b> {{$integrantes}}</p>
+                        @if($coordinador)
+                            <p id="botonAdd"><a href="{{route("integrantes")}}"><button id="addIntegrante">Añadir integrante</button></a></p>
+                        @endif
+                    </div>
                 </div>
-                <p class="descripcion">descripcion de ejemplo</p>
             </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <span>""""Icono del archivo""""""</span>
-                <span><a href="#">Nombre del archivo</a></span>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-            <div class="mensaje">
-                <div>
-                    <span class="autor">Ejemplo de autor</span>
-                    <span>21/21/2021</span>
-                </div>
-
-                <p class="descripcion">descripcion de ejemplo</p>
-            </div>
-
-        </div>
-        <div id="publicar">
-            <form action="#" method="post">
-                @csrf
-                <textarea name="mensaje"></textarea>
-                <label for="archivo"><i class="fas fa-paperclip"></i></label>
-                <input type="file" id="archivo" name="archivo" hidden>
-                <button type="submit"><i class="fas fa-share"></i></button>
-            </form>
         </div>
     </div>
 @endsection
