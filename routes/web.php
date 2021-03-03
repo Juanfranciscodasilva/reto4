@@ -40,8 +40,8 @@ use Illuminate\Support\Facades\Route;
 
     //Principal
         //Vista
-            Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
-            Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
+        Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
+        Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
         //Crear proyecto
             Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
             Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
@@ -70,6 +70,7 @@ use Illuminate\Support\Facades\Route;
     //Proyecto
 
         //Vistas
+   // Route::get("","");
 
 
         Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
@@ -88,3 +89,7 @@ use Illuminate\Support\Facades\Route;
         Route::post("/subirArchivos", "ControllerProyecto@subirArchivos")->name("subirArchivos");
         Route::post("/addColaborador","ControllerProyecto@addColaborador")->name("addColaborador");
         Route::get('/descargar/{hash}/{nombre}',"ControllerProyecto@descargar")->name("descargar");
+        Route::get('/eliminarArchivo/{id}/{hash}',"ControllerProyecto@eliminarArchivo")->name("eliminarArchivo");
+        Route::get('/invitarIntegrante/{id}',"ControllerProyecto@invitarIntegrante")->name("invitarIntegrante");
+        Route::get('/addIntegrante/{usuario}/{proyecto}',"ControllerProyecto@addIntegrante")->name("addIntegrante");
+        Route::get('/expulsarIntegrante/{id}',"ControllerProyecto@expulsarIntegrante")->name("expulsarIntegrante");

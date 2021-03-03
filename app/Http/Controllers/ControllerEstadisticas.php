@@ -32,17 +32,18 @@ class ControllerEstadisticas extends Controller
             $privado = 0;
             $publico = 0;
 
-            for ($n = 0;$n<count($integrantes);$n++){
-                $proyectos = Proyecto::get()->where('id',$integrantes[$n]->proyecto)->first();
+            foreach($integrantes as $integrante){
+                $proyecto = Proyecto::find($integrante->proyecto);
                 $countproyectos++;
-
-                if ($proyectos->estado)
+                if ($proyecto->estado)
                     $privado ++;
                 else
                     $publico ++;
             }
 
             $privado = $privado * 100/$countproyectos;
+
+
             $publico = $publico * 100/$countproyectos;
 
             $datos = [

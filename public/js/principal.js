@@ -49,3 +49,11 @@ function mostrarperfil(event, idusu) {
     event.preventDefault();
     location.href = '/perfilusu/' + idusu.id;
 }
+function aceptarDesvinculoEliminar(id) {
+    if (!confirm("¿Estás seguro/a de desvincular/eliminar este proyecto")) {
+        window.location.href = "/informacion";
+    }
+    else {
+        window.location.href = "/eliminarProyecto/" + id;
+    }
+}

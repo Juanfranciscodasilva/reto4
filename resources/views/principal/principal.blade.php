@@ -4,8 +4,8 @@
     <title>PlanTool - Principal</title>
 @endsection
 @section('css')
-    <link href="css/principal.css" rel="stylesheet" />
-    <link href="css/paginacion.css" rel="stylesheet" />
+    <link href="/css/principal.css" rel="stylesheet" />
+    <link href="/css/paginacion.css" rel="stylesheet" />
 @endsection
 @section("contenido")
     <div class="container-fluid" style="margin-bottom: 30px">

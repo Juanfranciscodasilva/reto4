@@ -9,13 +9,13 @@
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/login.css" rel="stylesheet" />
+    <link href="css/login.css" rel="stylesheet" />
 </head>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-md navbar-light" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{ route('login.home') }}"><img src="/img/logo.png" width="180px"></a>
+        <a class="navbar-brand js-scroll-trigger" href="{{ route('login.home') }}"><img src="img/logo.png" width="180px"></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ms-2"></i>
@@ -51,7 +51,7 @@
 </header>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/js/login/registro.js"></script>
+<script src="js/login/registro.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>

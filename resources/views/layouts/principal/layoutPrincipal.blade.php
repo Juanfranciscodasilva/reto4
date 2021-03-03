@@ -30,14 +30,14 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle h-100"></i></a>
                 <div class="dropdown-menu dropdown-menu-right text-center pt-0 pb-0" aria-labelledby="userDropdown" id="menuUsuario">
-                    <a href="{{route("perfil")}}" class="dropdown-item pb-2 pt-3">
+                    <a href="{{route("perfil")}}" class="dropdown-item pb-0 pt-1">
                         <div id="imgPerfil"><img src="/img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen }}"></div>
                         <span><b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></span>
                     </a>
                     <div class="dropdown-divider mt-0 mb-0"></div>
-                    <a class="dropdown-item pt-2 pb-2" href="{{route("perfil")}}">Perfil</a>
-                    <div class="dropdown-divider mt-0 mb-0 "></div>
-                    <a class="dropdown-item pt-2 pb-2" href="/">Cerrar Sesión</a>
+                    <a class="dropdown-item" href="{{route("perfil")}}">Perfil</a>
+                    <div class="dropdown-divider mt-0 mb-0"></div>
+                    <a class="dropdown-item" href="/">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>
@@ -83,12 +83,13 @@
         </footer>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/principal.js"></script>
 @yield('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

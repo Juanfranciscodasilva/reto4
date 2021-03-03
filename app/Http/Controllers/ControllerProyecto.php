@@ -10,9 +10,11 @@ use App\Models\Integrante;
 use App\Models\Proyecto;
 use App\Models\Tarea;
 use App\Models\Usuario;
+use Faker\Provider\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class ControllerProyecto extends Controller
@@ -33,14 +35,15 @@ class ControllerProyecto extends Controller
         $proyecto = Proyecto::find(Session::get("proyecto"));
 
         //obtener la fecha de entrada del usuario al proyecto
-        if ($permiso == 'nointegrante')
+        if ($permiso == 2){
             $fecha_entrada = $proyecto;
+        }
         else
             $fecha_entrada = Integrante::get()->where("proyecto",$proyecto->id)->where("usuario",Session::get("usuario")->id)->first();
 
         //obtener datos del coordinador del proyecto
-            $coordinador = Integrante::get()->where("proyecto",$proyecto->id)->where("permiso",true)->first();
-            $coordinador = Usuario::find($coordinador->usuario);
+        $coordinador = Integrante::get()->where("proyecto",$proyecto->id)->where("permiso",true)->first();
+        $coordinador = Usuario::find($coordinador->usuario);
 
         //obtener numero de integrantes del proyecto
         $integrantes = count(Integrante::get()->where("proyecto",$proyecto->id));
@@ -173,17 +176,55 @@ class ControllerProyecto extends Controller
         }
         $permiso = $this->obtenerPermiso();
         $proyecto = Proyecto::find(Session::get("proyecto"));
+        $integrantes = Integrante::get()->where("proyecto",$proyecto->id);
+        $integrantes = $this->obtenerInformacionIntegrantes($integrantes);
+        $usuarios = $this->obtenerUsuariosNoPertenecientes($proyecto->id);
         return view("proyecto.integrantes")->with([
             "pagina" => "proyecto",
             "permiso" => $permiso,
-            "estado" => $proyecto->estado
+            "estado" => $proyecto->estado,
+            "integrantes" => $integrantes,
+            "usuariosNoPertenecientes" => $usuarios
         ]);
     }
 
+    public function obtenerInformacionIntegrantes($integrantes){
+        $info = [];
+        foreach ($integrantes as $integrante){
+            $usuario = Usuario::find($integrante->usuario);
+            if ($integrante->permiso){
+                $usuario->rol = "Coordinador";
+                array_unshift($info,$usuario);
+            }else{
+                $usuario->rol = "Colaborador";
+                array_push($info,$usuario);
+            }
+        }
+        return $info;
+    }
+
+    public function obtenerUsuariosNoPertenecientes($proyecto){
+        $usuarios = Usuario::get();
+        $usuariosNoPertenecientes = [];
+        foreach ($usuarios as $usuario){
+            $integrante = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$proyecto)->first();
+            if ($integrante == null){
+                array_push($usuariosNoPertenecientes,$usuario);
+            }
+        }
+        return $usuariosNoPertenecientes;
+    }
+
     public function eliminar($id){
+        $usuario = Session::get("usuario");
+        $integrante = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$id)->first();
         $proyecto = Proyecto::find($id);
-        $proyecto->delete();
-        return back();
+        if ($integrante->permiso){
+            $proyecto->delete();
+        }else{
+            Integrante::where("usuario",$usuario->id)->where("proyecto",$id)->delete();
+        }
+        return redirect("/principal");
     }
 
     public function crear(){
@@ -224,7 +265,7 @@ class ControllerProyecto extends Controller
         $proyecto = Proyecto::find($proyecto);
         $permiso = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$proyecto->id)->first();
         if ($permiso == null)
-            return 'nointegrante';
+            return 2;
         else
             return $permiso->permiso;
     }
@@ -235,10 +276,12 @@ class ControllerProyecto extends Controller
         }
         $permiso = $this->obtenerPermiso();
         $integrantes = $this->obtenerIntegrantes(Session::get("proyecto"));
+        $proyecto = Proyecto::find(Session::get("proyecto"));
         return view("proyecto.crearTarea")->with([
             "pagina" => "proyecto",
             "permiso" => $permiso,
-            "integrantes" => $integrantes
+            "integrantes" => $integrantes,
+            "estado" => $proyecto->estado
         ]);
     }
 
@@ -358,13 +401,54 @@ class ControllerProyecto extends Controller
         return response()->download("archivos/".$hash,$nombre);
     }
 
-    public function addColaborador(){
-        //TODO ENVIAR CORREO (HACER VISTA Y FUNCIONALIDAD DEL CORREO)!
-        /*Integrante::create([
-            "usuario" => 2,
-            "proyecto" => 1,
+    public function eliminarArchivo($id,$hash){
+        $archivo = ArchivoProyecto::find($id);
+        $archivo->delete();
+        unlink("archivos/".$hash);
+        return back();
+    }
+
+    public function invitarIntegrante($id){
+        $usuario = Usuario::find($id);
+        $proyecto = Proyecto::find(Session::get("proyecto"));
+        $coordinador = Integrante::get()->where("proyecto",Session::get("proyecto"))->where("permiso",true)->first();
+        $coordinador = Usuario::find($coordinador->usuario);
+        $datos = [
+            "usuario" => $usuario,
+            "coordinador" => $coordinador,
+            "proyecto" => $proyecto,
+            "ruta" => \request()->root()
+        ];
+        $subject = "PlanTool Invitación a colaborar";
+        $for = $usuario->email;
+
+        Mail::send('emails.invitacion', $datos, function ($msj) use ($subject,$for){
+            $msj->from('developersweapp@gmail.com','PlanTool');
+            $msj->subject($subject);
+            $msj->to($for);
+        });
+        return back();
+    }
+
+    public function addIntegrante($usuario,$proyecto){
+        $usuario = base64_decode($usuario);
+        $proyecto = base64_decode($proyecto);
+        $usuario2 = Usuario::find($usuario);
+        $proyecto2 = Proyecto::find($proyecto);
+        if ($usuario2 == null || $proyecto2 == null){
+            return redirect("/");
+        }
+        Integrante::create([
+           "usuario" => $usuario,
+           "proyecto" => $proyecto,
             "permiso" => false
-        ]);*/
+        ]);
+        return redirect("/");
+    }
+
+    public function expulsarIntegrante($id){
+        $proyecto = Session::get("proyecto");
+        Integrante::where("proyecto",$proyecto)->where("usuario",$id)->delete();
         return back();
     }
 }

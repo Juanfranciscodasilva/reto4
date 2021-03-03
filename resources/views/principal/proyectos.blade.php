@@ -5,13 +5,14 @@
 @endsection
 
 @section("css")
-    <link href="css/tablaProyectos.css" rel="stylesheet" />
+    <link href="/css/principal.css" rel="stylesheet" />
+    <link href="/css/tablaProyectos.css" rel="stylesheet" />
 @endsection
 
 @section("contenido")
     <div class="container-fluid">
         @if(count($proyectos["proyectos"]) == 0)
-            <div id="noProyectos" class="text-center">
+            <div id="noProyectos">
                 <h1 class="text-dark">No tienes proyectos!</h1>
                 <p class="text-dark"><b>Únete mediante invitación o crea uno propio!</b></p>
             </div>

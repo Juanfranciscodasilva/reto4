@@ -15,6 +15,7 @@ class ControllerLogin extends Controller
     //Metodo para mostrar la vista del login
     public function index(){
         Session::remove("usuario");
+        Session::remove("proyecto");
         return view('login.index')->with([
             'registrado' => "",
             'usuario' => "",

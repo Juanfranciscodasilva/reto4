@@ -23,7 +23,7 @@ class ControllerPrincipal extends Controller
 
     public function proyectos(){
 
-        $proyectos = $this->obtenerProyectos(0);
+        $proyectos = $this->obtenerProyectos(6);
         return view("principal.proyectos")->with([
             "pagina" => "principal",
             "proyectos" => $proyectos
@@ -33,19 +33,10 @@ class ControllerPrincipal extends Controller
     public function abrirCrearProyecto(){
         $proyectos = $this->obtenerProyectos(0);
         return view("principal.crearProyecto")->with([
-            "pagina" => "principal",
-            "proyectos" => $proyectos]);
+            "pagina" =>"principal",
+            "proyectos" => count($proyectos)
+        ]);
     }
-
-    public function vistaest(){
-        $proyectos = $this->obtenerProyectos(0);
-        return view('principal.estadisticas')->with(
-            [
-                'pagina' => 'principal',
-                "proyectos" => $proyectos
-            ]);
-    }
-
 
     public function perfil(){
         return view("perfil.perfil")->with("pagina","perfil");
@@ -77,11 +68,21 @@ class ControllerPrincipal extends Controller
         return $datosProyectos;
     }
 
+    public function vistaest(){
+        $proyectos = $this->obtenerProyectos(0);
+        return view('principal.estadisticas')->with(
+            [
+                'pagina' => 'principal',
+                "proyectos" => count($proyectos)
+            ]);
+    }
+
     public function contacto(){
         $proyectos = $this->obtenerProyectos(0);
         return view('principal.contacto')->with([
             'pagina' => 'principal',
-            "proyectos" => $proyectos
+            "proyectos" => count($proyectos)
         ]);
     }
+
 }

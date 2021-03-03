@@ -1,4 +1,4 @@
-@extends("layouts.principal.layoutPrincipal")
+@extends("layouts.principal.layoutPrincipal",["usuarioreal",$usuarioreal])
 
 @section("titulo")
     <title>PlanTool - Perfil</title>

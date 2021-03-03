@@ -16,7 +16,7 @@
             @if(count($archivos) == 0)
                 <div id="noArchivos">
                     <h1>No se han encontrado archivos del proyecto</h1>
-                    @if($permiso)
+                    @if($permiso && $permiso != "nointegrante")
                         <p>Sube archivos del proyecto</p>
                     @else
                         <p>Espera a que el coordinador suba archivos del proyecto</p>
@@ -40,7 +40,7 @@
                             @else
                                 <td><a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}" style="color: black"><span class="mr-2"><i class='fas fa-image'></i></span>{{$archivo->archivo_original}}</a></td>
                             @endif
-                            <td style="text-align: end"><a href="#"><span><i class="fas fa-trash-alt" style="color: red"></i></span></a></td>
+                            <td style="text-align: end"><a href="/eliminarArchivo/{{$archivo->id}}/{{$archivo->archivo_hash}}"><span><i class="fas fa-trash-alt" style="color: red"></i></span></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -48,7 +48,7 @@
             @endif
         </div>
         {{ $archivos->links('pagination::bootstrap-4') }}
-        @if($permiso)
+        @if($permiso == 0)
         <hr>
         <div class="d-flex flex-column">
             <div id="formulario" class="mb-3">
