@@ -1,3 +1,8 @@
+textarea:focus, textarea:active {
+  outline-width: 0 !important;
+  box-shadow: none !important;
+}
+
 #mensajes {
   width: 100%;
   height: 60vh;
@@ -75,8 +80,31 @@ form button {
   word-break: break-word;
 }
 
+.archivochat {
+  background-color: rgba(161, 106, 255, 0.4);
+  border-color: gray;
+}
+
+.mensaje.propio {
+  background-color: rgba(161, 106, 255, 0.4) !important;
+}
+.mensaje.propio p {
+  border: 1px solid black;
+}
+
+.subirarchi {
+  background-color: #a16aff;
+  border: 1px solid gray;
+  border-left: 0;
+}
+
+textarea {
+  border-radius: 0px;
+  border-right: 0;
+}
+
 #archivos {
-  border: solid black 1px;
+  border: solid gray 1px;
   border-top: 0;
   max-height: 12vh;
   border-bottom-right-radius: 5px;
@@ -113,6 +141,14 @@ form button {
 .bloqueArchivosMensaje {
   margin-top: 20px;
 }
+.bloqueArchivosMensaje a, .bloqueArchivosMensaje span, .bloqueArchivosMensaje i {
+  color: #a16aff;
+  font-weight: bold;
+}
+
+.mensaje .descripcion {
+  margin-top: 15px !important;
+}
 
 #archivos p {
   margin: 5px 5px 10px 5px;
@@ -122,6 +158,59 @@ form button {
 
 #archivos ul li {
   margin-right: 40px;
+}
+
+body.dark #mensajes {
+  background-color: transparent;
+  border-color: white;
+}
+body.dark .mensaje {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+body.dark .mensaje .descripcion {
+  background-color: #7A01C9;
+  color: white;
+  border: 1px solid #a16aff;
+}
+body.dark .mensaje #archivosMensaje a, body.dark .mensaje #archivosMensaje i, body.dark .mensaje #archivosMensaje span {
+  color: white !important;
+}
+body.dark .propio {
+  background-color: #7A01C9 !important;
+  border-color: white !important;
+  color: white;
+}
+body.dark .propio .descripcion {
+  background-color: white;
+  color: black;
+  border-color: black;
+}
+body.dark .propio .btn.dropdown-toggle {
+  color: white;
+}
+body.dark textarea {
+  border-color: white;
+}
+body.dark #listaArchivos {
+  color: white;
+}
+body.dark .subirarchi {
+  background-color: #7A01C9;
+  color: white;
+  border-color: white;
+}
+body.dark .archivochat {
+  background-color: #7A01C9;
+  border-color: white;
+  color: white;
+}
+body.dark #archivos {
+  border-color: white;
+}
+body.dark #textoArchivosAdjuntos {
+  color: white;
 }
 
 @media (min-width: 450px) {
@@ -156,7 +245,5 @@ form button {
     margin-right: 80px;
   }
 }
-/*# sourceMappingURL=chat.css.map */
-/*# sourceMappingURL=chat.css.map */
 
 /*# sourceMappingURL=chat.css.map */

@@ -10,7 +10,7 @@ use App\Models\Integrante;
 use App\Models\Proyecto;
 use App\Models\Tarea;
 use App\Models\Usuario;
-use Faker\Provider\File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
@@ -450,5 +450,19 @@ class ControllerProyecto extends Controller
         $proyecto = Session::get("proyecto");
         Integrante::where("proyecto",$proyecto)->where("usuario",$id)->delete();
         return back();
+    }
+
+    public function eliminarmensaje($id){
+        $comentario = Comentario::find($id);
+        $listarchivos = ArchivoComentario::get()->where('comentario',$id);
+
+        foreach ($listarchivos as $archivos)
+        {
+            $file_path = public_path("/archivos/".$archivos->archivo_hash);
+            File::delete($file_path);
+        }
+
+        $comentario->delete();
+        return redirect()->back();
     }
 }

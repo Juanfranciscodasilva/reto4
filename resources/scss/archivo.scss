@@ -1,0 +1,108 @@
+#formulario{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#noArchivos h1{
+    text-align: center;
+    margin: 20px 0 30px 0;
+    text-shadow: 3px 2px 4px #a16aff;
+}
+
+#noArchivos p {
+    text-align: center;
+    font-weight: bold;
+}
+
+form div{
+    margin-bottom: 10px;
+}
+
+form label{
+    margin-right: 20px;
+    padding: 3px 7px;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
+form ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+form ul li{
+    margin-right: 50px;
+    margin-bottom: 15px;
+}
+
+form ul li .iconoArchivo{
+    margin-right: 10px;
+}
+
+form ul li .iconoCerrar{
+    margin-left: 10px;
+    color: red;
+}
+
+form button{
+    border-color: #a16aff;
+    border-radius: 5px;
+}
+
+#enviarArchivos{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+}
+
+#botonAddArchivo,.subir{
+    background-color: rgba(161, 106, 255,0.4);
+    cursor: pointer;
+    color: black;
+}
+
+.subir{
+    padding-top: 2.7px;
+    padding-bottom: 2.7px;
+    border: 1px solid #000000;
+}
+
+.svg-inline--fa{
+    cursor: pointer;
+}
+
+body.dark{
+    h1,p{
+        color: white;
+    }
+
+    hr {
+        border-color: rgba(255, 255, 255, 0.5) !important;
+        box-shadow: 0 0 10px #a16aff;
+    }
+
+    #enviarArchivos{
+        border-color: black;
+        box-shadow: 0 0 10px #a16aff;
+    }
+
+    #botonAddArchivo,.subir{
+        background-color: #7A01C9;
+        color: white;
+        border-color: #a16aff;
+    }
+
+    #listaArchivos,a{
+        color: white !important;
+    }
+
+    table{
+        color: white;
+        tr{
+            border-color: #a16aff !important;
+        }
+    }
+}

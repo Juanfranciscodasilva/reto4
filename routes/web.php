@@ -76,10 +76,12 @@ use Illuminate\Support\Facades\Route;
         //Información de cada proyecto
             Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
             Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");
-
+        //Chat
+            Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
+            Route::get('/chat/{mensaje}','ControllerProyecto@eliminarmensaje')->name('eliminarmensaje');
 
         Route::get("/archivosProyecto" , "ControllerProyecto@archivos")->name("archivos");
-        Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
+
         Route::get("/tareasActivas" , "ControllerProyecto@tareasActivas")->name("tareasActivas");
         Route::get("/tareasFinalizadas" , "ControllerProyecto@tareasFinalizadas")->name("tareasFinalizadas");
         Route::get("/integrantes" , "ControllerProyecto@integrantes")->name("integrantes");
