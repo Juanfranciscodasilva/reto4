@@ -36,7 +36,7 @@
                     <div class="datos m-0 mt-4 text-center text-dark w-100">
                         @if($usuarioreal == "")
                             @include('layouts.perfil.perfilusu',['usuario' => 'usuario'])
-                            <button class="mt-2 perfil">Editar perfil</button>
+                            <a href="{{ route('modificarperfil.index') }}"><button class="mt-2 perfil">Editar perfil</button></a>
                         @else
                             @include('layouts.perfil.perfilusu',['usuario' => 'usuarioperfil'])
                         @endif
@@ -76,12 +76,6 @@
 @endsection
 
 @section('script')
-    @if($passCambiada)
-        <script>
-            alert('Contraseña modificada correctamente');
-        </script>
-    @endif
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     <script src="/js/tablaproyecto.js"></script>
-    <script src="/js/perfil.js"></script>
 @endsection

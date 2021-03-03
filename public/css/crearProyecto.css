@@ -52,7 +52,7 @@ body.dark form input, body.dark textarea {
   background-color: transparent;
   color: white !important;
 }
-body.dark input[type=search], body.dark .boton {
+body.dark .boton {
   color: white !important;
   background-color: #7A01C9 !important;
   border-color: #a16aff !important;

@@ -40,8 +40,8 @@ use Illuminate\Support\Facades\Route;
 
     //Principal
         //Vista
-        Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
-        Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
+            Route::get('/principal',"ControllerPrincipal@entrar")->name("principal");
+            Route::get("/proyectos", "ControllerPrincipal@proyectos")->name("proyectos");
         //Crear proyecto
             Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
             Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
@@ -59,22 +59,25 @@ use Illuminate\Support\Facades\Route;
         //Modificar imagen
             Route::patch('/perfil','ControllerPerfil@modificarimagen')->name('modificarimagen');
         //Modificar contra
-        //Vista
-            Route::get('/modificarcontra','ControllerPerfil@modcontra')->name('modificarcontra.index');
-        //Modificar
-            Route::patch('/modificarcontra','ControllerPerfil@comprobaractucontra')->name('modificarcontra');
-        //Modificar Perfil
-        //Vista
-            Route::get('/modificarperfil','ControllerPerfil@modperfil')->name('modificarperfil.index');
-        //Modificar
+            //Vista
+                Route::get('/modificarcontra','ControllerPerfil@modcontra')->name('modificarcontra.index');
+            //Modificar
+                Route::patch('/modificarcontra','ControllerPerfil@comprobaractucontra')->name('modificarcontra');
+       //Modificar Perfil
+            //Vista
+                Route::get('/modificarperfil','ControllerPerfil@modperfil')->name('modificarperfil.index');
+            //Modificar
+                Route::patch('/modificarperfil','ControllerPerfil@modificarperfil')->name('modificarperfil');
+
+        //Eliminar usuarios
+            Route::get('/eliminarusuario','ControllerPerfil@eliminarusuario')->name('eliminarusuario');
 
     //Proyecto
+        //Información de cada proyecto
+            Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
+            Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");
 
-        //Vistas
 
-
-        Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
-        Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");
         Route::get("/archivosProyecto" , "ControllerProyecto@archivos")->name("archivos");
         Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
         Route::get("/tareasActivas" , "ControllerProyecto@tareasActivas")->name("tareasActivas");

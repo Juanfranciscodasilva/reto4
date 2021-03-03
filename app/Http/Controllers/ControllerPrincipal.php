@@ -86,5 +86,4 @@ class ControllerPrincipal extends Controller
             "proyectos" => count($proyectos["proyectos"])
         ]);
     }
-
 }

@@ -27,9 +27,9 @@
                             @endif
                         @else
                             @if(!$estado)
-                                <p><b>Estado: </b>Público</p>
+                                <p><b>Estado: </b>público</p>
                             @else
-                                <p><b>Estado: </b>Privado</p>
+                                <p><b>Estado: </b>privado</p>
                             @endif
                             <a href="{{route("integrantes")}}" class="enlace" style="margin-right: 25px"><i class="fas fa-user-friends"></i> Integrantes</a>
                             <a href="{{route("archivos")}}" class="enlace"><i class="fas fa-file-alt"></i> Archivos</a>

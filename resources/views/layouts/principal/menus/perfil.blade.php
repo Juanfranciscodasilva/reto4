@@ -15,12 +15,12 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-user-edit"></i></div>
                 Editar perfil
             </a>
-            <a class="nav-link" href="{{route("proyectos")}}">
+            <a class="nav-link" href="#" onclick="eliminarusuario()">
                 <div class="sb-nav-link-icon"><i class="fas fa-user-times"></i></div>
                 Eliminar usuario
             </a>
     @endif
-    <a class="nav-link" href="/">
+    <a class="nav-link" href="{{ route('login.home') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
         Cerrar sesión
     </a>

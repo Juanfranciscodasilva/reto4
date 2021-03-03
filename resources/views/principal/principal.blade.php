@@ -33,12 +33,28 @@
                                         @endif
                                         </p>
                                     </div>
-                                    <div class="d-flex justify-content-around pb-3">
+                                    <div>
                                         <span>Fecha: {{$proyecto->created_at->format("d/m/Y")}}</span>
+                                    </div>
+                                    <div class="d-flex p-0 pb-2 justify-content-around">
                                         @if($proyecto->estado)
-                                            <i class="fas fa-lock" style="margin-top: 3px;color: #a16aff"></i>
+                                            <div>
+                                                <i class="fas fa-lock" style="margin-top: 6px;color: #a16aff;margin-right: 5px"></i>
+                                                <span style="color: #a16aff">privado</span>
+                                            </div>
+                                            <button class="botonperfil">
+                                                <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
+                                                <span>añadir a favoritos</span>
+                                            </button>
                                         @else
-                                            <i class="fas fa-book-open" style="margin-top: 3px;color: #a16aff"></i>
+                                            <div>
+                                                <i class="fas fa-book-open" style="margin-top: 6px;color: #a16aff;margin-right: 5px"></i>
+                                                <span style="color: #a16aff">público</span>
+                                            </div>
+                                            <button class="botonperfil">
+                                                <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
+                                                <span style="color: #a16aff">añadir a favoritos</span>
+                                            </button>
                                         @endif
                                     </div>
                                 </div>
