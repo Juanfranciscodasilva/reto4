@@ -1,0 +1,58 @@
+#formulario{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#noArchivos h1{
+    text-align: center;
+    margin: 20px 0 30px 0;
+    text-shadow: 3px 2px 4px #a16aff;
+}
+
+#noArchivos p {
+    text-align: center;
+    font-weight: bold;
+}
+
+form div{
+    margin-bottom: 10px;
+}
+
+form label{
+    margin-right: 20px;
+    padding: 3px 7px;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
+form ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+form ul li{
+    margin-right: 50px;
+    margin-bottom: 15px;
+}
+
+form ul li .iconoArchivo{
+    margin-right: 10px;
+}
+
+form ul li .iconoCerrar{
+    margin-left: 10px;
+    color: red;
+}
+
+form button{
+    border-color: #a16aff;
+    border-radius: 5px;
+}
+
+#enviarArchivos{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 10px;
+}

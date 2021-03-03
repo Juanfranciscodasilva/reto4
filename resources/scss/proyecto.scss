@@ -1,0 +1,46 @@
+@import "funciones";
+
+@include mainAlineado();
+
+#layoutSidenav_content{
+
+}
+
+#contenedorPadre{
+    display: flex;
+    align-items: center;
+}
+
+@include estructura();
+
+.botonperfil{
+    color: #a16aff !important;
+    background-color: transparent;
+    border: none;
+}
+
+.botonperfil:hover{
+    color: #7A01C9 !important;
+}
+
+p{
+    word-break: break-word;
+}
+
+.enlace{
+    color: #a16aff;
+}
+
+.enlace:hover{
+    color: #7A01C9;
+    text-decoration: none;
+}
+
+body.dark{
+    .datos{
+        color: white;
+        hr{
+            border-color: #a16aff;
+        }
+    }
+}

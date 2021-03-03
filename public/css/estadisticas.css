@@ -1,0 +1,98 @@
+main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#contenedorFormulario {
+  border: solid black 1px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #a16aff;
+}
+
+h1 {
+  margin: 20px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #a16aff;
+  border-top: 1px solid #a16aff;
+  text-shadow: 3px 2px 4px #a16aff;
+  word-break: break-word;
+}
+
+body.dark h1 {
+  color: white;
+}
+
+#contenedorFormulario {
+  margin-top: 70px;
+}
+
+#selector {
+  text-align-last: center;
+  margin-top: 20px;
+  border-color: #a16aff;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+#selector:active, #selector:focus {
+  outline-width: 0 !important;
+  box-shadow: none !important;
+}
+
+.datoest {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#periodo {
+  width: 500px;
+}
+#periodo div {
+  margin: 0 auto !important;
+}
+
+div-estadisticas {
+  margin-top: 40px;
+}
+
+body.dark span {
+  color: white !important;
+}
+body.dark text, body.dark .apexcharts-menu-icon svg, body.dark .apexcharts-menu-icon svg:hover {
+  fill: white !important;
+}
+body.dark .apexcharts-menu-icon svg {
+  color: white !important;
+}
+body.dark .apexcharts-menu-icon svg:hover {
+  color: white !important;
+}
+body.dark #selector {
+  background-color: transparent;
+  color: white;
+}
+
+@media (max-width: 590px) {
+  #periodo {
+    width: 300px;
+  }
+
+  #selector {
+    width: 75% !important;
+  }
+}
+@media (max-width: 394px) {
+  #periodo {
+    width: 200px;
+  }
+}
+
+/*# sourceMappingURL=estadisticas.css.map */

@@ -1,0 +1,27 @@
+@import "funciones";
+
+@include mainAlineado();
+
+#contenedorPadre{
+    margin-bottom: 30px;
+}
+
+@include repetir(100%);
+@include estructura();
+
+form textarea {
+    resize: none;
+    height: 180px;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+body.dark{
+    svg,span{
+        color: white;
+    }
+}

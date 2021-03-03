@@ -1,0 +1,46 @@
+h1{
+    text-shadow: 3px 2px 4px #a16aff;
+    margin: 20px 0;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#noProyectos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    margin-top: 30px;
+}
+
+tr {
+    border-bottom: solid grey 1px;
+}
+
+th{
+    padding-bottom: 10px;
+}
+
+td{
+    padding: 15px 0;
+}
+
+tr a{
+    color: #a16aff;
+}
+
+tr a:hover{
+    color: red;
+}
+
+body.dark{
+    .text-dark{
+        color: white !important;
+    }
+}

@@ -1,0 +1,97 @@
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  margin: 20px 0 30px 0;
+  text-shadow: 3px 2px 4px #a16aff;
+}
+
+#noTareas p {
+  text-align: center;
+  font-weight: bold;
+}
+
+#tareas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tarea {
+  width: 100%;
+  margin-top: 30px;
+  border: solid black 1px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+
+.tarea h2 {
+  background-color: #a16aff;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  word-break: break-word;
+}
+
+.tarea p {
+  text-align: center;
+  color: black;
+  background-color: white;
+  border: solid black 1px;
+  padding: 10px 8px;
+  margin: 10px 15px 15px 15px;
+  word-break: break-word;
+  border-radius: 5px;
+}
+
+.tarea div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  padding: 0 15px;
+}
+
+.tarea form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tarea form button {
+  border-color: #a16aff;
+  margin-bottom: 20px;
+  width: 50%;
+}
+
+@media (min-width: 450px) {
+  .tarea {
+    width: 80%;
+  }
+
+  .tarea form button {
+    border-color: #a16aff;
+    margin-bottom: 20px;
+    width: 120px;
+  }
+}
+@media (min-width: 768px) {
+  #tareas {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tarea {
+    width: 45%;
+  }
+}
+@media (min-width: 1200px) {
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1800px !important;
+  }
+}
+
+/*# sourceMappingURL=tareas.css.map */
