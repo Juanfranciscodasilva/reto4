@@ -79,6 +79,8 @@ use Illuminate\Support\Facades\Route;
         //Chat
             Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
             Route::get('/chat/{mensaje}','ControllerProyecto@eliminarmensaje')->name('eliminarmensaje');
+        //Solicitar unirse
+            Route::get('/solicitarunirse','ControllerProyecto@solicitarunirse')->name('solicitarunirse');
 
         Route::get("/archivosProyecto" , "ControllerProyecto@archivos")->name("archivos");
 

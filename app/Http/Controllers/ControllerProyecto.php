@@ -465,4 +465,26 @@ class ControllerProyecto extends Controller
         $comentario->delete();
         return redirect()->back();
     }
+
+    public function solicitarunirse(){
+        $coordinador = Integrante::get()->where('proyecto',Session::get('proyecto'))->where('permiso',true)->first();
+        $proyecto = Proyecto::find($coordinador->proyecto);
+        $usuario = Usuario::find($coordinador->usuario);
+
+        $datos = [
+            'usuario' => Session::get('usuario'),
+            'proyecto' => $proyecto
+        ];
+
+        $subject = 'PlanTool';
+        $for = $usuario->email;
+
+        Mail::send('emails.union',$datos,function ($msj) use ($subject,$for){
+            $msj->from('developersweapp@gmail.com','PlanTool');
+            $msj->subject($subject);
+            $msj->to($for);
+        });
+
+        echo "<script>alert('La solicitud de unión se ha enviado correctamente. Espera hasta que el coordinador decida si añadirte o no al proyecto');location.href='/principal';</script>";
+    }
 }

@@ -68,7 +68,7 @@
                 Integrantes
             </a>
         @endif
-        <a class="nav-link" href="{{route("crearTarea")}}">
+        <a class="nav-link" href="{{route("solicitarunirse")}}">
             <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
             Solicitar unirse
         </a>
