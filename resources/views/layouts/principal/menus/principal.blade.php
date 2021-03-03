@@ -23,7 +23,7 @@
             Estadísticas
         </a>
     @endif
-    <a class="nav-link" href="{{ route('principal') }}">
+    <a class="nav-link" href="{{ route('contacto.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-envelope-open-text"></i></div>
         Contacto
     </a>

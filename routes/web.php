@@ -48,7 +48,8 @@ use Illuminate\Support\Facades\Route;
         //Estadísticas
             Route::get('/estadisticas','ControllerPrincipal@vistaest')->name('estadisticas.index');
             Route::get('/estadisticas/{opcion}','ControllerEstadisticas@gestionarestadistica')->name('estadistica');
-            Route::get('/ejemplo','ControllerEstadisticas@ejee')->name('eje');
+        //Contactar
+            Route::get('/contacto','ControllerPrincipal@contacto')->name('contacto.index');
 
     //Perfil
         //Vista Principal

@@ -2,31 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5add4380-4c6c-46e6-bca9-19f38ec2be60" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/scss/proyecto.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControllerProyecto.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControllerProyecto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_23_104456_create_proyectos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_23_104456_create_proyectos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/crearProyecto.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/crearProyecto.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/crearProyecto.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/crearProyecto.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/perfil.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/perfil.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/perfil.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/perfil.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/principal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/principal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/principal.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/principal.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/principalLayout.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/principalLayout.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/proyecto.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/proyecto.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/_funciones.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/_funciones.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/crearProyecto.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/crearProyecto.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/perfil.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/perfil.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/principal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/principal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scss/principalLayout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scss/principalLayout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/principal/layoutPrincipal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/principal/layoutPrincipal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControllerPrincipal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControllerPrincipal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/principal/menus/principal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/principal/menus/principal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/principal/menus/proyecto.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/principal/menus/proyecto.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/principal/contacto.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/principal/contacto.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/principal/crearProyecto.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/principal/crearProyecto.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/principal/principal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/principal/principal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/proyecto/integrantes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/proyecto/integrantes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/proyecto/proyecto.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/proyecto/proyecto.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,6 +170,7 @@
       <updated>1614623211563</updated>
       <workItem from="1614623215484" duration="18504000" />
       <workItem from="1614670557026" duration="7924000" />
+      <workItem from="1614756285982" duration="723000" />
     </task>
     <servers />
   </component>

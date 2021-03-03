@@ -77,4 +77,11 @@ class ControllerPrincipal extends Controller
         return $datosProyectos;
     }
 
+    public function contacto(){
+        $proyectos = $this->obtenerProyectos(0);
+        return view('principal.contacto')->with([
+            'pagina' => 'principal',
+            "proyectos" => $proyectos
+        ]);
+    }
 }
