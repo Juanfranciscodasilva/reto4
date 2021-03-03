@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Route;
             Route::get('/estadisticas/{opcion}','ControllerEstadisticas@gestionarestadistica')->name('estadistica');
         //Contactar
             Route::get('/contacto','ControllerPrincipal@contacto')->name('contacto.index');
+            Route::post('/contacto','ControllerPrincipal@contactar')->name('contactar');
 
     //Perfil
         //Vista Principal

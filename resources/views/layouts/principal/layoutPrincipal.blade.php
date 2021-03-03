@@ -30,14 +30,14 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle h-100"></i></a>
                 <div class="dropdown-menu dropdown-menu-right text-center pt-0 pb-0" aria-labelledby="userDropdown" id="menuUsuario">
-                    <a href="{{route("perfil")}}" class="dropdown-item pb-0 pt-1">
+                    <a href="{{route("perfil")}}" class="dropdown-item pb-2 pt-3">
                         <div id="imgPerfil"><img src="/img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen }}"></div>
                         <span><b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></span>
                     </a>
                     <div class="dropdown-divider mt-0 mb-0"></div>
-                    <a class="dropdown-item" href="{{route("perfil")}}">Perfil</a>
+                    <a class="dropdown-item pt-2 pb-2" href="{{route("perfil")}}">Perfil</a>
                     <div class="dropdown-divider mt-0 mb-0"></div>
-                    <a class="dropdown-item" href="/">Cerrar Sesión</a>
+                    <a class="dropdown-item pt-2 pb-2" href="/">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>

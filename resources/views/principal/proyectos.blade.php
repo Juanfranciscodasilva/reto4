@@ -11,7 +11,7 @@
 
 @section("contenido")
     <div class="container-fluid">
-        @if(count($proyectos["proyectos"]) == 0)
+        @if(count($listaproyectos["proyectos"]) == 0)
             <div id="noProyectos">
                 <h1 class="text-dark">No tienes proyectos!</h1>
                 <p class="text-dark"><b>Únete mediante invitación o crea uno propio!</b></p>
@@ -27,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($proyectos["proyectos"] as $proyecto)
+            @foreach($listaproyectos["proyectos"] as $proyecto)
                 <tr>
                     <td>{{$proyecto->titulo}}</td>
                     <td class="text-center">{{$proyecto->coordinador->usuario}}</td>

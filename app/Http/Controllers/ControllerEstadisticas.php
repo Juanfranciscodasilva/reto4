@@ -42,8 +42,6 @@ class ControllerEstadisticas extends Controller
             }
 
             $privado = $privado * 100/$countproyectos;
-
-
             $publico = $publico * 100/$countproyectos;
 
             $datos = [

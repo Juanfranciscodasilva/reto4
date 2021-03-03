@@ -6,6 +6,7 @@ use App\Models\Integrante;
 use App\Models\Proyecto;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class ControllerPrincipal extends Controller
@@ -15,18 +16,19 @@ class ControllerPrincipal extends Controller
             $proyectos = $this->obtenerProyectos(6);
             return view("principal.principal")->with([
                 "pagina" => "principal",
-                "proyectos" => $proyectos
+                "proyectos" => count($proyectos['proyectos']),
+                'listaproyectos' => $proyectos
             ]);
         }
         return redirect("/");
     }
 
     public function proyectos(){
-
         $proyectos = $this->obtenerProyectos(6);
         return view("principal.proyectos")->with([
             "pagina" => "principal",
-            "proyectos" => $proyectos
+            "proyectos" => count($proyectos['proyectos']),
+            'listaproyectos' => $proyectos
         ]);
     }
 
@@ -81,8 +83,52 @@ class ControllerPrincipal extends Controller
         $proyectos = $this->obtenerProyectos(0);
         return view('principal.contacto')->with([
             'pagina' => 'principal',
-            "proyectos" => count($proyectos)
+            "proyectos" => count($proyectos['proyectos']),
         ]);
     }
 
+    public function contactar(){
+        $proyectos = $this->obtenerProyectos(6);
+        $mensaje = \request('mensaje');
+
+        $this->contactousuario($mensaje);
+        $this->contactoservidor($mensaje);
+
+        return view('principal.principal')->with([
+            "pagina" => "principal",
+            "proyectos" => count($proyectos['proyectos']),
+            'listaproyectos' => $proyectos,
+            'contactocorrecto' => true
+        ]);
+    }
+
+    public function contactousuario($mensaje){
+        $subject = "PlanTool";
+        $for = Session::get('usuario')->email;
+
+        $datos = [
+            'mensaje' => $mensaje,
+        ];
+
+        Mail::send('emails.usuario',$datos,function ($msj) use ($subject,$for){
+            $msj->from('developersweapp@gmail.com','PlanTool');
+            $msj->subject($subject);
+            $msj->to($for);
+        });
+    }
+
+    public function contactoservidor($mensaje){
+        $subject = "PlanTool Contacto";
+        $for = 'developersweapp@gmail.com';
+
+        $datos = [
+            'mensaje' => $mensaje,
+        ];
+
+        Mail::send('emails.servidor',$datos,function ($msj) use ($subject,$for){
+            $msj->from('developersweapp@gmail.com','PlanTool');
+            $msj->subject($subject);
+            $msj->to($for);
+        });
+    }
 }

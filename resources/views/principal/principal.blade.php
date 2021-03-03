@@ -9,14 +9,14 @@
 @endsection
 @section("contenido")
     <div class="container-fluid" style="margin-bottom: 30px">
-        @if(count($proyectos["proyectos"]) == 0)
+        @if(count($listaproyectos["proyectos"]) == 0)
             <div id="noProyectos">
                 <h1 class="text-dark">No tienes proyectos!</h1>
                 <p class="text-dark"><b>Únete mediante invitación o crea uno propio!</b></p>
             </div>
         @else
             <div id="proyectos" class="mb-2">
-                @foreach($proyectos["proyectos"] as $proyecto)
+                @foreach($listaproyectos["proyectos"] as $proyecto)
                     <div class="proyectodatos">
                         <a href="/proyecto/{{$proyecto->id}}">
                             <div class="proyecto">
@@ -41,8 +41,14 @@
                     </div>
                 @endforeach
             </div>
-            {{ $proyectos["ids"]->onEachSide(0)->links('pagination::bootstrap-4') }}
+            {{ $listaproyectos["ids"]->onEachSide(0)->links('pagination::bootstrap-4') }}
         @endif
     </div>
 @endsection
-
+@section('script')
+    @if(isset($contactocorrecto))
+        <script>
+            alert('El email de contacto se ha enviado correctamente. El administrador se pondrá en contacto con usted lo antes posible');
+        </script>
+    @endif
+@endsection
