@@ -149,6 +149,15 @@ body.dark{
         }
     }
 
+    .dropdown-item{
+        span{
+            b{
+                color: black !important;
+            }
+        }
+    }
+
+
     #layoutSidenav_nav nav .sb-sidenav-footer{
         background-color: #282828;
         color: white;

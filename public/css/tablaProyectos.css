@@ -39,8 +39,8 @@ tr a:hover {
   color: red;
 }
 
-body.dark .text-dark {
-  color: white !important;
+body.dark tr td, body.dark tr th {
+  color: white;
 }
 
 /*# sourceMappingURL=tablaProyectos.css.map */

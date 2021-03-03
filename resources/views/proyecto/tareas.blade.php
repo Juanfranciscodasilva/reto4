@@ -10,7 +10,7 @@
 @endsection
 
 @section("contenido")
-    <div class="container">
+    <div class="container" id="contenedorPadre">
         @if(count($tareas)==0)
             <div id="noTareas">
                 <h1>No tienes tareas {{$estado}}</h1>
@@ -22,7 +22,7 @@
             </div>
         @else
             <h1 class="mt-4 pt-0 mt-xl-5 pt-xl-4">Tareas {{$estado}}</h1>
-            <div id="tareas">
+            <div id="tareas" class="mt-xl-5">
                 @foreach($tareas as $tarea)
                     <div class="tarea p-0 col-12 mx-auto mx-lg-0 col-lg-6 col-xl-4">
                         <h2>{{$tarea->titulo}}</h2>
@@ -39,7 +39,7 @@
                             <form action="{{route("finalizarTarea")}}" method="post">
                                 @csrf
                                 <input type="hidden" value="{{$tarea->id}}" name="tarea">
-                                <button type="submit">Finalizar</button>
+                                <button type="submit" class="finalizar">Finalizar</button>
                             </form>
                         @endif
                     </div>

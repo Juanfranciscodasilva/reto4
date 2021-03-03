@@ -4,7 +4,7 @@
     <title>PlanTool - Principal</title>
 @endsection
 @section("css")
-    <link href="css/crearProyecto.css" rel="stylesheet" />
+    <link href="/css/crearProyecto.css" rel="stylesheet" />
 @endsection
 @section("contenido")
     <div class="container-fluid" id="contenedorPadre">

@@ -17,23 +17,24 @@
             <table class="mt-4">
                 <thead>
                 <tr>
-                    <th>Usuario</th>
+
+                    <th class="text-center">Usuario</th>
                     <th class="text-center">Rol</th>
                     @if($permiso == 1)
-                        <th class="text-right">Expulsar</th>
+                        <th class="text-center">Expulsar</th>
                     @endif
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($integrantes as $integrante)
                     <tr>
-                        <td>{{$integrante->usuario}}</td>
+                        <td class="text-center">{{$integrante->usuario}}</td>
                         <td class="text-center">{{$integrante->rol}}</td>
                         @if($permiso == 1)
                             @if($integrante->rol == "Colaborador")
-                            <td class="text-right"><a href="/expulsarIntegrante/{{$integrante->id}}"><i class="fas fa-trash-alt"></i></a></td>
+                            <td class="text-center"><a href="/expulsarIntegrante/{{$integrante->id}}"><i class="fas fa-trash-alt"></i></a></td>
                             @else
-                                <td class="text-right"><i class="fas fa-ban"></i></td>
+                                <td class="text-center"><i class="fas fa-ban"></i></td>
                             @endif
                         @endif
                     </tr>
@@ -49,17 +50,17 @@
                 <table class="col-12 table_of_proyectos display compact stripe border-1 border-dark p-0">
                     <thead>
                     <tr class="text-dark">
-                        <th class="pr-0">Usuario</th>
+                        <th class="pr-0 text-center">Usuario</th>
                         <th class="text-center pr-0">Email</th>
-                        <th class="text-right pr-0">Invitar</th>
+                        <th class="text-center pr-0">Invitar</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($usuariosNoPertenecientes as $usuario)
                         <tr class="text-dark">
-                            <td>{{$usuario->usuario}}</td>
+                            <td class="text-center">{{$usuario->usuario}}</td>
                             <td class="text-center">{{$usuario->email}}</td>
-                            <td class="text-right"><a href="/invitarIntegrante/{{$usuario->id}}" class="enlaceInvitar">Invitar</a></td>
+                            <td class="text-center"><a href="/invitarIntegrante/{{$usuario->id}}" class="enlaceInvitar">Invitar</a></td>
                         </tr>
                     @endforeach
                     </tbody>

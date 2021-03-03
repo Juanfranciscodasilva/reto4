@@ -11,7 +11,7 @@
 @section("contenido")
     <div class="container-fluid mt-3" id="contenedorPadre">
         <div class="col-10 col-xl-7 mx-auto" id="contenedorFormulario">
-            <form action="{{route("crearTarea")}}" method="post" onsubmit="return validarDatosCrearProyecto()" class="col-12 col-lg-9 p-0 mx-auto mb-0">
+            <form action="{{route("crearTarea")}}" method="post" onsubmit="return validarDatosCrearProyecto()" class="col-12 col-lg-9 p-0 mx-auto mb-0" autocomplete="off">
                 @csrf
                 <h1 class="m-0 pt-2 pb-2">Crear tarea</h1>
                 <div class="mt-4 text-md-center col-11 col-md-9 mx-auto">

@@ -70,18 +70,19 @@ body.dark{
     tbody tr:hover{
         td{
             background-color:transparent;
-            border-bottom-color: #a16aff !important;
+            border-bottom-color: gray !important;
             color: white;
         }
     }
 
     td,th{
         color: white;
+        border-color: gray;
     }
 
     tbody tr:nth-of-type(1):hover{
         td{
-            border-bottom-color: #a16aff !important;
+            border-color: gray !important;
             color: white;
         }
     }
