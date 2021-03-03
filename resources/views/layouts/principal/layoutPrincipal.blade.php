@@ -35,9 +35,9 @@
                         <span><b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></span>
                     </a>
                     <div class="dropdown-divider mt-0 mb-0"></div>
-                    <a class="dropdown-item pb-2 pt-2" href="{{route("perfil")}}">Perfil</a>
-                    <div class="dropdown-divider mt-0 mb-0"></div>
-                    <a class="dropdown-item pb-2 pt-2" href="/">Cerrar Sesión</a>
+                    <a class="dropdown-item pt-2 pb-2" href="{{route("perfil")}}">Perfil</a>
+                    <div class="dropdown-divider mt-0 mb-0 "></div>
+                    <a class="dropdown-item pt-2 pb-2" href="/">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>
@@ -58,7 +58,7 @@
                             @include('layouts.principal.menus.perfil')
                            @break
                         @default
-                            @include('layouts.principal.menus.proyecto',['permiso' => $permiso])
+                            @include('layouts.principal.menus.proyecto')
                     @endswitch
                 </div>
             </div>
@@ -83,13 +83,12 @@
         </footer>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/principal.js"></script>
 @yield('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

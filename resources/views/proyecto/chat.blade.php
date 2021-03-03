@@ -11,9 +11,6 @@
 @section("contenido")
     <div class="container-fluid">
         <div id="mensajes">
-            @if(count($mensajes) == 0)
-            @else
-            @endif
             @foreach($mensajes as $mensaje)
                 @if($mensaje->autor->id == $idIniciado)
                     <div class="mensaje propio">
@@ -32,7 +29,21 @@
                         <p class="descripcion">{{$mensaje->comentario}}</p>
                         @if(count($mensaje->archivos) > 0)
                             <div>
-                                <p>archivos</p>
+                                <ul id="archivosMensaje">
+                                @foreach($mensaje->archivos as $archivo)
+                                        <li class="mr-5 bloqueArchivosMensaje">
+                                            <a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}" style="color: black">
+                                    @if($archivo->extension == "pdf")
+                                        <span class="mr-1" style="color: red"><i class='fas fa-file-pdf'></i></span>
+                                    @else
+                                        <span class="mr-1"><i class='fas fa-image'></i></span>
+                                    @endif
+                                        {{$archivo->archivo_original}}
+                                        <i class='fas fa-cloud-download-alt ml-1 iconoDescargar' style="color: skyblue"></i>
+                                            </a>
+                                        </li>
+                                @endforeach
+                                </ul>
                             </div>
                         @endif
                     </div>

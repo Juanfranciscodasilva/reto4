@@ -39,7 +39,7 @@ function botonmodoscyclaro() {
             modooscyclaro('/img/logo.png', "claro");
     });
 }
-//Funcion para modificar el logo dependiendo del color de la pagina
+//Modificar el logo dependiendo del color de la pagina
 function modooscyclaro(url, modo) {
     $(".logo").attr('src', url);
     localStorage.setItem("modo", modo);

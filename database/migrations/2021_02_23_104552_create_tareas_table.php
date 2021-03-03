@@ -16,7 +16,7 @@ class CreateTareasTable extends Migration
         Schema::create('tareas', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("titulo");
-            $table->string("descripcion");
+            $table->text("descripcion");
             $table->boolean("estado");
             $table->date("vencimiento");
             $table->unsignedBigInteger("usuario");

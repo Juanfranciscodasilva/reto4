@@ -1,137 +1,58 @@
-#contenedorPadre{
-    height: 80vh;
+#formulario{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-radius: 5px;
-}
-
-#archivos {
-    width: 100%;
-    min-height: 55vh;
-    max-height: 55vh;
-    margin-top: 10px;
-    background-color: #f0f0f0;
-    overflow-y: scroll;
-    border: solid black 1px;
-    padding: 10px 10px 0 15px;
-    border-radius: 5px;
-}
-
-#addArchivos{
-    height: 20vh;
-    padding: 20px 10px 10px 10px;
-    border-radius: 5px;
-    border: solid black 1px;
-    overflow-y: scroll;
-}
-
-.archivo {
-    background-color: white;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-.archivo div {
-    display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: 10px;
-    word-break: break-word;
 }
 
-.archivo div span {
+#noArchivos h1{
+    text-align: center;
+    margin: 20px 0 30px 0;
+    text-shadow: 3px 2px 4px #a16aff;
+}
+
+#noArchivos p {
+    text-align: center;
+    font-weight: bold;
+}
+
+form div{
+    margin-bottom: 10px;
+}
+
+form label{
+    margin-right: 20px;
+    padding: 3px 7px;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
+form ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+form ul li{
+    margin-right: 50px;
+    margin-bottom: 15px;
+}
+
+form ul li .iconoArchivo{
     margin-right: 10px;
 }
 
-.archivo p {
-    word-break: break-word;
+form ul li .iconoCerrar{
+    margin-left: 10px;
+    color: red;
 }
 
-form{
-    width: 100%;
-}
-
-#contenedorBotones{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-form #contenedorBotones div{
-    height: 100%;
-}
-
-form div button, #botonEnviar {
-    width: 130px;
-    padding: 5px 2px;
+form button{
     border-color: #a16aff;
-    word-break: break-word;
+    border-radius: 5px;
 }
 
-ul{
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-
-@media (min-width: 450px) {
-    form div button, #botonEnviar {
-        width: 180px;
-    }
-
-    label {
-        width: 10%;
-    }
-
-    ul{
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    ul li {
-        margin-right: 80px;
-    }
-}
-
-@media (min-width: 768px){
-    #contenedorPadre{
-        height: 85vh;
-    }
-
-    #archivos {
-        min-height: 60vh;
-        max-height: 60vh;
-    }
-
-    #addArchivos{
-        height: 20vh;
-    }
-}
-
-@media (min-width: 992px) {
-    form div button, #botonEnviar {
-        width: 220px;
-        margin-right: 10px;
-    }
-
-    #contenedorBotones{
-        justify-content: center;
-    }
-
-    .archivo div {
-        justify-content: flex-start;
-    }
-
-    #archivos {
-        min-height: 70vh;
-        max-height: 70vh;
-    }
-
-    #addArchivos{
-        height: 15vh;
-    }
+#enviarArchivos{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 10px;
 }

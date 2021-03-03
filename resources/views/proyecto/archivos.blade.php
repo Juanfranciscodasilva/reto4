@@ -6,65 +6,75 @@
 
 @section("css")
     <link href="css/archivo.css" rel="stylesheet" />
+    <link href="css/tablaProyectos.css" rel="stylesheet" />
+    <link href="css/paginacion.css" rel="stylesheet" />
 @endsection
 
 @section("contenido")
     <div class="container-fluid">
-        <div id="contenedorPadre">
-            <div id="archivos">
-                <div class="archivo">
-                    <div>
-                        <span class="autor">Ejemplo de autor</span>
-                        <span>21/21/2021</span>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <span>""""Icono del archivo""""""</span>
-                            <span>Nombre del archivo</span>
-                        </a>
-                    </div>
+        <div id="archivos" class="mb-4">
+            @if(count($archivos) == 0)
+                <div id="noArchivos">
+                    <h1>No se han encontrado archivos del proyecto</h1>
+                    @if($permiso)
+                        <p>Sube archivos del proyecto</p>
+                    @else
+                        <p>Espera a que el coordinador suba archivos del proyecto</p>
+                    @endif
                 </div>
-                <div class="archivo">
+            @else
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Fecha de subida</th>
+                        <th>Archivo</th>
+                        <th style="text-align: end">Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($archivos as $archivo)
+                        <tr>
+                            <td>{{$archivo->created_at->format("d/m/Y")}}</td>
+                            @if($archivo->extension == "pdf")
+                                <td><a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}"" style="color: black"><span class="mr-2" style="color: red"><i class='fas fa-file-pdf'></i></span>{{$archivo->archivo_original}}</a></td>
+                            @else
+                                <td><a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}" style="color: black"><span class="mr-2"><i class='fas fa-image'></i></span>{{$archivo->archivo_original}}</a></td>
+                            @endif
+                            <td style="text-align: end"><a href="#"><span><i class="fas fa-trash-alt" style="color: red"></i></span></a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
+        </div>
+        {{ $archivos->links('pagination::bootstrap-4') }}
+        @if($permiso)
+        <hr>
+        <div class="d-flex flex-column">
+            <div id="formulario" class="mb-3">
+                <form action="subirArchivos" method="post" enctype="multipart/form-data" onsubmit="return revisarExistenciaDeArchivos()">
+                    @csrf
                     <div>
-                        <span class="autor">Ejemplo de autor</span>
-                        <span>21/21/2021</span>
+                        <label for="archivoChat" id="botonAddArchivo">Añadir archivos <i class="fas fa-paperclip ml-1"></i></label>
+                        <button type="submit">Subir <i class="fas fa-share ml-1"></i></button>
                     </div>
-                    <div>
-                        <a href="#">
-                            <span>""""Icono del archivo""""""</span>
-                            <span>Nombre del archivo</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="archivo">
-                    <div>
-                        <span class="autor">Ejemplo de autor</span>
-                        <span>21/21/2021</span>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <span>""""Icono del archivo""""""</span>
-                            <span>Nombre del archivo</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div id="addArchivos">
-                <form action="#" method="post">
-                    <div id="contenedorBotones">
-                        <div><label for="archivo"><button type="button">Añadir archivos</button></label> </div>
-                        <div><button type="submit" id="botonEnviar">Enviar</button></div>
-                    </div>
+                    <input type="file" id="archivoChat" name="archivo" hidden>
+                    <div id="enviarArchivos" class="h-100">
+                        <p id="textoArchivosAdjuntos" class="text-center">Archivos adjuntos</p>
+                        <ul id="listaArchivos">
 
-                    <input type="file" id="archivo" hidden>
+                        </ul>
+                    </div>
+                    <div id="inputsHidden">
+
+                    </div>
                 </form>
-                <ul>
-                    <li>Archivo 1 &nbsp&nbsp<span><i class="fas fa-times"></i></span></li>
-                    <li>Archivo 1 &nbsp&nbsp<span><i class="fas fa-times"></i></span></li>
-                    <li>Archivo 1 &nbsp&nbsp<span><i class="fas fa-times"></i></span></li>
-                </ul>
             </div>
         </div>
-
+        @endif
     </div>
+@endsection
+
+@section("script")
+    <script src="/js/proyecto.js"></script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Archivo;
 use App\Models\ArchivoComentario;
+use App\Models\ArchivoProyecto;
 use App\Models\Comentario;
 use App\Models\Integrante;
 use App\Models\Proyecto;
@@ -22,44 +23,37 @@ class ControllerProyecto extends Controller
     }
 
     public function entrar(){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         //ver si el usuario es coordinador
-            $permiso = $this->obtenerPermiso();
+        $permiso = $this->obtenerPermiso();
 
         //obtener los datos del proyecto
-            $proyecto = Proyecto::find(Session::get("proyecto"));
+        $proyecto = Proyecto::find(Session::get("proyecto"));
 
         //obtener la fecha de entrada del usuario al proyecto
-            if ($permiso == 'nointegrante')
-                $fecha_entrada = Integrante::get()->where("proyecto",$proyecto->id)->where("usuario",Session::get("usuarioperfil")->id)->first();
-            else
-                $fecha_entrada = Integrante::get()->where("proyecto",$proyecto->id)->where("usuario",Session::get("usuario")->id)->first();
+        if ($permiso == 'nointegrante')
+            $fecha_entrada = $proyecto;
+        else
+            $fecha_entrada = Integrante::get()->where("proyecto",$proyecto->id)->where("usuario",Session::get("usuario")->id)->first();
 
         //obtener datos del coordinador del proyecto
             $coordinador = Integrante::get()->where("proyecto",$proyecto->id)->where("permiso",true)->first();
             $coordinador = Usuario::find($coordinador->usuario);
 
         //obtener numero de integrantes del proyecto
-            $integrantes = count(Integrante::get()->where("proyecto",$proyecto->id));
+        $integrantes = count(Integrante::get()->where("proyecto",$proyecto->id));
 
         return view("proyecto.proyecto")->with([
             "pagina" => "proyecto",
             "permiso" => $permiso,
             "proyecto" => $proyecto,
+            "estado" => $proyecto->estado,
             "fecha_entrada" => $fecha_entrada->created_at,
             "coordinador" => $coordinador,
             "integrantes" => $integrantes
         ]);
-    }
-
-    public function obtenerPermiso(){
-        $usuario = Session::get("usuario");
-        $proyecto = Session::get("proyecto");
-        $proyecto = Proyecto::find($proyecto);
-        $permiso = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$proyecto->id)->first();
-        if ($permiso == null)
-            return 'nointegrante';
-        else
-            return $permiso->permiso;
     }
 
     public function archivos(){
@@ -67,10 +61,24 @@ class ControllerProyecto extends Controller
             return redirect("/principal");
         }
         $permiso = $this->obtenerPermiso();
+        $archivos = $this->obtenerArchivosProyecto();
+        $proyecto = Proyecto::find(Session::get("proyecto"));
         return view("proyecto.archivos")->with([
             "pagina" => "proyecto",
-            "permiso" => $permiso
+            "permiso" => $permiso,
+            "archivos" => $archivos,
+            "estado" => $proyecto->estado
         ]);
+    }
+
+    public function obtenerArchivosProyecto(){
+        $proyecto = Session::get("proyecto");
+        $archivos = ArchivoProyecto::where("proyecto",$proyecto)->paginate(5);
+        foreach ($archivos as $archivo){
+            $extension = substr(strrchr($archivo->archivo_original, "."), 1);
+            $archivo->extension = strtolower($extension);
+        }
+        return $archivos;
     }
 
     public function chat(){
@@ -80,6 +88,7 @@ class ControllerProyecto extends Controller
         $permiso = $this->obtenerPermiso();
         $idUsuario = Session::get("usuario")->id;
         $mensajes = $this->obtenerMensajes();
+
         return view("proyecto.chat")->with([
             "pagina" => "proyecto",
             "permiso" => $permiso,
@@ -107,6 +116,10 @@ class ControllerProyecto extends Controller
     public function obtenerArchivosMensajes($mensajes){
         foreach ($mensajes as $mensaje){
             $archivos = ArchivoComentario::get()->where("comentario",$mensaje->id);
+            foreach ($archivos as $archivo){
+                $extension = substr(strrchr($archivo->archivo_original, "."), 1);
+                $archivo->extension = strtolower($extension);
+            }
             $mensaje->archivos = $archivos;
         }
         return $mensajes;
@@ -158,12 +171,12 @@ class ControllerProyecto extends Controller
         if (!$this->comprobarExistenciaDeProyectoEnSesion()){
             return redirect("/principal");
         }
-
         $permiso = $this->obtenerPermiso();
-
+        $proyecto = Proyecto::find(Session::get("proyecto"));
         return view("proyecto.integrantes")->with([
             "pagina" => "proyecto",
-            "permiso" => $permiso
+            "permiso" => $permiso,
+            "estado" => $proyecto->estado
         ]);
     }
 
@@ -187,7 +200,7 @@ class ControllerProyecto extends Controller
             $estado = true;
 
         Proyecto::create([
-           "titulo" =>  \request("titulo"),
+            "titulo" =>  \request("titulo"),
             "descripcion" => \request("descripcion"),
             "estado" => $estado
         ]);
@@ -202,6 +215,18 @@ class ControllerProyecto extends Controller
         ]);
 
         return redirect("principal");
+
+    }
+
+    public function obtenerPermiso(){
+        $usuario = Session::get("usuario");
+        $proyecto = Session::get("proyecto");
+        $proyecto = Proyecto::find($proyecto);
+        $permiso = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$proyecto->id)->first();
+        if ($permiso == null)
+            return 'nointegrante';
+        else
+            return $permiso->permiso;
     }
 
     public function crearTarea(){
@@ -269,7 +294,6 @@ class ControllerProyecto extends Controller
         $autor = Session::get("usuario");
         $proyecto = Session::get("proyecto");
 
-
          $comentario = Comentario::create([
             "comentario" => $mensaje,
             "autor" => $autor->id,
@@ -283,24 +307,64 @@ class ControllerProyecto extends Controller
                 $condicion = false;
                 break;
             }
-            $file = \request("archivo".$x);
-            $extension = $file->extension();
-            $hash = Hash::make(\request($nombre));
-            $hashCompleto = $hash.".".$extension;
-            $file->move(public_path('archivos'),$hashCompleto);
 
-            ArchivoComentario::create([
+            $archivoInsertado = ArchivoComentario::create([
                 "archivo_original" => \request($nombre),
-                "archivo_hash" => $hashCompleto,
+                "archivo_hash" => "",
                 "autor" => $autor->id,
                 "comentario" => $comentario->id
             ]);
+
+            $file = \request("archivo".$x);
+            $extension = $file->extension();
+            $nombreID = $archivoInsertado->id."_comentarios.".$extension;
+            $file->move(public_path('archivos'),$nombreID);
+            $archivoInsertado->archivo_hash = $nombreID;
+            $archivoInsertado->save();
         }
         return back();
     }
 
-    public function addColaborador(){
+    public function subirArchivos()
+    {
+        $proyecto = Session::get("proyecto");
+        $autor = Session::get("usuario");
+        $condicion = true;
+        for ($x = 0; $condicion; $x++) {
+            $nombre = "nombreArchivo" . $x;
+            if (!request()->has($nombre)) {
+                $condicion = false;
+                break;
+            }
 
+            $archivoInsertado = ArchivoProyecto::create([
+                "archivo_original" => \request($nombre),
+                "archivo_hash" => "",
+                "autor" => $autor->id,
+                "proyecto" => $proyecto
+            ]);
+
+            $file = \request("archivo".$x);
+            $extension = $file->extension();
+            $nombreID = $archivoInsertado->id."_proyecto.".$extension;
+            $file->move(public_path('archivos'),$nombreID);
+            $archivoInsertado->archivo_hash = $nombreID;
+            $archivoInsertado->save();
+        }
+        return back();
+    }
+
+    public function descargar($hash,$nombre){
+        return response()->download("archivos/".$hash,$nombre);
+    }
+
+    public function addColaborador(){
+        //TODO ENVIAR CORREO (HACER VISTA Y FUNCIONALIDAD DEL CORREO)!
+        /*Integrante::create([
+            "usuario" => 2,
+            "proyecto" => 1,
+            "permiso" => false
+        ]);*/
         return back();
     }
 }

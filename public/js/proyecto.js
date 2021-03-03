@@ -1,3 +1,4 @@
+$("#mensajes").scrollTop($("#mensajes").prop('scrollHeight'));
 function validarDatosCrearProyecto() {
     var validado = true;
     if (!validarFechaVencimiento()) {
@@ -83,7 +84,7 @@ function addListaInputs(tipo) {
     }
     else {
         if (extension == "pdf") {
-            $("#listaArchivos").append("<li id='li" + posi + "'><span><i class='fas fa-file-pdf iconoArchivo'></i></span>" + nombre + "<i class='fas fa-times iconoCerrar' onclick='eliminarArchivo(" + posi + ")'></i></li>");
+            $("#listaArchivos").append("<li id='li" + posi + "'><span style='color: red'><i class='fas fa-file-pdf iconoArchivo'></i></span>" + nombre + "<i class='fas fa-times iconoCerrar' onclick='eliminarArchivo(" + posi + ")'></i></li>");
         }
         else {
             $("#listaArchivos").append("<li id='li" + posi + "'><span><i class='fa fa-image iconoArchivo'></i></span>" + nombre + "<i class='fas fa-times iconoCerrar' onclick='eliminarArchivo(" + posi + ")'></i></li>");
@@ -101,7 +102,20 @@ function generarListaInputsArchivos() {
     $("#inputsHidden").empty();
     for (var x = 0; x < archivosAdjuntosString.length; x++) {
         var nombre = archivosAdjuntosString[x].substring(archivosAdjuntosString[x].lastIndexOf("\\"), archivosAdjuntosString[x].length);
-        $("#listaArchivos").append("<li id='li" + x + "'><span><i class='fas fa-file-pdf iconoArchivo'></i></span>" + nombre + "<i class='fas fa-times iconoCerrar' onclick='eliminarArchivo(" + x + ")'></i></li>");
+        var extension = archivosAdjuntosString[x].substring(archivosAdjuntosString[x].lastIndexOf('.'), archivosAdjuntosString[x].length);
+        extension = extension.substring(1, extension.length);
+        extension = extension.toLowerCase();
+        if (extension == "pdf") {
+            $("#listaArchivos").append("<li id='li" + x + "'><span style='color: red'><i class='fas fa-file-pdf iconoArchivo'></i></span>" + nombre + "<i class='fas fa-times iconoCerrar' onclick='eliminarArchivo(" + x + ")'></i></li>");
+        }
+        else {
+            if (extension == "jpg" || extension == "jpeg" || extension == "png") {
+                $("#listaArchivos").append("<li id='li" + x + "'><span><i class='fa fa-image iconoArchivo'></i></span>" + nombre + "<i class='fas fa-times iconoCerrar' onclick='eliminarArchivo(" + x + ")'></i></li>");
+            }
+            else {
+                $("#listaArchivos").append("<li id='li" + x + "' style='color: red'><span><i class='fas fa-exclamation-triangle iconoArchivo'></i></span>" + nombre + "<i class='fas fa-times iconoCerrar' onclick='eliminarArchivo(" + x + ")'></i></li>");
+            }
+        }
         archivosAdjuntos[x].setAttribute("id", "archivo" + x);
         archivosAdjuntos[x].setAttribute("name", "archivo" + x);
         $("#inputsHidden").append(archivosAdjuntos[x]);
@@ -121,4 +135,12 @@ function enviarComentario() {
         }
     }
     return true;
+}
+function revisarExistenciaDeArchivos() {
+    if (archivosAdjuntos.length == 0) {
+        $("#textoArchivosAdjuntos").css("color", "red");
+        return false;
+    }
+    var enviar = enviarComentario();
+    return enviar;
 }

@@ -16,8 +16,8 @@ class CreateProyectosTable extends Migration
         Schema::create('proyectos', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("titulo")->unique();
-            $table->string("descripcion");
-            $table->boolean('estado');
+            $table->text("descripcion");
+            $table->boolean("estado");
             $table->timestamps();
         });
     }

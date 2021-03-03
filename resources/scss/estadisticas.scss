@@ -1,0 +1,79 @@
+@import "funciones";
+
+@include estructura();
+
+#contenedorFormulario{
+    margin-top: 70px;
+}
+
+#selector{
+    text-align-last: center;
+    margin-top: 20px;
+    border-color: #a16aff;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#selector:active,#selector:focus{
+    @include ocultarborde();
+}
+
+.datoest{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#periodo{
+    width: 500px;
+    div{
+        margin: 0 auto !important;
+    }
+}
+
+div-estadisticas{
+    margin-top: 40px;
+}
+
+body.dark{
+    span{
+        color: white !important;
+    }
+
+    text,.apexcharts-menu-icon svg,.apexcharts-menu-icon svg:hover{
+        fill: white !important;
+    }
+
+    .apexcharts-menu-icon svg{
+        color: white !important;
+    }
+
+    .apexcharts-menu-icon svg:hover{
+        color: white !important;
+    }
+
+    #selector{
+        background-color: transparent;
+        color: white;
+    }
+}
+
+@media (max-width: 590px) {
+    #periodo{
+        width: 300px;
+    }
+
+    #selector{
+        width: 75% !important;
+    }
+}
+
+@media (max-width: 394px) {
+    #periodo{
+        width: 200px;
+    }
+}

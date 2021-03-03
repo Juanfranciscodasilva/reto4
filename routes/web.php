@@ -45,6 +45,10 @@ use Illuminate\Support\Facades\Route;
         //Crear proyecto
             Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
             Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
+        //Estadísticas
+            Route::get('/estadisticas','ControllerPrincipal@vistaest')->name('estadisticas.index');
+            Route::get('/estadisticas/{opcion}','ControllerEstadisticas@gestionarestadistica')->name('estadistica');
+            Route::get('/ejemplo','ControllerEstadisticas@ejee')->name('eje');
 
     //Perfil
         //Vista Principal
@@ -63,12 +67,13 @@ use Illuminate\Support\Facades\Route;
         //Modificar
 
     //Proyecto
-        //Vistas
-            //Sacar la información de cada proyecto
-                Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
-                Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");
 
-        Route::get("/archivos" , "ControllerProyecto@archivos")->name("archivos");
+        //Vistas
+
+
+        Route::get("/proyecto/{id}","ControllerProyecto@establecerID");
+        Route::get("/informacion" , "ControllerProyecto@entrar")->name("proyecto");
+        Route::get("/archivosProyecto" , "ControllerProyecto@archivos")->name("archivos");
         Route::get("/chat" , "ControllerProyecto@chat")->name("chat");
         Route::get("/tareasActivas" , "ControllerProyecto@tareasActivas")->name("tareasActivas");
         Route::get("/tareasFinalizadas" , "ControllerProyecto@tareasFinalizadas")->name("tareasFinalizadas");
@@ -76,8 +81,9 @@ use Illuminate\Support\Facades\Route;
         Route::get("/crearTarea" , "ControllerProyecto@crearTarea")->name("crearTarea");
         Route::post("/crearTarea" , "ControllerProyecto@insertarTarea")->name("crearTarea");
         Route::post("/finalizarTarea" , "ControllerProyecto@finalizarTarea")->name("finalizarTarea");
-        Route::get("eliminarProyecto/{id}", "ControllerProyecto@eliminar");
-        Route::post("crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
-        Route::post("crearComentario","ControllerProyecto@crearComentario")->name("crearComentario");
-
+        Route::get("/eliminarProyecto/{id}", "ControllerProyecto@eliminar");
+        Route::post("/crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
+        Route::post("/crearComentario","ControllerProyecto@crearComentario")->name("crearComentario");
+        Route::post("/subirArchivos", "ControllerProyecto@subirArchivos")->name("subirArchivos");
         Route::post("/addColaborador","ControllerProyecto@addColaborador")->name("addColaborador");
+        Route::get('/descargar/{hash}/{nombre}',"ControllerProyecto@descargar")->name("descargar");
