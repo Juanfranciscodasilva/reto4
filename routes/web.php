@@ -45,6 +45,10 @@ use Illuminate\Support\Facades\Route;
         //Crear proyecto
             Route::get("/crear", "ControllerPrincipal@abrirCrearProyecto")->name("crear");
             Route::get("/perfil", "ControllerPrincipal@perfil")->name("perfil");
+        //Estadísticas
+            Route::get('/estadisticas','ControllerPrincipal@vistaest')->name('estadisticas.index');
+            Route::get('/estadisticas/{opcion}','ControllerEstadisticas@gestionarestadistica')->name('estadistica');
+            Route::get('/ejemplo','ControllerEstadisticas@ejee')->name('eje');
 
     //Perfil
         //Vista Principal

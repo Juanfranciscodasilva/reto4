@@ -110,7 +110,7 @@ class ControllerPerfil extends Controller
 
     public function perfilusu($id){
         if ($id == Session::get('usuario')->id){
-            return $this->perfil();
+            return redirect()->route('perfil');
         }
 
         $usuario = Usuario::get()->where('id',$id)->first();

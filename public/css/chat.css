@@ -38,9 +38,6 @@
 
 .mensaje p {
   word-break: break-word;
-  background: #f0f0f0;
-  padding: 10px;
-  border-radius: 10px;
 }
 
 form {
@@ -98,20 +95,11 @@ form button {
   color: red;
 }
 
-#archivos ul, #archivosMensaje {
+#archivos ul {
   padding: 10px auto;
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-}
-
-#archivosMensaje {
-  padding: 0 10px;
-}
-
-.bloqueArchivosMensaje {
-  margin-top: 20px;
 }
 
 #archivos p {

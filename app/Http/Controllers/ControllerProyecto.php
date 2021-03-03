@@ -39,8 +39,8 @@ class ControllerProyecto extends Controller
             $fecha_entrada = Integrante::get()->where("proyecto",$proyecto->id)->where("usuario",Session::get("usuario")->id)->first();
 
         //obtener datos del coordinador del proyecto
-        $coordinador = Integrante::get()->where("proyecto",$proyecto->id)->where("permiso",true)->first();
-        $coordinador = Usuario::find($coordinador->usuario);
+            $coordinador = Integrante::get()->where("proyecto",$proyecto->id)->where("permiso",true)->first();
+            $coordinador = Usuario::find($coordinador->usuario);
 
         //obtener numero de integrantes del proyecto
         $integrantes = count(Integrante::get()->where("proyecto",$proyecto->id));

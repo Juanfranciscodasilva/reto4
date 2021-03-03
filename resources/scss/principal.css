@@ -1,10 +1,3 @@
-h1 {
-  text-shadow: 3px 2px 4px #a16aff;
-  margin: 20px 0;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
-}
-
 #noProyectos {
   display: flex;
   justify-content: center;
@@ -95,9 +88,6 @@ body.dark .proyecto h2 {
   border-bottom-color: #a16aff;
 }
 body.dark .text-dark {
-  color: white !important;
-}
-body.dark .fa-lock, body.dark .fa-book-open, body.dark .botonperfil {
   color: white !important;
 }
 

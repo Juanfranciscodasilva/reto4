@@ -31,13 +31,28 @@ body.dark h1 {
   border: none;
 }
 
-#botonAdd {
-  margin-bottom: 0;
+.botonperfil:hover {
+  color: #7A01C9 !important;
 }
 
-#botonAdd a button {
+p {
+  word-break: break-word;
+}
+
+.enlace {
+  color: #a16aff;
+}
+
+.enlace:hover {
+  color: #7A01C9;
+  text-decoration: none;
+}
+
+body.dark .datos {
+  color: white;
+}
+body.dark .datos hr {
   border-color: #a16aff;
-  padding: 3px 10px;
 }
 
 /*# sourceMappingURL=proyecto.css.map */
