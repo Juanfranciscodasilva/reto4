@@ -1,0 +1,76 @@
+#contenedorFormulario {
+  border: solid black 1px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #a16aff;
+}
+
+h1 {
+  margin: 20px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #a16aff;
+  border-top: 1px solid #a16aff;
+  text-shadow: 3px 2px 4px #a16aff;
+  word-break: break-word;
+}
+
+body.dark h1 {
+  color: white;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.boton {
+  border: 1px solid black;
+  width: 100%;
+  border-radius: 5px;
+  background-color: rgba(161, 106, 255, 0.4);
+  color: black;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+form button:focus, form button:active, form input, textarea {
+  outline-width: 0 !important;
+  box-shadow: none !important;
+}
+
+input, textarea {
+  border: 1px solid #a16aff;
+  border-radius: 5px;
+  text-align-all: center;
+}
+
+body.dark h1 {
+  color: white;
+}
+body.dark label {
+  color: white;
+}
+body.dark form input, body.dark textarea {
+  border-color: #a16aff;
+  background-color: transparent;
+  color: white !important;
+}
+body.dark input[type=search], body.dark .boton {
+  color: white !important;
+  background-color: #7A01C9 !important;
+  border-color: #a16aff !important;
+}
+
+#contenedorPadre {
+  margin-top: 50px;
+}
+
+/*# sourceMappingURL=contacto.css.map */

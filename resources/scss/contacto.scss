@@ -1,0 +1,8 @@
+@import "funciones";
+
+@include estructura();
+@include repetir(100%);
+
+#contenedorPadre{
+    margin-top: 50px;
+}
