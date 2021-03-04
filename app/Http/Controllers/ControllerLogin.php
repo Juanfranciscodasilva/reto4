@@ -186,7 +186,7 @@ class ControllerLogin extends Controller
         $for = Session::get('email');
 
         $links = [
-            'link' => 'https://plantool.herokuapp.com/contacto'
+            'link' => 'https://reto4.herokuapp.com/contacto'
         ];
 
         Mail::send('emails.confir',$links,function ($msj) use ($subject,$for){
