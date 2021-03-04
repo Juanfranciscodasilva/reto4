@@ -110,6 +110,9 @@ body.dark .tarea h2 {
   background-color: #7A01C9;
   border-bottom-color: #a16aff;
 }
+body.dark p {
+  color: white !important;
+}
 body.dark .text-dark {
   color: white !important;
 }
