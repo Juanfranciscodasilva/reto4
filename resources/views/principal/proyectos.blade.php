@@ -18,7 +18,7 @@
                 <p class="text-dark"><b>Únete mediante invitación o crea uno propio!</b></p>
             </div>
         @else
-            <h1 class="mt-4 mt-xl-5 mb-xl-5 pt-xl-4">Mi lista de proyectos</h1>
+            <h1 class="mt-4 mt-xl-5 mb-xl-5">Mi lista de proyectos</h1>
         <table class="mt-xl-5">
             <thead>
                 <tr>
