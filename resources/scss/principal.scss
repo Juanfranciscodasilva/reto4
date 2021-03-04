@@ -90,8 +90,13 @@ h1{
     border: none;
 }
 
-body.dark{
+.amarillo {
+    svg,span{
+        color: #debd1b !important;
+    }
+}
 
+body.dark{
     h1{
         color: white;
     }
@@ -117,8 +122,25 @@ body.dark{
         color: white !important;
     }
 
-    .fa-lock,.fa-book-open,.botonperfil{
+    .proyecto{
+        .justify-content-around{
+            div{
+                span{
+                    color: white !important;
+                }
+            }
+        }
+    }
+
+    .fa-lock,.fa-book-open,.botonperfil,.botonperfil svg,.botonperfil span {
         color: white !important;
+    }
+
+    .amarillo {
+        background-color: transparent;
+        svg,span{
+            color: yellow !important;
+        }
     }
 }
 

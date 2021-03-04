@@ -20,8 +20,17 @@ form div{
     margin-bottom: 20px;
 }
 
+input:read-only{
+    background-color: #a16aff;
+    color: white;
+}
+
 body.dark{
     svg,span{
         color: white;
+    }
+
+    input:read-only{
+        background-color: #7A01C9;
     }
 }

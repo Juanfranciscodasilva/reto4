@@ -144,3 +144,11 @@ function revisarExistenciaDeArchivos() {
     var enviar = enviarComentario();
     return enviar;
 }
+function eliminararchivoconfir(event) {
+    if (!confirm('¿Estas segur@ que deseas eliminar este archivo?'))
+        event.preventDefault();
+}
+function eliminarmensaje(event) {
+    if (!confirm('¿Estas segur@ que deseas eliminar este mensaje?'))
+        event.preventDefault();
+}

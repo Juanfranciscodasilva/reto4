@@ -176,3 +176,13 @@ function revisarExistenciaDeArchivos(){
     let enviar:boolean = enviarComentario();
     return enviar;
 }
+
+function eliminararchivoconfir(event){
+    if (!confirm('¿Estas segur@ que deseas eliminar este archivo?'))
+        event.preventDefault();
+}
+
+function eliminarmensaje(event){
+    if (!confirm('¿Estas segur@ que deseas eliminar este mensaje?'))
+        event.preventDefault();
+}

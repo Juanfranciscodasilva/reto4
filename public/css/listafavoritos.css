@@ -1,0 +1,106 @@
+main {
+  display: block !important;
+}
+
+#integrantes table {
+  margin-bottom: 30px;
+}
+
+tr td:nth-of-type(1) {
+  padding-left: 0 !important;
+}
+
+h2 {
+  margin: 20px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  text-shadow: 3px 2px 4px #a16aff;
+  padding: 5px 0 15px 0;
+  word-break: break-word;
+}
+
+#DataTables_Table_0_filter label {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  color: transparent;
+}
+
+#DataTables_Table_0 > thead > tr > th.pr-0.sorting_asc,
+#DataTables_Table_0 > thead > tr > th.pr-0.sorting_desc,
+#DataTables_Table_0 > thead > tr > th.text-center.pr-0.sorting,
+#DataTables_Table_0 > thead > tr > th.text-center.pr-0.sorting_asc,
+#DataTables_Table_0 > thead > tr > th.text-right.pr-0.sorting,
+#DataTables_Table_0 > thead > tr > th.text-right.pr-0.sorting_asc {
+  cursor: auto;
+}
+
+.enlaceInvitar:hover {
+  color: #a16aff;
+}
+
+tbody tr:hover td {
+  border-color: #a16aff !important;
+  cursor: auto;
+}
+
+tbody tr:nth-of-type(1):hover td {
+  border-color: #a16aff !important;
+}
+
+#DataTables_Table_0 > tbody > tr:hover, table tbody tr:hover {
+  background-color: transparent;
+  border-color: #a16aff;
+  cursor: auto;
+}
+
+.enlacefavorito {
+  color: #debd1b !important;
+}
+
+input[type=search] {
+  width: 90% !important;
+  text-align: center;
+  max-width: 700px;
+}
+
+th.sorting::after, th.sorting::before, th.sorting_asc::after, th.sorting_asc::before, th.sorting_desc::after, th.sorting_desc::before {
+  color: transparent;
+  cursor: auto;
+}
+
+th {
+  width: 30% !important;
+}
+
+body.dark h2 {
+  color: white !important;
+}
+body.dark .enlacefavorito {
+  color: yellow;
+}
+body.dark tbody tr:hover td {
+  background-color: transparent;
+  border-bottom-color: gray !important;
+  color: white;
+}
+body.dark td, body.dark th {
+  color: white;
+  border-color: gray;
+}
+body.dark tbody tr:nth-of-type(1):hover td {
+  border-color: gray !important;
+  color: white;
+}
+
+@media (min-width: 992px) {
+  #DataTables_Table_0_filter label {
+    width: 100% !important;
+  }
+
+  #bod.sb-sidenav-toggled input[type=search] {
+    width: 100% !important;
+  }
+}
+
+/*# sourceMappingURL=listafavoritos.css.map */

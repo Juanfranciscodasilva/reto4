@@ -1,10 +1,13 @@
-h1, h2 {
-  text-align: center;
+main {
+  height: 100%;
+  display: flex;
 }
 
 h1 {
-  margin: 20px 0 30px 0;
   text-shadow: 3px 2px 4px #a16aff;
+  margin: 20px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 #noTareas p {
@@ -14,30 +17,47 @@ h1 {
 
 #tareas {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
 }
 
-.tarea {
+#tareas > div {
   width: 100%;
-  margin-top: 30px;
-  border: solid black 1px;
-  background-color: whitesmoke;
+  max-width: 560px;
+  background-color: transparent;
   border-radius: 5px;
 }
 
+.tarea {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #a16aff;
+  background-color: whitesmoke;
+}
+
 .tarea h2 {
-  background-color: #a16aff;
   color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #a16aff;
   text-align: center;
-  padding: 5px;
+  padding: 10px;
   word-break: break-word;
+  border-bottom: 1px solid black;
+}
+
+.tarea div {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 .tarea p {
   text-align: center;
   color: black;
-  background-color: white;
+  background-color: rgba(161, 106, 255, 0.4);
   border: solid black 1px;
   padding: 10px 8px;
   margin: 10px 15px 15px 15px;
@@ -65,6 +85,43 @@ h1 {
   width: 50%;
 }
 
+.finalizar {
+  background-color: rgba(161, 106, 255, 0.4);
+  border: solid black 1px;
+  border-radius: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+body.dark h1 {
+  color: white;
+}
+body.dark .tarea {
+  background-color: transparent;
+}
+body.dark .tarea span, body.dark .tarea p {
+  color: white;
+}
+body.dark .tarea p {
+  border-color: #a16aff;
+  background-color: #7A01C9;
+}
+body.dark .tarea h2 {
+  background-color: #7A01C9;
+  border-bottom-color: #a16aff;
+}
+body.dark p {
+  color: white !important;
+}
+body.dark .text-dark {
+  color: white !important;
+}
+body.dark .finalizar {
+  background-color: #7A01C9;
+  color: white;
+  border-color: #a16aff;
+}
+
 @media (min-width: 450px) {
   .tarea {
     width: 80%;
@@ -80,12 +137,10 @@ h1 {
   #tareas {
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
   }
 
-  .tarea {
-    width: 45%;
+  #tareas > div {
+    max-width: 600px;
   }
 }
 @media (min-width: 1200px) {

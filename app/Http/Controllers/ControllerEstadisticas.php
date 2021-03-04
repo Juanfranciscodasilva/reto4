@@ -11,16 +11,19 @@ class ControllerEstadisticas extends Controller
 {
     //Metodo para gestionar las estadisticas
         public function gestionarestadistica($opcion){
-            switch ($opcion){
-                case 'estado':
-                    return $this->estado();
-                break;
-                case 'periodo':
-                    return $this->periodo();
-                break;
-                default:
-                    return $this->permiso();
+            if (Session::exists("usuario")) {
+                switch ($opcion){
+                    case 'estado':
+                        return $this->estado();
+                        break;
+                    case 'periodo':
+                        return $this->periodo();
+                        break;
+                    default:
+                        return $this->permiso();
+                }
             }
+            return redirect('/');
         }
 
     //En caso de que la opción sea estado sacaremos una estadistica donde saldrán los proyectos privados y publicos

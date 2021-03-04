@@ -40,7 +40,9 @@ tr a:hover{
 }
 
 body.dark{
-    .text-dark{
-        color: white !important;
+    tr{
+        td,th{
+            color: white;
+        }
     }
 }

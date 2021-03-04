@@ -38,5 +38,5 @@
     </div>
 @endsection
 @section('script')
-    <script src="/js/login/registro.js"></script>
+    <script src="/js/registro.js"></script>
 @endsection

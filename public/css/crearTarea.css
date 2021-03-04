@@ -1,23 +1,148 @@
-@import "crearProyecto.css";
-
-#contenedorFormulario {
-    margin-top: 20px;
-    margin-bottom: 20px;
+main {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-#contenedorFormulario h1{
-    margin-top: 0;
-    margin-bottom: 10px;
+#contenedorPadre {
+  margin-bottom: 30px;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.boton {
+  border: 1px solid black;
+  width: 100%;
+  border-radius: 5px;
+  background-color: rgba(161, 106, 255, 0.4);
+  color: black;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+form button:focus, form button:active, form input, textarea {
+  outline-width: 0 !important;
+  box-shadow: none !important;
+}
+
+input, textarea {
+  border: 1px solid #a16aff;
+  border-radius: 5px;
+  text-align-all: center;
+}
+
+body.dark h1 {
+  color: white;
+}
+body.dark label {
+  color: white;
+}
+body.dark form input, body.dark textarea {
+  border-color: #a16aff;
+  background-color: transparent;
+  color: white !important;
+}
+body.dark .boton {
+  color: white !important;
+  background-color: #7A01C9 !important;
+  border-color: #a16aff !important;
+}
+
+#contenedorFormulario {
+  border: solid black 1px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #a16aff;
+}
+
+h1 {
+  margin: 20px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #a16aff;
+  border-top: 1px solid #a16aff;
+  text-shadow: 3px 2px 4px #a16aff;
+  word-break: break-word;
+}
+
+body.dark h1 {
+  color: white;
+}
+
+form textarea {
+  resize: none;
+  height: 180px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+input:read-only {
+  background-color: #a16aff;
+  color: white;
+}
+
+body.dark svg, body.dark span {
+  color: white;
+}
+body.dark input:read-only {
+  background-color: #7A01C9;
 }
 
 #contenedorFormulario div {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-.mensajeError{
-    display: none;
-    color: red;
-    margin-top: 10px;
-    font-style: italic;
-    margin-left: 5px;
+.mensajeError {
+  display: none;
+  color: red;
+  margin-top: 10px;
+  font-style: italic;
+  margin-left: 5px;
 }
+
+.selector {
+  text-align-last: center;
+  border-color: #a16aff;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.selector:active, .selector:focus {
+  outline-width: 0 !important;
+  box-shadow: none !important;
+}
+
+body.dark .selector {
+  background-color: transparent;
+  color: white;
+}
+body.dark #errorFecha, body.dark #errorIntegrante {
+  color: red;
+}
+body.dark ::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+@media (max-width: 767px) {
+  .selector {
+    text-align-last: left;
+  }
+}
+
+/*# sourceMappingURL=crearTarea.css.map */

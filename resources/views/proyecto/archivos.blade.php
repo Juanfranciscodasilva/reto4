@@ -5,9 +5,9 @@
 @endsection
 
 @section("css")
-    <link href="css/archivo.css" rel="stylesheet" />
-    <link href="css/tablaProyectos.css" rel="stylesheet" />
-    <link href="css/paginacion.css" rel="stylesheet" />
+    <link href="/css/archivo.css" rel="stylesheet" />
+    <link href="/css/tablaProyectos.css" rel="stylesheet" />
+    <link href="/css/paginacion.css" rel="stylesheet" />
 @endsection
 
 @section("contenido")
@@ -37,11 +37,11 @@
                         <tr>
                             <td>{{$archivo->created_at->format("d/m/Y")}}</td>
                             @if($archivo->extension == "pdf")
-                                <td><a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}"" style="color: black"><span class="mr-2" style="color: red"><i class='fas fa-file-pdf'></i></span>{{$archivo->archivo_original}}</a></td>
+                                <td><a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}" style="color: black"><span class="mr-2" style="color: red"><i class='fas fa-file-pdf'></i></span>{{$archivo->archivo_original}}</a></td>
                             @else
                                 <td><a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}" style="color: black"><span class="mr-2"><i class='fas fa-image'></i></span>{{$archivo->archivo_original}}</a></td>
                             @endif
-                            <td style="text-align: end"><a href="/eliminarArchivo/{{$archivo->id}}/{{$archivo->archivo_hash}}"><span><i class="fas fa-trash-alt" style="color: red"></i></span></a></td>
+                            <td style="text-align: end"><a href="/eliminarArchivo/{{$archivo->id}}/{{$archivo->archivo_hash}}" onclick="eliminararchivoconfir(event)"><span><i class="fas fa-trash-alt" style="color: red"></i></span></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -57,7 +57,7 @@
                     @csrf
                     <div>
                         <label for="archivoChat" id="botonAddArchivo">Añadir archivos <i class="fas fa-paperclip ml-1"></i></label>
-                        <button type="submit">Subir <i class="fas fa-share ml-1"></i></button>
+                        <button type="submit" class="subir">Subir <i class="fas fa-share ml-1"></i></button>
                     </div>
                     <input type="file" id="archivoChat" name="archivo" hidden>
                     <div id="enviarArchivos" class="h-100">

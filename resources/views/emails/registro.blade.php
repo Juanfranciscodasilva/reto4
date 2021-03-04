@@ -11,5 +11,5 @@
 </ul>
 
 <p style="text-align: center">
-    Puede ponerse en contacto con nosotros a traves de la url de: <a href="http://plantool.herokuapp.com/contacto" target="_blank">http://plantool.herokuapp.com/contacto</a>
+    Puede ponerse en contacto con nosotros a traves de la url de: <a href="http://reto4.herokuapp.com/contacto" target="_blank">http://plantool.herokuapp.com/contacto</a>
 </p>

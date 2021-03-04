@@ -1,0 +1,47 @@
+@import "crearProyecto";
+
+#contenedorFormulario div {
+    margin-bottom: 10px;
+}
+
+.mensajeError{
+    display: none;
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.selector{
+    text-align-last: center;
+    border-color: #a16aff;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.selector:active,.selector:focus{
+    @include ocultarborde();
+}
+
+body.dark{
+    .selector{
+        background-color: transparent;
+        color: white;
+    }
+
+    #errorFecha,#errorIntegrante{
+        color: red;
+    }
+
+    ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+}
+
+@media (max-width: 767px) {
+    .selector{
+        text-align-last: left;
+    }
+}

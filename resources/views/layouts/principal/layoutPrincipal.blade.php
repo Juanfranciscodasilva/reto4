@@ -17,7 +17,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark d-flex justify-content-between" id="navSuperior">
 
     <div class="d-flex align-items-center">
-        <a class="navbar-brand js-scroll-trigger" href="/principal" id="logo"><img src="/img/logo_blanco.png" width="180px"></a>
+        <a class="navbar-brand js-scroll-trigger" href="/principal" id="logo"><img src="/img/logo_blanco.PNG" width="180px"></a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
     </div>
     <!-- Navbar-->
@@ -30,14 +30,14 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle h-100"></i></a>
                 <div class="dropdown-menu dropdown-menu-right text-center pt-0 pb-0" aria-labelledby="userDropdown" id="menuUsuario">
-                    <a href="{{route("perfil")}}" class="dropdown-item pb-0 pt-1">
+                    <a href="{{route("perfil")}}" class="dropdown-item pb-2 pt-3">
                         <div id="imgPerfil"><img src="/img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen }}"></div>
                         <span><b>{{\Illuminate\Support\Facades\Session::get("usuario")->nombre}}</b></span>
                     </a>
                     <div class="dropdown-divider mt-0 mb-0"></div>
-                    <a class="dropdown-item" href="{{route("perfil")}}">Perfil</a>
+                    <a class="dropdown-item pb-2 pt-2" href="{{route("perfil")}}">Perfil</a>
                     <div class="dropdown-divider mt-0 mb-0"></div>
-                    <a class="dropdown-item" href="/">Cerrar Sesión</a>
+                    <a class="dropdown-item pb-2 pt-2" href="{{ route('login.home') }}">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>
@@ -76,7 +76,7 @@
                 <div class="d-flex align-items-center justify-content-between small">
                     <div class="text-muted">Copyright &copy; PlanTool 2021</div>
                     <div>
-                        <img src="/img/logo.png" class="logo" width="130px">
+                        <img src="/img/logo.PNG" class="logo" width="130px">
                     </div>
                 </div>
             </div>
@@ -87,6 +87,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/principal.js"></script>
+<script src="/js/perfil.js"></script>
 @yield('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>

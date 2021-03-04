@@ -1,10 +1,22 @@
 @import "funciones";
 
-@include repetir(100px);
+@include mainAlineado();
 @include estructura();
 
 span{
     word-break: break-word;
+}
+
+.boton{
+    border: 1px solid black;
+    width: 105px;
+    border-radius: 5px;
+    background-color: rgba(161, 106, 255,0.4);
+    color: black;
+}
+
+button:hover{
+    text-decoration: underline;
 }
 
 tbody tr:hover{
@@ -83,6 +95,10 @@ tr:nth-of-type(1){
     a:hover{
         cursor: pointer;
     }
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s !important;
 }
 
 .c-img{
@@ -199,6 +215,22 @@ table{
     text-decoration: underline;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+form button:focus, form button:active, form input,textarea{
+    @include ocultarborde();
+}
+
+input,textarea {
+    border: 1px solid #a16aff;
+    border-radius: 5px;
+    text-align-all: center;
+}
+
 body.dark{
     .dataTables_paginate{
         a{
@@ -256,6 +288,22 @@ body.dark{
         background-color: #7A01C9 !important;
         border-color: #a16aff !important;
     }
+
+    input[type=search],.boton{
+        color: white !important;
+        background-color: #7A01C9 !important;
+        border-color: #a16aff !important;
+    }
+
+    form input{
+        border-color: #a16aff;
+        background-color: transparent;
+        color: white !important;
+    }
+
+    label{
+        color: white;
+    }
 }
 
 @media (min-width: 992px) {
@@ -270,7 +318,7 @@ body.dark{
     }
 }
 
-@media (max-width: 956px) {
+@media (max-width: 978px) {
     input[type=search]{
         width:320px !important;
     }
@@ -280,9 +328,9 @@ body.dark{
     }
 }
 
-@media (max-width: 769px) {
+@media (max-width: 770px) {
     input[type=search]{
-        width:320px !important;
+        width:300px !important;
     }
 }
 

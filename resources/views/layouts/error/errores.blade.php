@@ -7,7 +7,15 @@
             @endforeach
         </div>
     </div>
-    <div class="col-12">
+    @if(isset($perfil))
+        <div class="col-12 p-0">
+    @else
+        <div class="col-12">
+    @endif
 @else
-    <div class="col-12 mt-4">
+    @if(isset($perfil))
+       <div class="col-12 mt-4 p-0">
+    @else
+       <div class="col-12 mt-4">
+    @endif
 @endif

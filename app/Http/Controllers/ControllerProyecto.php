@@ -10,7 +10,7 @@ use App\Models\Integrante;
 use App\Models\Proyecto;
 use App\Models\Tarea;
 use App\Models\Usuario;
-use Faker\Provider\File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
@@ -216,15 +216,38 @@ class ControllerProyecto extends Controller
     }
 
     public function eliminar($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $usuario = Session::get("usuario");
         $integrante = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$id)->first();
         $proyecto = Proyecto::find($id);
         if ($integrante->permiso){
+            $listarchivos = ArchivoProyecto::get()->where('proyecto',$proyecto->id);
+            $mensajes = Comentario::get()->where('proyecto',$proyecto->id);
+            $listacoment = $this->obtenerArchivosMensajes($mensajes);
+
+            $this->eliminarArchivos($listarchivos);
+
+            if (count($listacoment) > 0){
+                foreach ($listacoment as $coment){
+                    $this->eliminarArchivos($coment->archivos);
+                }
+            }
+
             $proyecto->delete();
         }else{
             Integrante::where("usuario",$usuario->id)->where("proyecto",$id)->delete();
         }
         return redirect("/principal");
+    }
+
+    public function eliminarArchivos($listarchivos){
+        foreach ($listarchivos as $archivos)
+        {
+            $file = public_path('/archivos/'.$archivos->archivo_hash);
+            File::delete($file);
+        }
     }
 
     public function crear(){
@@ -252,7 +275,8 @@ class ControllerProyecto extends Controller
         Integrante::create([
            "usuario" => $usuario->id,
            "proyecto" => $proyecto->id,
-           "permiso" => true
+           "permiso" => true,
+            'favorito' => false
         ]);
 
         return redirect("principal");
@@ -286,7 +310,7 @@ class ControllerProyecto extends Controller
     }
 
     public function comprobarExistenciaDeProyectoEnSesion(){
-        if (!Session::exists("proyecto")){
+        if (!Session::exists("proyecto") || !Session::exists('usuario')){
             return false;
         }
         return true;
@@ -398,6 +422,9 @@ class ControllerProyecto extends Controller
     }
 
     public function descargar($hash,$nombre){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         return response()->download("archivos/".$hash,$nombre);
     }
 
@@ -409,6 +436,9 @@ class ControllerProyecto extends Controller
     }
 
     public function invitarIntegrante($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $usuario = Usuario::find($id);
         $proyecto = Proyecto::find(Session::get("proyecto"));
         $coordinador = Integrante::get()->where("proyecto",Session::get("proyecto"))->where("permiso",true)->first();
@@ -441,14 +471,96 @@ class ControllerProyecto extends Controller
         Integrante::create([
            "usuario" => $usuario,
            "proyecto" => $proyecto,
-            "permiso" => false
+           "permiso" => false,
+           "favorito" => false,
         ]);
         return redirect("/");
     }
 
     public function expulsarIntegrante($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $proyecto = Session::get("proyecto");
         Integrante::where("proyecto",$proyecto)->where("usuario",$id)->delete();
         return back();
+    }
+
+    public function eliminarmensaje($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
+        $comentario = Comentario::find($id);
+        $listarchivos = ArchivoComentario::get()->where('comentario',$id);
+
+        foreach ($listarchivos as $archivos)
+        {
+            $file_path = public_path("/archivos/".$archivos->archivo_hash);
+            File::delete($file_path);
+        }
+
+        $comentario->delete();
+        return redirect()->back();
+    }
+
+    public function solicitarunirse(){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
+        $coordinador = Integrante::get()->where('proyecto',Session::get('proyecto'))->where('permiso',true)->first();
+        $proyecto = Proyecto::find($coordinador->proyecto);
+        $usuario = Usuario::find($coordinador->usuario);
+
+        $datos = [
+            'usuario' => Session::get('usuario'),
+            'proyecto' => $proyecto
+        ];
+
+        $subject = 'PlanTool';
+        $for = $usuario->email;
+
+        Mail::send('emails.union',$datos,function ($msj) use ($subject,$for){
+            $msj->from('developersweapp@gmail.com','PlanTool');
+            $msj->subject($subject);
+            $msj->to($for);
+        });
+
+        echo "<script>alert('La solicitud de unión se ha enviado correctamente. Espera hasta que el coordinador decida si añadirte o no al proyecto');location.href='/principal';</script>";
+    }
+
+    public function modificarproyecto(){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
+        $proyecto = Proyecto::find(Session::get('proyecto'));
+        $permiso = $this->obtenerPermiso();
+        return view('proyecto.modificarproyecto')->with(
+            ['proyecto' => $proyecto,
+              'pagina' => 'proyecto',
+              'permiso' => $permiso
+            ]
+        );
+    }
+
+    public function modpro(){
+        \request()->validate([
+            "titulo" => "unique:proyectos,titulo,".Session::get('proyecto')
+        ],[
+            "titulo.unique" => 'El titulo "'.\request("titulo").'" no está disponible'
+        ]);
+
+        if (\request('estado') == 'publico')
+            $estado = false;
+        else
+            $estado = true;
+
+        $proyecto = Proyecto::find(Session::get('proyecto'));
+        $proyecto->titulo = \request('titulo');
+        $proyecto->descripcion = \request('descripcion');
+        $proyecto->estado = $estado;
+
+        $proyecto->save();
+
+        echo "<script>alert('Se ha modificado correctamente los datos del proyecto');location.href = '/principal'</script>";
     }
 }

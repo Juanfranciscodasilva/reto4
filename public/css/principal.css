@@ -90,6 +90,10 @@ h1 {
   border: none;
 }
 
+.amarillo svg, .amarillo span {
+  color: #debd1b !important;
+}
+
 body.dark h1 {
   color: white;
 }
@@ -110,8 +114,17 @@ body.dark .proyecto h2 {
 body.dark .text-dark {
   color: white !important;
 }
-body.dark .fa-lock, body.dark .fa-book-open, body.dark .botonperfil {
+body.dark .proyecto .justify-content-around div span {
   color: white !important;
+}
+body.dark .fa-lock, body.dark .fa-book-open, body.dark .botonperfil, body.dark .botonperfil svg, body.dark .botonperfil span {
+  color: white !important;
+}
+body.dark .amarillo {
+  background-color: transparent;
+}
+body.dark .amarillo svg, body.dark .amarillo span {
+  color: yellow !important;
 }
 
 @media (min-width: 768px) {

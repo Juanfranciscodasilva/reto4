@@ -18,23 +18,23 @@
                 <p class="text-dark"><b>Únete mediante invitación o crea uno propio!</b></p>
             </div>
         @else
-            <h1 class="mt-4 mt-xl-5 mb-xl-5 pt-xl-4">Mi lista de proyectos</h1>
+            <h1 class="mt-4 mt-xl-5 mb-xl-5">Mi lista de proyectos</h1>
         <table class="mt-xl-5">
             <thead>
                 <tr>
-                    <th>Titulo</th>
+                    <th class="text-center">Titulo</th>
                     <th class="text-center">Coordinador</th>
                     <th class="text-center">Fecha de entrada</th>
-                    <th class="text-right">Eliminar</th>
+                    <th class="text-center">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($listaproyectos["proyectos"] as $proyecto)
                 <tr>
-                    <td>{{$proyecto->titulo}}</td>
+                    <td class="text-center">{{$proyecto->titulo}}</td>
                     <td class="text-center">{{$proyecto->coordinador->usuario}}</td>
                     <td class="text-center">{{$proyecto->created_at->format("d/m/Y")}}</td>
-                    <td class="text-right"><a href="#" onclick="aceptarDesvinculoEliminar({{$proyecto->id}})"><i class="fas fa-trash-alt"></i></a></td>
+                    <td class="text-center"><a href="#" onclick="aceptarDesvinculoEliminar({{$proyecto->id}})"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
             @endforeach
             </tbody>
@@ -42,8 +42,4 @@
             {{ $listaproyectos["ids"]->onEachSide(0)->links('pagination::bootstrap-4') }}
         @endif
     </div>
-@endsection
-
-@section('script')
-
 @endsection

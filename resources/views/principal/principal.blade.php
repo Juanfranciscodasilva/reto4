@@ -15,7 +15,7 @@
                 <p class="text-dark"><b>Únete mediante invitación o crea uno propio!</b></p>
             </div>
         @else
-            <h1 class="mt-4 pt-0 mt-xl-5 pt-xl-4">Mis proyectos</h1>
+            <h1 class="mt-4 pt-0 mt-xl-5">Mis proyectos</h1>
                 <div id="proyectos" class="mt-xl-5">
                     @foreach($listaproyectos["proyectos"] as $proyecto)
                         <div class="proyectodatos col-12 mx-auto mx-lg-0 col-lg-6 col-xl-4">
@@ -33,13 +33,32 @@
                                         @endif
                                         </p>
                                     </div>
-                                    <div class="d-flex justify-content-around pb-3">
+                                    <div>
                                         <span>Fecha: {{$proyecto->created_at->format("d/m/Y")}}</span>
+                                    </div>
+                                    <div class="d-flex p-0 pb-2 justify-content-around">
                                         @if($proyecto->estado)
-                                            <i class="fas fa-lock" style="margin-top: 3px;color: #a16aff"></i>
+                                            <div>
+                                                <i class="fas fa-lock" style="margin-top: 6px;color: #a16aff;margin-right: 5px"></i>
+                                                <span style="color: #a16aff">privado</span>
+                                            </div>
                                         @else
-                                            <i class="fas fa-book-open" style="margin-top: 3px;color: #a16aff"></i>
+                                            <div>
+                                                <i class="fas fa-book-open" style="margin-top: 6px;color: #a16aff;margin-right: 5px"></i>
+                                                <span style="color: #a16aff">público</span>
+                                            </div>
                                         @endif
+                                          @if($proyecto->favorito)
+                                                <button class="botonperfil amarillo" id="{{ $proyecto->id }}" onclick="quitarfavorito(this,event)">
+                                                    <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
+                                                    <span style="color: #a16aff">añadir a favoritos</span>
+                                                </button>
+                                            @else
+                                                <button class="botonperfil" onclick="añadirfavorito(this,event)" id="{{ $proyecto->id }}">
+                                                    <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
+                                                    <span style="color: #a16aff">añadir a favoritos</span>
+                                                </button>
+                                            @endif
                                     </div>
                                 </div>
                             </a>
