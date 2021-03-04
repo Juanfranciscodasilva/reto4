@@ -18,12 +18,12 @@ function guardardato() {
     if (localstorage != null && localstorage === "oscuro") {
         $("body").addClass('dark');
         $("#switch").addClass("active");
-        modooscyclaro('/img/logo_blanco.png', "oscuro");
+        modooscyclaro('/img/logo_blanco.PNG', "oscuro");
     }
     else {
         $("body").removeClass('dark');
         $("#switch").removeClass("active");
-        modooscyclaro('/img/logo.png', "claro");
+        modooscyclaro('/img/logo.PNG', "claro");
     }
 }
 //Función que se utiliza para modificar el valor del boton y hacer el cambio de modo claro a modo oscuro y viceversa
@@ -34,9 +34,9 @@ function botonmodoscyclaro() {
         boton.classList.toggle('active');
         var body = document.getElementById('bod');
         if (body.classList.contains('dark'))
-            modooscyclaro('/img/logo_blanco.png', "oscuro");
+            modooscyclaro('/img/logo_blanco.PNG', "oscuro");
         else
-            modooscyclaro('/img/logo.png', "claro");
+            modooscyclaro('/img/logo.PNG', "claro");
     });
 }
 //Modificar el logo dependiendo del color de la pagina
