@@ -37,7 +37,7 @@
                     </svg></div>
                 Crear tarea
             </a>
-            <a class="nav-link" href="{{route("crearTarea")}}">
+            <a class="nav-link" href="{{route("modificarproyecto")}}">
                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                 Modificar proyecto
             </a>

@@ -81,15 +81,23 @@ use Illuminate\Support\Facades\Route;
             Route::get('/chat/{mensaje}','ControllerProyecto@eliminarmensaje')->name('eliminarmensaje');
         //Solicitar unirse
             Route::get('/solicitarunirse','ControllerProyecto@solicitarunirse')->name('solicitarunirse');
-
-        Route::get("/archivosProyecto" , "ControllerProyecto@archivos")->name("archivos");
-
-        Route::get("/tareasActivas" , "ControllerProyecto@tareasActivas")->name("tareasActivas");
-        Route::get("/tareasFinalizadas" , "ControllerProyecto@tareasFinalizadas")->name("tareasFinalizadas");
-        Route::get("/integrantes" , "ControllerProyecto@integrantes")->name("integrantes");
-        Route::get("/crearTarea" , "ControllerProyecto@crearTarea")->name("crearTarea");
-        Route::post("/crearTarea" , "ControllerProyecto@insertarTarea")->name("crearTarea");
-        Route::post("/finalizarTarea" , "ControllerProyecto@finalizarTarea")->name("finalizarTarea");
+        //Modificar proyecto
+            Route::get('/modificarproyecto','ControllerProyecto@modificarproyecto')->name('modificarproyecto');
+            Route::patch('/modificarproyecto','ControllerProyecto@modpro')->name('modpro');
+        //Archivos de proyecto
+            Route::get("/archivosProyecto" , "ControllerProyecto@archivos")->name("archivos");
+        //Tareas
+            Route::get("/tareasActivas" , "ControllerProyecto@tareasActivas")->name("tareasActivas");
+            Route::get("/tareasFinalizadas" , "ControllerProyecto@tareasFinalizadas")->name("tareasFinalizadas");
+        //Integrantes
+            Route::get("/integrantes" , "ControllerProyecto@integrantes")->name("integrantes");
+        //Crear tarea
+            //Vista
+                Route::get("/crearTarea" , "ControllerProyecto@crearTarea")->name("crearTarea");
+            //Crear
+                Route::post("/crearTarea" , "ControllerProyecto@insertarTarea")->name("crearTarea");
+        //Finalizar tarea
+            Route::post("/finalizarTarea" , "ControllerProyecto@finalizarTarea")->name("finalizarTarea");
         Route::get("/eliminarProyecto/{id}", "ControllerProyecto@eliminar");
         Route::post("/crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
         Route::post("/crearComentario","ControllerProyecto@crearComentario")->name("crearComentario");

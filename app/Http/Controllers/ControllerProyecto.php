@@ -487,4 +487,37 @@ class ControllerProyecto extends Controller
 
         echo "<script>alert('La solicitud de unión se ha enviado correctamente. Espera hasta que el coordinador decida si añadirte o no al proyecto');location.href='/principal';</script>";
     }
+
+    public function modificarproyecto(){
+        $proyecto = Proyecto::find(Session::get('proyecto'));
+        $permiso = $this->obtenerPermiso();
+        return view('proyecto.modificarproyecto')->with(
+            ['proyecto' => $proyecto,
+              'pagina' => 'proyecto',
+              'permiso' => $permiso
+            ]
+        );
+    }
+
+    public function modpro(){
+        \request()->validate([
+            "titulo" => "unique:proyectos,titulo,".Session::get('proyecto')
+        ],[
+            "titulo.unique" => 'El titulo "'.\request("titulo").'" no está disponible'
+        ]);
+
+        if (\request('estado') == 'publico')
+            $estado = false;
+        else
+            $estado = true;
+
+        $proyecto = Proyecto::find(Session::get('proyecto'));
+        $proyecto->titulo = \request('titulo');
+        $proyecto->descripcion = \request('descripcion');
+        $proyecto->estado = $estado;
+
+        $proyecto->save();
+
+        echo "<script>alert('Se ha modificado correctamente los datos del proyecto');location.href = '/principal'</script>";
+    }
 }
