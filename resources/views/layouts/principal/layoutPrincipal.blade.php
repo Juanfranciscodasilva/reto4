@@ -76,7 +76,7 @@
                 <div class="d-flex align-items-center justify-content-between small">
                     <div class="text-muted">Copyright &copy; PlanTool 2021</div>
                     <div>
-                        <img src="/img/logo_blanco.PNG" class="logo" width="130px">
+                        <img src="/img/logo.PNG" class="logo" width="130px">
                     </div>
                 </div>
             </div>
