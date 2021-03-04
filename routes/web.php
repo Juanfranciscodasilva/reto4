@@ -73,7 +73,6 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/modificarperfil','ControllerPerfil@modperfil')->name('modificarperfil.index');
             //Modificar
                 Route::patch('/modificarperfil','ControllerPerfil@modificarperfil')->name('modificarperfil');
-
         //Eliminar usuarios
             Route::get('/eliminarusuario','ControllerPerfil@eliminarusuario')->name('eliminarusuario');
 
@@ -103,13 +102,23 @@ use Illuminate\Support\Facades\Route;
                 Route::post("/crearTarea" , "ControllerProyecto@insertarTarea")->name("crearTarea");
         //Finalizar tarea
             Route::post("/finalizarTarea" , "ControllerProyecto@finalizarTarea")->name("finalizarTarea");
-        Route::get("/eliminarProyecto/{id}", "ControllerProyecto@eliminar");
-        Route::post("/crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
-        Route::post("/crearComentario","ControllerProyecto@crearComentario")->name("crearComentario");
-        Route::post("/subirArchivos", "ControllerProyecto@subirArchivos")->name("subirArchivos");
-        Route::post("/addColaborador","ControllerProyecto@addColaborador")->name("addColaborador");
-        Route::get('/descargar/{hash}/{nombre}',"ControllerProyecto@descargar")->name("descargar");
-        Route::get('/eliminarArchivo/{id}/{hash}',"ControllerProyecto@eliminarArchivo")->name("eliminarArchivo");
-        Route::get('/invitarIntegrante/{id}',"ControllerProyecto@invitarIntegrante")->name("invitarIntegrante");
-        Route::get('/addIntegrante/{usuario}/{proyecto}',"ControllerProyecto@addIntegrante")->name("addIntegrante");
-        Route::get('/expulsarIntegrante/{id}',"ControllerProyecto@expulsarIntegrante")->name("expulsarIntegrante");
+        //Eliminar proyecto
+            Route::get("/eliminarProyecto/{id}", "ControllerProyecto@eliminar");
+        //Crear proyecto
+            Route::post("/crearProyecto", "ControllerProyecto@crear")->name("crearProyecto");
+        //Crear comentario
+            Route::post("/crearComentario","ControllerProyecto@crearComentario")->name("crearComentario");
+        //Subir archivos
+            Route::post("/subirArchivos", "ControllerProyecto@subirArchivos")->name("subirArchivos");
+        //Añadir colaborador
+            Route::post("/addColaborador","ControllerProyecto@addColaborador")->name("addColaborador");
+        //Descargar archivos
+            Route::get('/descargar/{hash}/{nombre}',"ControllerProyecto@descargar")->name("descargar");
+        //Eliminar archivos
+            Route::get('/eliminarArchivo/{id}/{hash}',"ControllerProyecto@eliminarArchivo")->name("eliminarArchivo");
+        //Invitar integrante
+            Route::get('/invitarIntegrante/{id}',"ControllerProyecto@invitarIntegrante")->name("invitarIntegrante");
+        //Añadir integrante
+            Route::get('/addIntegrante/{usuario}/{proyecto}',"ControllerProyecto@addIntegrante")->name("addIntegrante");
+        //Expulsar integrante
+            Route::get('/expulsarIntegrante/{id}',"ControllerProyecto@expulsarIntegrante")->name("expulsarIntegrante");

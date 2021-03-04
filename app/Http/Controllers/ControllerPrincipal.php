@@ -34,29 +34,37 @@ class ControllerPrincipal extends Controller
     }
 
     public function proyectos(){
-
-        $proyectos = $this->obtenerProyectos(6);
-        $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
-        return view("principal.proyectos")->with([
-            "pagina" => "principal",
-            "proyectos" => count($proyectos["proyectos"]),
-            "listaproyectos" => $proyectos,
-            'listafavoritos' => count($listafavoritos),
-        ]);
+        if (Session::exists("usuario")) {
+            $proyectos = $this->obtenerProyectos(6);
+            $listafavoritos = Integrante::get()->where('usuario', Session::get('usuario')->id)->where('favorito', true);
+            return view("principal.proyectos")->with([
+                "pagina" => "principal",
+                "proyectos" => count($proyectos["proyectos"]),
+                "listaproyectos" => $proyectos,
+                'listafavoritos' => count($listafavoritos),
+            ]);
+        }
+        return redirect("/");
     }
 
     public function abrirCrearProyecto(){
-        $proyectos = $this->obtenerProyectos(0);
-        $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
-        return view("principal.crearProyecto")->with([
-            "pagina" =>"principal",
-            "proyectos" => count($proyectos["proyectos"]),
-            'listafavoritos' => count($listafavoritos),
-        ]);
+        if (Session::exists("usuario")) {
+            $proyectos = $this->obtenerProyectos(0);
+            $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
+            return view("principal.crearProyecto")->with([
+                "pagina" =>"principal",
+                "proyectos" => count($proyectos["proyectos"]),
+                'listafavoritos' => count($listafavoritos),
+            ]);
+        }
+        return redirect('/');
     }
 
     public function perfil(){
-        return view("perfil.perfil")->with("pagina","perfil");
+        if (Session::exists("usuario")) {
+            return view("perfil.perfil")->with("pagina","perfil");
+        }
+        return redirect('/');
     }
 
     public function obtenerProyectos($paginacion){
@@ -85,15 +93,18 @@ class ControllerPrincipal extends Controller
     }
 
     public function vistaest(){
-        $proyectos = $this->obtenerProyectos(0);
-        $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
+        if (Session::exists("usuario")) {
+            $proyectos = $this->obtenerProyectos(0);
+            $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
 
-        return view('principal.estadisticas')->with(
-            [
-                'pagina' => 'principal',
-                "proyectos" => count($proyectos["proyectos"]),
-                'listafavoritos' => count($listafavoritos),
-            ]);
+            return view('principal.estadisticas')->with(
+                [
+                    'pagina' => 'principal',
+                    "proyectos" => count($proyectos["proyectos"]),
+                    'listafavoritos' => count($listafavoritos),
+                ]);
+        }
+        return redirect('/');
     }
 
     public function contacto(){
