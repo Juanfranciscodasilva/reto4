@@ -17,7 +17,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark d-flex justify-content-between" id="navSuperior">
 
     <div class="d-flex align-items-center">
-        <a class="navbar-brand js-scroll-trigger" href="/principal" id="logo"><img src="/img/logo_blanco.png" width="180px"></a>
+        <a class="navbar-brand js-scroll-trigger" href="/principal" id="logo"><img src="/img/logo_blanco.PNG" width="180px"></a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
     </div>
     <!-- Navbar-->
@@ -76,7 +76,7 @@
                 <div class="d-flex align-items-center justify-content-between small">
                     <div class="text-muted">Copyright &copy; PlanTool 2021</div>
                     <div>
-                        <img src="/img/logo.png" class="logo" width="130px">
+                        <img src="/img/logo.PNG" class="logo" width="130px">
                     </div>
                 </div>
             </div>
