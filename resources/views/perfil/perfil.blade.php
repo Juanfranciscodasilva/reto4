@@ -20,7 +20,7 @@
                     @if($usuarioreal == "")
                         <div class="c-img mb-2 mt-0 mx-auto">
                             <img src="/img/perfil/{{ \Illuminate\Support\Facades\Session::get('usuario')->imagen}}">
-                                <form id="formimagen" action="{{ route('modificarimagen') }}" enctype="multipart/form-data" method="post" class="txt col-12">
+                                <form id="formimagen" action="{{ route('modificarimagen') }}" enctype="multipart/form-data" method="post" class="txt col-12" onsubmit="return cambiarFotoDePerfil()">
                                     @csrf @method('PATCH')
                                     <div>
                                         <label for="foto"><i class="fas fa-edit"></i></label>

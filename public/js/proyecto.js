@@ -61,7 +61,7 @@ function validarArchivo(archivoFile) {
         extension = extension.substring(1, extension.length);
         extension = extension.toLowerCase();
         if (extension == "jpg" || extension == "jpeg" || extension == "png" || extension == "pdf") {
-            if (archivoFile.size <= 5000000) {
+            if (archivoFile.size <= 1000000) {
                 return true;
             }
             throw "El archivo excede el peso máximo";
