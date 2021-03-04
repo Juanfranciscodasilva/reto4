@@ -225,7 +225,12 @@ class ControllerProyecto extends Controller
             $listacoment = $this->obtenerArchivosMensajes($mensajes);
 
             $this->eliminarArchivos($listarchivos);
-            $this->eliminarArchivos($listacoment->archivos);
+
+            if (count($listacoment) > 0){
+                foreach ($listacoment as $coment){
+                    $this->eliminarArchivos($coment->archivos);
+                }
+            }
 
             $proyecto->delete();
         }else{
