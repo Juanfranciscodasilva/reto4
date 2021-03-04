@@ -72,7 +72,7 @@ class ControllerPrincipal extends Controller
         $usuario = Session::get("usuario")->id;
 
         if ($paginacion == 0){
-            $ids = Integrante::get()->where("usuario",$usuario)->orderBy('created_at','DESC');
+            $ids = Integrante::where("usuario",$usuario)->orderBy('created_at','DESC');
         }else{
             $ids = Integrante::where("usuario",$usuario)->orderBy('created_at','DESC')->paginate($paginacion);
         }

@@ -64,7 +64,7 @@ function mostrarestado(respuesta):void{
             }
         },
         responsive: [{
-            breakpoint: 480,
+            breakpoint: 8547,
             options: {
                 chart: {
                     width: 300
