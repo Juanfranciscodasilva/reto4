@@ -54,9 +54,8 @@ tbody tr:nth-of-type(1):hover td {
   cursor: auto;
 }
 
-th.sorting::after, th.sorting::before, th.sorting_asc::after, th.sorting_asc::before, th.sorting_desc::after, th.sorting_desc::before {
-  color: transparent;
-  cursor: auto;
+.enlacefavorito {
+  color: #debd1b !important;
 }
 
 input[type=search] {
@@ -65,8 +64,20 @@ input[type=search] {
   max-width: 700px;
 }
 
+th.sorting::after, th.sorting::before, th.sorting_asc::after, th.sorting_asc::before, th.sorting_desc::after, th.sorting_desc::before {
+  color: transparent;
+  cursor: auto;
+}
+
+th {
+  width: 30% !important;
+}
+
 body.dark h2 {
   color: white !important;
+}
+body.dark .enlacefavorito {
+  color: yellow;
 }
 body.dark tbody tr:hover td {
   background-color: transparent;
@@ -92,4 +103,4 @@ body.dark tbody tr:nth-of-type(1):hover td {
   }
 }
 
-/*# sourceMappingURL=integrantes.css.map */
+/*# sourceMappingURL=listafavoritos.css.map */

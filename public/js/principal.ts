@@ -62,3 +62,13 @@ function aceptarDesvinculoEliminar(id){
         window.location.href = "/eliminarProyecto/"+id;
     }
 }
+
+function añadirfavorito(boton,event){
+    event.preventDefault();
+    location.href = '/anadirfavorito/' + boton.id;
+}
+
+function quitarfavorito(boton,event){
+    event.preventDefault();
+    location.href = '/quitarfavorito/' + boton.id;
+}

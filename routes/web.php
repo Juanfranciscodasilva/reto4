@@ -51,7 +51,12 @@ use Illuminate\Support\Facades\Route;
         //Contactar
             Route::get('/contacto','ControllerPrincipal@contacto')->name('contacto.index');
             Route::post('/contacto','ControllerPrincipal@contactar')->name('contactar');
-
+        //Favorito
+            Route::get("/anadirfavorito/{id}" , "ControllerPrincipal@anadirfavorito")->name("añadirfavorito");
+            Route::get("/quitarfavorito/{id}" , "ControllerPrincipal@eliminarfavorito")->name("eliminarfavorito");
+        //Lista de favoritos
+            Route::get('/listafavoritos','ControllerPrincipal@listafavoritos')->name('listafavoritos');
+            Route::get('/eliminarlistfav/{id}','ControllerPrincipal@eliminarfav')->name('eliminarfav');
     //Perfil
         //Vista Principal
             Route::get("/perfil", "ControllerPerfil@perfil")->name("perfil");

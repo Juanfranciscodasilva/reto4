@@ -220,11 +220,26 @@ class ControllerProyecto extends Controller
         $integrante = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$id)->first();
         $proyecto = Proyecto::find($id);
         if ($integrante->permiso){
+            $listarchivos = ArchivoProyecto::get()->where('proyecto',$proyecto->id);
+            $mensajes = Comentario::get()->where('proyecto',$proyecto->id);
+            $listacoment = $this->obtenerArchivosMensajes($mensajes);
+
+            $this->eliminarArchivos($listarchivos);
+            $this->eliminarArchivos($listacoment->archivos);
+
             $proyecto->delete();
         }else{
             Integrante::where("usuario",$usuario->id)->where("proyecto",$id)->delete();
         }
         return redirect("/principal");
+    }
+
+    public function eliminarArchivos($listarchivos){
+        foreach ($listarchivos as $archivos)
+        {
+            $file = public_path('/archivos/'.$archivos->archivo_hash);
+            File::delete($file);
+        }
     }
 
     public function crear(){
@@ -252,7 +267,8 @@ class ControllerProyecto extends Controller
         Integrante::create([
            "usuario" => $usuario->id,
            "proyecto" => $proyecto->id,
-           "permiso" => true
+           "permiso" => true,
+            'favorito' => false
         ]);
 
         return redirect("principal");
@@ -441,7 +457,8 @@ class ControllerProyecto extends Controller
         Integrante::create([
            "usuario" => $usuario,
            "proyecto" => $proyecto,
-            "permiso" => false
+           "permiso" => false,
+           "favorito" => false,
         ]);
         return redirect("/");
     }

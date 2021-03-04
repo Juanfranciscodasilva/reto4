@@ -42,20 +42,23 @@
                                                 <i class="fas fa-lock" style="margin-top: 6px;color: #a16aff;margin-right: 5px"></i>
                                                 <span style="color: #a16aff">privado</span>
                                             </div>
-                                            <button class="botonperfil">
-                                                <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
-                                                <span>añadir a favoritos</span>
-                                            </button>
                                         @else
                                             <div>
                                                 <i class="fas fa-book-open" style="margin-top: 6px;color: #a16aff;margin-right: 5px"></i>
                                                 <span style="color: #a16aff">público</span>
                                             </div>
-                                            <button class="botonperfil">
-                                                <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
-                                                <span style="color: #a16aff">añadir a favoritos</span>
-                                            </button>
                                         @endif
+                                          @if($proyecto->favorito)
+                                                <button class="botonperfil amarillo" id="{{ $proyecto->id }}" onclick="quitarfavorito(this,event)">
+                                                    <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
+                                                    <span style="color: #a16aff">añadir a favoritos</span>
+                                                </button>
+                                            @else
+                                                <button class="botonperfil" onclick="añadirfavorito(this,event)" id="{{ $proyecto->id }}">
+                                                    <i class="fas fa-star" style="margin-top: 3px;margin-left: 12px;color: #a16aff"></i>
+                                                    <span style="color: #a16aff">añadir a favoritos</span>
+                                                </button>
+                                            @endif
                                     </div>
                                 </div>
                             </a>
