@@ -461,9 +461,6 @@ class ControllerProyecto extends Controller
     }
 
     public function addIntegrante($usuario,$proyecto){
-        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
-            return redirect("/principal");
-        }
         $usuario = base64_decode($usuario);
         $proyecto = base64_decode($proyecto);
         $usuario2 = Usuario::find($usuario);
