@@ -216,6 +216,9 @@ class ControllerProyecto extends Controller
     }
 
     public function eliminar($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $usuario = Session::get("usuario");
         $integrante = Integrante::get()->where("usuario",$usuario->id)->where("proyecto",$id)->first();
         $proyecto = Proyecto::find($id);
@@ -307,7 +310,7 @@ class ControllerProyecto extends Controller
     }
 
     public function comprobarExistenciaDeProyectoEnSesion(){
-        if (!Session::exists("proyecto")){
+        if (!Session::exists("proyecto") || !Session::exists('usuario')){
             return false;
         }
         return true;
@@ -419,6 +422,9 @@ class ControllerProyecto extends Controller
     }
 
     public function descargar($hash,$nombre){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         return response()->download("archivos/".$hash,$nombre);
     }
 
@@ -430,6 +436,9 @@ class ControllerProyecto extends Controller
     }
 
     public function invitarIntegrante($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $usuario = Usuario::find($id);
         $proyecto = Proyecto::find(Session::get("proyecto"));
         $coordinador = Integrante::get()->where("proyecto",Session::get("proyecto"))->where("permiso",true)->first();
@@ -452,6 +461,9 @@ class ControllerProyecto extends Controller
     }
 
     public function addIntegrante($usuario,$proyecto){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $usuario = base64_decode($usuario);
         $proyecto = base64_decode($proyecto);
         $usuario2 = Usuario::find($usuario);
@@ -469,12 +481,18 @@ class ControllerProyecto extends Controller
     }
 
     public function expulsarIntegrante($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $proyecto = Session::get("proyecto");
         Integrante::where("proyecto",$proyecto)->where("usuario",$id)->delete();
         return back();
     }
 
     public function eliminarmensaje($id){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $comentario = Comentario::find($id);
         $listarchivos = ArchivoComentario::get()->where('comentario',$id);
 
@@ -489,6 +507,9 @@ class ControllerProyecto extends Controller
     }
 
     public function solicitarunirse(){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $coordinador = Integrante::get()->where('proyecto',Session::get('proyecto'))->where('permiso',true)->first();
         $proyecto = Proyecto::find($coordinador->proyecto);
         $usuario = Usuario::find($coordinador->usuario);
@@ -511,6 +532,9 @@ class ControllerProyecto extends Controller
     }
 
     public function modificarproyecto(){
+        if (!$this->comprobarExistenciaDeProyectoEnSesion()){
+            return redirect("/principal");
+        }
         $proyecto = Proyecto::find(Session::get('proyecto'));
         $permiso = $this->obtenerPermiso();
         return view('proyecto.modificarproyecto')->with(

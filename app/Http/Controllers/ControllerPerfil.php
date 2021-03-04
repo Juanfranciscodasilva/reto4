@@ -16,34 +16,40 @@ class ControllerPerfil extends Controller
 {
     //Metodo para mostrar la pagina principal del pefil
         public function perfil(){
-            $proyectosd = Integrante::get()->where('usuario',Session::get('usuario')->id)->toArray();
+            if (Session::exists("usuario")) {
+                $proyectosd = Integrante::get()->where('usuario',Session::get('usuario')->id)->toArray();
 
-            $proyectos = array_values($proyectosd);
+                $proyectos = array_values($proyectosd);
 
-            $listaproyectos = [];
+                $listaproyectos = [];
 
-            for ($n = 0;$n < count($proyectos); $n++)
-            {
-                $proyec = Proyecto::get()->where('id',$proyectos[$n]["proyecto"])->sortBy('created_at')->first();
-                $listaproyectos[] = $proyec;
+                for ($n = 0;$n < count($proyectos); $n++)
+                {
+                    $proyec = Proyecto::get()->where('id',$proyectos[$n]["proyecto"])->sortBy('created_at')->first();
+                    $listaproyectos[] = $proyec;
+                }
+
+                return view("perfil.perfil")->with(
+                    [
+                        "pagina" => "perfil",
+                        "listaproyectos" => $listaproyectos,
+                        'usuarioreal' => '',
+                    ]);
             }
-
-            return view("perfil.perfil")->with(
-                [
-                    "pagina" => "perfil",
-                    "listaproyectos" => $listaproyectos,
-                    'usuarioreal' => '',
-                ]);
+            return redirect('/');
         }
 
     //Metodo para mostrar la vista de modificar contraseña
         public function modcontra(){
-            return view('perfil.modificarcontra')->with(
-                [
-                    'pagina' =>'perfil',
-                    'usuarioreal' => ''
-                ]
-            );
+            if (Session::exists('usuario')){
+                return view('perfil.modificarcontra')->with(
+                    [
+                        'pagina' =>'perfil',
+                        'usuarioreal' => ''
+                    ]
+                );
+            }
+            return redirect('/');
         }
 
     //Metodo para comprobar y modificar la contraseña
@@ -105,13 +111,16 @@ class ControllerPerfil extends Controller
 
     //Metodo para mostrar la vista para modificar los datos del usuario
         public function modperfil(){
-            return view('perfil.modificarperfil')->with(
-                [
-                    'pagina' =>'perfil',
-                    'usuarioreal' => '',
-                    'perfil' => true
-                ]
-            );
+            if (Session::exists('usuario')){
+                return view('perfil.modificarperfil')->with(
+                    [
+                        'pagina' =>'perfil',
+                        'usuarioreal' => '',
+                        'perfil' => true
+                    ]
+                );
+            }
+            return redirect('/');
         }
 
     //Metodo para modificar los datos del usuario
@@ -135,46 +144,51 @@ class ControllerPerfil extends Controller
 
     //Metodo para comprobar si el perfil al que queremos acceder es del usuario en sesion o no
         public function perfilusu($id){
-            if ($id == Session::get('usuario')->id){
-                return redirect()->route('perfil');
+            if (Session::exists("usuario")) {
+                if ($id == Session::get('usuario')->id){
+                    return redirect()->route('perfil');
+                }
+
+                $usuario = Usuario::get()->where('id',$id)->first();
+                Session::put('usuarioperfil',$usuario);
+
+                $proyectosd = Integrante::get()->where('usuario',$id)->toArray();
+                $proyectos = array_values($proyectosd);
+
+                $listaproyectos = [];
+
+                for ($n = 0;$n < count($proyectos); $n++)
+                {
+                    $proyec = Proyecto::get()->where('id',$proyectos[$n]["proyecto"])->sortBy('created_at')->first();
+                    $listaproyectos[] = $proyec;
+                }
+
+                return view("perfil.perfil")->with(
+                    [
+                        "pagina" => "perfil",
+                        "listaproyectos" => $listaproyectos,
+                        'usuarioreal' => Session::get('usuarioperfil')->nombre,
+                        "passCambiada" => false
+                    ]);
             }
-
-            $usuario = Usuario::get()->where('id',$id)->first();
-            Session::put('usuarioperfil',$usuario);
-
-            $proyectosd = Integrante::get()->where('usuario',$id)->toArray();
-            $proyectos = array_values($proyectosd);
-
-            $listaproyectos = [];
-
-            for ($n = 0;$n < count($proyectos); $n++)
-            {
-                $proyec = Proyecto::get()->where('id',$proyectos[$n]["proyecto"])->sortBy('created_at')->first();
-                $listaproyectos[] = $proyec;
-            }
-
-            return view("perfil.perfil")->with(
-                [
-                    "pagina" => "perfil",
-                    "listaproyectos" => $listaproyectos,
-                    'usuarioreal' => Session::get('usuarioperfil')->nombre,
-                    "passCambiada" => false
-                ]);
+            return redirect('/');
         }
 
     //Metodo para eliminar el usuario
         public function eliminarusuario(){
-            if (Session::get('usuario')->imagen != 'foto1.png'){
-                if (Session::get('usuario')->imagen != 'foto2.png'){
-                    if (Session::get('usuario')->imagen != 'foto3.png'){
-                        $file_path = public_path("/img/perfil/".Session::get('usuario')->imagen);
-                        File::delete($file_path);
+            if (Session::exists('usuario')){
+                if (Session::get('usuario')->imagen != 'foto1.png'){
+                    if (Session::get('usuario')->imagen != 'foto2.png'){
+                        if (Session::get('usuario')->imagen != 'foto3.png'){
+                            $file_path = public_path("/img/perfil/".Session::get('usuario')->imagen);
+                            File::delete($file_path);
+                        }
                     }
                 }
-            }
 
-            $usuario = Usuario::find(Session::get('usuario')->id);
-            $usuario->delete();
-            return "El usuario se ha eliminado correctamente";
+                $usuario = Usuario::find(Session::get('usuario')->id);
+                $usuario->delete();
+                return "El usuario se ha eliminado correctamente";
+            }
         }
 }

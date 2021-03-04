@@ -72,9 +72,9 @@ class ControllerPrincipal extends Controller
         $usuario = Session::get("usuario")->id;
 
         if ($paginacion == 0){
-            $ids = Integrante::get()->where("usuario",$usuario);
+            $ids = Integrante::get()->where("usuario",$usuario)->orderBy('created_at','DESC');
         }else{
-            $ids = Integrante::where("usuario",$usuario)->paginate($paginacion);
+            $ids = Integrante::where("usuario",$usuario)->orderBy('created_at','DESC')->paginate($paginacion);
         }
 
         foreach ($ids as $id){
@@ -108,55 +108,70 @@ class ControllerPrincipal extends Controller
     }
 
     public function contacto(){
-        $proyectos = $this->obtenerProyectos(0);
-        $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
+        if (Session::exists("usuario")) {
+            $proyectos = $this->obtenerProyectos(0);
+            $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
 
-        return view('principal.contacto')->with([
-            'pagina' => 'principal',
-            "proyectos" => count($proyectos["proyectos"]),
-            'listafavoritos' => count($listafavoritos),
-        ]);
+            return view('principal.contacto')->with([
+                'pagina' => 'principal',
+                "proyectos" => count($proyectos["proyectos"]),
+                'listafavoritos' => count($listafavoritos),
+            ]);
+        }
+        return redirect('/');
     }
 
     public function anadirfavorito($id){
-        DB::update('update integrantes set favorito = ? where usuario = ? and proyecto = ?',[true,Session::get('usuario')->id,$id]);
+        if (Session::exists("usuario")) {
+            DB::update('update integrantes set favorito = ? where usuario = ? and proyecto = ?',[true,Session::get('usuario')->id,$id]);
 
-        return redirect()->route('principal');
+            return redirect()->route('principal');
+        }
+        return redirect('/');
     }
 
     public function eliminarfavorito($id){
-        DB::update('update integrantes set favorito = ? where usuario = ? and proyecto = ?',[false,Session::get('usuario')->id,$id]);
-        return redirect()->route('principal');
+        if (Session::exists("usuario")) {
+            DB::update('update integrantes set favorito = ? where usuario = ? and proyecto = ?',[false,Session::get('usuario')->id,$id]);
+            return redirect()->route('principal');
+        }
+        return redirect('/');
     }
 
     public function listafavoritos(){
-        $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
+        if (Session::exists("usuario")) {
+            $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
 
-        $listaproyectos = [];
-        $proyectos = $this->obtenerProyectos(0);
+            $listaproyectos = [];
+            $proyectos = $this->obtenerProyectos(0);
 
-        foreach ($listafavoritos as $favoritos){
-            $proyecto = Proyecto::find($favoritos->proyecto);
-            $integrantes = Integrante::get()->where('proyecto',$proyecto->id)->where('favorito',true);
-            $proyecto->contadorfav = count($integrantes);
+            foreach ($listafavoritos as $favoritos){
+                $proyecto = Proyecto::find($favoritos->proyecto);
+                $integrantes = Integrante::get()->where('proyecto',$proyecto->id)->where('favorito',true);
+                $proyecto->contadorfav = count($integrantes);
 
-            array_push($listaproyectos,$proyecto);
+                array_push($listaproyectos,$proyecto);
+            }
+
+            if (count($listaproyectos) == 0)
+                return redirect()->route('principal');
+
+            return view('principal.listafavoritos')->with(
+                ['pagina' => 'principal',
+                    'listafavoritos' => count($listafavoritos),
+                    'listaproyectos' => $listaproyectos,
+                    'proyectos' => count($proyectos),
+                ]
+            );
         }
-
-        if (count($listaproyectos) == 0)
-            return redirect()->route('principal');
-
-        return view('principal.listafavoritos')->with(
-            ['pagina' => 'principal',
-            'listafavoritos' => count($listafavoritos),
-             'listaproyectos' => $listaproyectos,
-              'proyectos' => count($proyectos),
-            ]
-        );
+        return redirect('/');
     }
 
     public function eliminarfav($id){
-        DB::update('update integrantes set favorito = ? where usuario = ? and proyecto = ?',[false,Session::get('usuario')->id,$id]);
-        return redirect()->back();
+        if (Session::exists("usuario")) {
+            DB::update('update integrantes set favorito = ? where usuario = ? and proyecto = ?',[false,Session::get('usuario')->id,$id]);
+            return redirect()->back();
+        }
+        return redirect('/');
     }
 }
