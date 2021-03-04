@@ -1,4 +1,5 @@
 @import "funciones";
+@include addBreakWord();
 
 textarea:focus,textarea:active{
     @include ocultarborde();

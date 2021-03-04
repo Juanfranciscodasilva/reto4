@@ -1,3 +1,6 @@
+@import "funciones";
+@include addBreakWord();
+
 h1{
     text-shadow: 3px 2px 4px #a16aff;
     margin: 20px 0;

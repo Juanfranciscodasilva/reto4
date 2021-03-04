@@ -1,4 +1,5 @@
 @import "funciones";
+@include addBreakWord();
 
 #layoutSidenav_nav nav{
     background-color: white !important;

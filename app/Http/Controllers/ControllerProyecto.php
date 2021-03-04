@@ -465,9 +465,11 @@ class ControllerProyecto extends Controller
         $proyecto = base64_decode($proyecto);
         $usuario2 = Usuario::find($usuario);
         $proyecto2 = Proyecto::find($proyecto);
-        if ($usuario2 == null || $proyecto2 == null){
+        $integrante = Integrante::get()->where("usuario",1)->where("proyecto",1)->first();
+        if ($usuario2 == null || $proyecto2 == null || $integrante == null){
             return redirect("/");
         }
+
         Integrante::create([
            "usuario" => $usuario,
            "proyecto" => $proyecto,

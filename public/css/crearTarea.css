@@ -1,3 +1,7 @@
+* {
+  word-break: break-word;
+}
+
 main {
   height: 100%;
   display: flex;
@@ -100,6 +104,10 @@ body.dark svg, body.dark span {
 }
 body.dark input:read-only {
   background-color: #7A01C9;
+}
+
+* {
+  word-break: break-word;
 }
 
 #contenedorFormulario div {

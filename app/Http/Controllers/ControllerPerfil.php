@@ -101,7 +101,7 @@ class ControllerPerfil extends Controller
         public function modificarimagen(Request $request){
             $imagen = $request->file('foto');
             $nombrehash = $request->file('foto')->hashName();
-            $imagen->move('/img/perfil/',$nombrehash);
+            $imagen->move(public_path("img/perfil"),$nombrehash);
             $usuario = Usuario::find(Session::get('usuario')->id);
             $usuario->imagen = $nombrehash;
             $usuario->save();

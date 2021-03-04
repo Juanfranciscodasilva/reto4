@@ -1,3 +1,6 @@
+@import "funciones";
+@include addBreakWord();
+
 main{
     display: block !important;
 }

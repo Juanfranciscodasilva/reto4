@@ -3,6 +3,12 @@
     box-shadow: none !important;
 }
 
+@mixin addBreakWord{
+    *{
+        word-break: break-word;
+    }
+}
+
 @mixin mainAlineado{
     main{
         height: 100%;

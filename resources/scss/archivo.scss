@@ -1,3 +1,6 @@
+@import "funciones";
+@include addBreakWord();
+
 #formulario{
     display: flex;
     flex-direction: column;
