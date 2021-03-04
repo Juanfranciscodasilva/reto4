@@ -28,6 +28,7 @@
                 </svg></div>
             Estadísticas
         </a>
+    @else
     @endif
     <a class="nav-link" href="{{ route('contacto.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-envelope-open-text"></i></div>

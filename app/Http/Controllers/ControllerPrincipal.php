@@ -49,7 +49,7 @@ class ControllerPrincipal extends Controller
 
     public function abrirCrearProyecto(){
         if (Session::exists("usuario")) {
-            $proyectos = $this->obtenerProyectos(0);
+            $proyectos = $this->obtenerProyectos(6);
             $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
             return view("principal.crearProyecto")->with([
                 "pagina" =>"principal",
@@ -84,6 +84,7 @@ class ControllerPrincipal extends Controller
             $proyecto->coordinador = $coordinador;
             array_push($proyectos,$proyecto);
         }
+
         $datosProyectos = [
             "proyectos" => $proyectos,
             "ids" => $ids,
@@ -94,7 +95,7 @@ class ControllerPrincipal extends Controller
 
     public function vistaest(){
         if (Session::exists("usuario")) {
-            $proyectos = $this->obtenerProyectos(0);
+            $proyectos = $this->obtenerProyectos(6);
             $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
 
             return view('principal.estadisticas')->with(
@@ -109,7 +110,7 @@ class ControllerPrincipal extends Controller
 
     public function contacto(){
         if (Session::exists("usuario")) {
-            $proyectos = $this->obtenerProyectos(0);
+            $proyectos = $this->obtenerProyectos(6);
             $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
 
             return view('principal.contacto')->with([
@@ -143,7 +144,7 @@ class ControllerPrincipal extends Controller
             $listafavoritos = Integrante::get()->where('usuario',Session::get('usuario')->id)->where('favorito',true);
 
             $listaproyectos = [];
-            $proyectos = $this->obtenerProyectos(0);
+            $proyectos = $this->obtenerProyectos(6);
 
             foreach ($listafavoritos as $favoritos){
                 $proyecto = Proyecto::find($favoritos->proyecto);
@@ -152,6 +153,7 @@ class ControllerPrincipal extends Controller
 
                 array_push($listaproyectos,$proyecto);
             }
+
 
             if (count($listaproyectos) == 0)
                 return redirect()->route('principal');

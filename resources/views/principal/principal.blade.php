@@ -15,7 +15,7 @@
                 <p class="text-dark"><b>Únete mediante invitación o crea uno propio!</b></p>
             </div>
         @else
-            <h1 class="mt-4 pt-0 mt-xl-5 pt-xl-4">Mis proyectos</h1>
+            <h1 class="mt-4 pt-0 mt-xl-5">Mis proyectos</h1>
                 <div id="proyectos" class="mt-xl-5">
                     @foreach($listaproyectos["proyectos"] as $proyecto)
                         <div class="proyectodatos col-12 mx-auto mx-lg-0 col-lg-6 col-xl-4">
