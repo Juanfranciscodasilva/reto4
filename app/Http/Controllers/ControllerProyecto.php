@@ -466,7 +466,7 @@ class ControllerProyecto extends Controller
         $usuario2 = Usuario::find($usuario);
         $proyecto2 = Proyecto::find($proyecto);
         $integrante = Integrante::get()->where("usuario",1)->where("proyecto",1)->first();
-        if ($usuario2 == null || $proyecto2 == null || $integrante == null){
+        if ($usuario2 == null || $proyecto2 == null || $integrante != null){
             return redirect("/");
         }
 
