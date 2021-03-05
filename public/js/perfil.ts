@@ -28,6 +28,9 @@
     function validarArchivo(){
         try {
             let archivoFile = document.querySelector("#foto").files[0];
+            if (archivoFile == undefined) {
+                return false;
+            }
             let archivo = archivoFile.name;
             let extension:string = archivo.substring(archivo.lastIndexOf('.'), archivo.length);
             extension = extension.substring(1,extension.length);
