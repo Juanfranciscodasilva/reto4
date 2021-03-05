@@ -22,7 +22,7 @@
                         <p><b>Integrantes:</b> {{$integrantes}}</p>
                         @if($permiso == 2)
                             @if(!$estado)
-                                <a href="{{route("integrantes")}}" class="enlace"><i class="fas fa-user-friends"></i> Integrantes</a>
+                                <a href="{{route("integrantes")}}" class="enlace" style="margin-right: 25px"><i class="fas fa-user-friends"></i> Integrantes</a>
                                 <a href="{{route("archivos")}}" class="enlace"><i class="fas fa-file-alt"></i> Archivos</a>
                             @endif
                         @else
