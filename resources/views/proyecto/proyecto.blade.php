@@ -20,7 +20,7 @@
                         <p><b>Fecha de entrada:</b> {{$fecha_entrada->format("d/m/Y")}}</p>
                         <p><b>Coordinador:<button class="botonperfil" style="text-decoration: underline;margin-left: 2px" onclick="mostrarperfil(event,this)" id="{{ $coordinador->id }}"><b>{{$coordinador->usuario}}</b></button></b></p>
                         <p><b>Integrantes:</b> {{$integrantes}}</p>
-                        @if($permiso == 'nointegrante')
+                        @if($permiso == 2)
                             @if(!$estado)
                                 <a href="{{route("integrantes")}}" class="enlace"><i class="fas fa-user-friends"></i> Integrantes</a>
                                 <a href="{{route("archivos")}}" class="enlace"><i class="fas fa-file-alt"></i> Archivos</a>
