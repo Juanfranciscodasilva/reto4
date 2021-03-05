@@ -16,7 +16,7 @@
             @if(count($archivos) == 0)
                 <div id="noArchivos">
                     <h1>No se han encontrado archivos del proyecto</h1>
-                    @if($permiso && $permiso != "nointegrante")
+                    @if($permiso == 1)
                         <p>Sube archivos del proyecto</p>
                     @else
                         <p>Espera a que el coordinador suba archivos del proyecto</p>
@@ -41,7 +41,11 @@
                             @else
                                 <td><a href="{{route("descargar",["hash" => $archivo->archivo_hash, "nombre" => $archivo->archivo_original])}}" style="color: black"><span class="mr-2"><i class='fas fa-image'></i></span>{{$archivo->archivo_original}}</a></td>
                             @endif
+                            @if($permiso == 1)
                             <td style="text-align: end"><a href="/eliminarArchivo/{{$archivo->id}}/{{$archivo->archivo_hash}}" onclick="eliminararchivoconfir(event)"><span><i class="fas fa-trash-alt" style="color: red"></i></span></a></td>
+                           @else
+                            <td style="text-align: end"><span><i class="fas fa-ban"></i></span></td>
+                           @endif
                         </tr>
                     @endforeach
                     </tbody>
