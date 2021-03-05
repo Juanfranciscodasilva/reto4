@@ -24,7 +24,7 @@ function eliminarusuario() {
 function validarArchivo() {
     try {
         var archivoFile = document.querySelector("#foto").files[0];
-        if (archivoFile.size == undefined) {
+        if (archivoFile == undefined) {
                 return false;
             }
         var archivo = archivoFile.name;
