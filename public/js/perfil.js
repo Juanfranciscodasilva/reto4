@@ -24,6 +24,7 @@ function eliminarusuario() {
 function validarArchivo() {
     try {
         var archivoFile = document.querySelector("#foto").files[0];
+        console.log(archivoFile);
         var archivo = archivoFile.name;
         var extension = archivo.substring(archivo.lastIndexOf('.'), archivo.length);
         extension = extension.substring(1, extension.length);
